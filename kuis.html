@@ -1,371 +1,168 @@
-﻿<!doctype html>
-<html lang="id"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20261019-04-fd46897","C":{"Abril Fatface":"YACgEZbkUVE,0","Albert Sans":"YAHO2HRfeh4,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo Black":"YACgEZulLoA,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Baloo 2":"YAHO2IcQUcM,0","Barlow Condensed":"YAFdJljEuFc,0","Barlow":"YAFdJsyuOPM,1","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Cairo":"YAFdtXpDzlQ,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Cinzel":"YACgEeV8bIQ,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Figtree":"YAHO2b-mV7A,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Fredoka":"YACgEZml080,0","Georgia":"YAGzXkO0pEM,0","Hanken Grotesk":"YAHO2VB9G0I,0","Helvetica":"YAFcf7zkXN0,0","IBM Plex Mono":"YAFdJkmvhGI,0","IBM Plex Sans":"YAFdJgT0SHI,0","Impact":"YAFcfnjI7Vk,0","Instrument Sans":"YAHO2bKyaSQ,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Italiana":"YAHO2Toik_w,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Karla":"YAHO2V2NSXM,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Libre Caslon Display":"YAHO2XhLmt0,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Noto Sans JP":"YAFdJiHXlcI,0","Noto Sans KR":"YAGsojZj-RQ,0","Nunito Sans":"YAFdtQJYB9w,1","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Open Sans":"YAFdJt8dAY0,1","Oswald":"YACgEQY10lw,0","Outfit":"YAHO2nVlg14,0","Pacifico":"YADLjORQ1u4,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAHO2gdhi18,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Public Sans":"YAFdJj8NdaU,1","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","STIX Two Text":"YAHO2joycuk,0","Sarabun":"YAFdJssSnME,0","Schibsted Grotesk":"YAHO2sWydRk,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Space Mono":"YADW1-vpsoc,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');</script><script src="/_sdk/05db820ba1544614.telemetry_sdk.js" integrity="sha512-a7JzkQDDcioSXpM61nxTfeRW7PcxWQy5+BrhyeTFmQFsXJ+Gncm0y50u7fTA7qOPegFnRgqCfa0mGUOK1yjDWQ=="></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kuis Standar Gambar Teknik</title>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-  <style>
-    :root { --blue:#1958b5; --ink:#17365d; --pale:#eaf4ff; }
-    * { box-sizing:border-box; }
-    body { font-family:'Prompt',sans-serif; color:var(--ink); }
-    button, input, select { font:inherit; }
-    button:focus-visible, input:focus-visible, select:focus-visible { outline:3px solid #e69b16; outline-offset:3px; }
-    button:not(:disabled) { transition:transform .18s ease,box-shadow .18s ease,background .18s ease; }
-    button:not(:disabled):hover { transform:translateY(-2px); box-shadow:0 9px 20px #1958b526; }
-    button:disabled { cursor:not-allowed; opacity:.48; }
-    .surface { box-shadow:0 18px 55px #24629b17,0 3px 12px #24629b0c; }
-    .field { width:100%; min-height:48px; border:1px solid #bfd4ec; border-radius:14px; padding:10px 15px; background:#fff; color:#17365d; }
-    .field:focus { border-color:#1958b5; }
-    .choice { width:100%; min-height:58px; padding:14px 16px; border:2px solid #d8e7f7; border-radius:16px; background:#fff; color:#17365d; text-align:left; display:flex; align-items:center; gap:14px; line-height:1.5; }
-    .choice:not(:disabled):hover { border-color:#4782cc; background:#f3f9ff; }
-    .choice.correct { border-color:#229968; background:#e5f7ec; color:#145d3f; }
-    .choice.wrong { border-color:#dc5c67; background:#fff0f1; color:#9a2634; }
-    .choice:disabled { opacity:1; cursor:default; }
-    .choice-letter { flex:none; width:34px; height:34px; border-radius:10px; background:#eaf3ff; color:#1958b5; display:grid; place-items:center; font-weight:700; }
-    .choice.correct .choice-letter { background:#229968; color:white; }
-    .choice.wrong .choice-letter { background:#dc5c67; color:white; }
-    .confetti-piece { position:fixed; z-index:30; top:-20px; width:8px; height:12px; pointer-events:none; animation:fall 1.6s ease-in forwards; }
-    @keyframes fall { to { transform:translate(var(--drift), 105vh) rotate(540deg); opacity:0; } }
-    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; scroll-behavior:auto!important; } }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
-  <script src="/_sdk/570d53629f0b998d.data_sdk.js" type="text/javascript" integrity="sha512-JEN39+V+Nvv9ZZOVS8vNk1iA9ErZJHTdgOw9KzPuMiK7m0I+KPEr/wmTnCFIQVsDjCZgJWfGnFi1IQh2Io2qyA=="></script>
-  <script src="/_sdk/27a73d0f6d576f4d.editing_sdk.js" type="text/javascript" integrity="sha512-0x+G+gK8ndpjUSDbA089Mrgu5PHq4v9Csb0QtQHziS+rPUPoxPkx7w9quugJtYtMDiv2wfqmcYtCInS0i6eOvg=="></script>
-  <script src="/_sdk/03eb2403dcb2c820.resizing_sdk.js" type="text/javascript" integrity="sha512-3rStQpeHJ9SpUz/tPWj3qoOTc5Wdb4M77IFGFVtMTQ/GLbCg6/OVP+yWZaTo/YDzpJdLk+FvEXzvR4ZNQQ4/HQ=="></script>
- </head>
- <body data-template-id="__page-root" class="w-full min-h-screen" style="background: rgb(234, 244, 255);">
-  <div class="w-full min-h-screen flex flex-col">
-   <header class="w-full px-4 pt-6 sm:pt-9">
-    <div class="max-w-3xl mx-auto flex items-center gap-3">
-     <div class="w-10 h-10 rounded-xl bg-[#1958b5] text-white grid place-items-center font-bold" aria-hidden="true">
-      GT
-     </div><span data-template-id="header-brand" class="canva-text font-semibold" style="color: rgb(23, 54, 93); font-weight: 600; font-style: normal; font-size: 16px;">KUIS GAMBAR TEKNIK</span>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Standar Gambar Teknik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0A192F;
+            --secondary-color: #1E3A8A;
+            --accent-color: #3B82F6;
+            --bg-color: #F8FAFC;
+            --white: #FFFFFF;
+            --text-main: #334155;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; padding: 20px; }
+        
+        .quiz-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--primary-color);
+        }
+        
+        .quiz-header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #E2E8F0; padding-bottom: 20px; }
+        .quiz-header h1 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 10px; }
+        
+        .question-box { margin-bottom: 25px; }
+        .question-title { font-weight: 600; font-size: 1.1rem; color: var(--primary-color); margin-bottom: 10px; }
+        
+        .option-label {
+            display: block;
+            background: #F1F5F9;
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: 1px solid transparent;
+        }
+        .option-label:hover { background: #E2E8F0; }
+        .option-label input { margin-right: 10px; }
+        
+        .btn-submit {
+            display: block; width: 100%; padding: 15px; background: var(--accent-color); color: var(--white);
+            border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 20px;
+        }
+        .btn-submit:hover { background: var(--secondary-color); }
+        
+        .btn-back {
+            display: inline-block; margin-bottom: 20px; color: var(--secondary-color); text-decoration: none; font-weight: 600;
+        }
+        .btn-back:hover { text-decoration: underline; }
+        
+        #result-box {
+            margin-top: 30px; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: bold; display: none;
+        }
+        .correct-bg { background-color: #D1FAE5 !important; border-color: #10B981 !important; }
+        .wrong-bg { background-color: #FEE2E2 !important; border-color: #EF4444 !important; }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <a href="daftar-kuis.html" class="btn-back">← Kembali ke Katalog Kuis</a>
+        
+        <div class="quiz-header">
+            <h1>Kuis: Standar Gambar Teknik ISO</h1>
+            <p>Jawablah pertanyaan berikut untuk menguji pemahaman Anda mengenai aturan dasar Gambar Teknik.</p>
+        </div>
+
+        <form id="quizForm">
+            <!-- Soal 1 -->
+            <div class="question-box">
+                <p class="question-title">1. Apa fungsi dari jenis garis tebal kontinu (garis tebal) pada gambar teknik mekanik?</p>
+                <label class="option-label"><input type="radio" name="q1" value="A"> Garis sumbu simetri</label>
+                <label class="option-label"><input type="radio" name="q1" value="B"> Garis tepi dan garis benda yang terlihat (nyata)</label>
+                <label class="option-label"><input type="radio" name="q1" value="C"> Garis ukuran dan garis bantu</label>
+                <label class="option-label"><input type="radio" name="q1" value="D"> Garis benda yang terhalang (tidak terlihat)</label>
+            </div>
+
+            <!-- Soal 2 -->
+            <div class="question-box">
+                <p class="question-title">2. Pada sistem Proyeksi Amerika (Kuadran III), di manakah letak proyeksi "Pandangan Atas" dari suatu benda?</p>
+                <label class="option-label"><input type="radio" name="q2" value="A"> Tepat di bawah pandangan depan</label>
+                <label class="option-label"><input type="radio" name="q2" value="B"> Di sebelah kanan pandangan depan</label>
+                <label class="option-label"><input type="radio" name="q2" value="C"> Tepat di atas pandangan depan</label>
+                <label class="option-label"><input type="radio" name="q2" value="D"> Di sebelah kiri pandangan depan</label>
+            </div>
+
+            <!-- Soal 3 -->
+            <div class="question-box">
+                <p class="question-title">3. Apa arti dari penulisan simbol toleransi suaian "H7/g6" pada gambar rakitan?</p>
+                <label class="option-label"><input type="radio" name="q3" value="A"> Suaian sesak (Press fit)</label>
+                <label class="option-label"><input type="radio" name="q3" value="B"> Suaian transisi (Transition fit)</label>
+                <label class="option-label"><input type="radio" name="q3" value="C"> Suaian longgar (Clearance fit) antara sistem lubang dasar dan poros</label>
+                <label class="option-label"><input type="radio" name="q3" value="D"> Toleransi kekasaran permukaan</label>
+            </div>
+
+            <button type="button" class="btn-submit" onclick="checkAnswers()">Kirim Jawaban & Lihat Nilai</button>
+        </form>
+
+        <div id="result-box"></div>
     </div>
-   </header>
-   <main class="w-full flex-1 px-4 py-7 sm:py-10">
-    <div class="max-w-3xl mx-auto">
-     <section id="start-screen" data-template-id="start-card" class="canva-card surface rounded-[28px] p-6 sm:p-10" style="background: rgb(255, 255, 255);">
-      <div class="text-center">
-       <div class="mx-auto max-w-[500px] w-full min-h-[68px] flex items-center justify-center"><img id="quiz-logo" data-template-id="logo-image" class="canva-image block w-full max-w-[500px] h-auto max-h-44 object-contain" loading="lazy" src="https://iili.io/nwSd5mb.jpg" alt="Logo Kuis Standar Gambar Teknik"> <span id="logo-fallback" data-template-id="logo-fallback" class="canva-text hidden font-bold" style="color: rgb(25, 88, 181); font-weight: 700; font-style: normal; font-size: 24px;">Standar Gambar Teknik</span>
-       </div>
-       <div data-template-id="welcome-badge" class="canva-tag inline-block rounded-full px-4 py-1.5 mt-6 mb-3 font-semibold" style="background: rgb(234, 243, 255); color: rgb(25, 88, 181); font-weight: 400; font-style: normal; font-size: 16px;">SIAP UJI PEMAHAMAN?</div>
-       <h1 data-template-id="main-title" class="canva-text font-bold leading-tight" style="color: rgb(23, 54, 93); font-weight: 700; font-style: normal; font-size: 32px;">Kuis Standar Gambar Teknik</h1>
-       <p data-template-id="intro-description" class="canva-text mt-3 max-w-xl mx-auto leading-relaxed" style="color: rgb(72, 98, 127); font-weight: 400; font-style: normal; font-size: 16px;">Kenali standar kertas, tata letak, garis, dan huruf dalam gambar teknik melalui kuis interaktif.</p>
-      </div>
-      <div data-template-id="instruction-panel" class="canva-panel rounded-2xl p-5 mt-8" style="background: rgb(240, 247, 255);">
-       <h2 data-template-id="instruction-title" class="canva-text font-semibold" style="color: rgb(23, 54, 93); font-weight: 600; font-style: normal; font-size: 24px;">Cara bermain</h2>
-       <p data-template-id="instruction-text" class="canva-text mt-2 leading-relaxed" style="color: rgb(72, 98, 127); font-weight: 400; font-style: normal; font-size: 16px;">Isi identitas dan pilih kelas. Jawab 25 soal, satu per satu. Tiap soal memiliki waktu 30, 45, atau 60 detik. Jawaban benar bernilai 4 poin; soal yang kehabisan waktu dihitung tidak terjawab. Pilihan akan terkunci setelah dijawab.</p>
-      </div>
-      <form id="start-form" class="mt-8 space-y-5" novalidate="">
-       <div><label data-template-id="name-label" class="canva-text block font-semibold mb-2" for="name-input" style="color: rgb(23, 54, 93); font-weight: 600; font-style: normal; font-size: 16px;">Nama *</label> <input id="name-input" class="canva-input field" type="text" autocomplete="name" maxlength="100" required="">
-       </div>
-       <div><label data-template-id="nim-label" class="canva-text block font-semibold mb-2" for="nim-input" style="color: rgb(23, 54, 93); font-weight: 600; font-style: normal; font-size: 16px;">NIM *</label> <input id="nim-input" class="canva-input field" type="text" inputmode="text" autocomplete="off" maxlength="40" required="">
-       </div>
-       <div><label data-template-id="class-label" class="canva-text block font-semibold mb-2" for="class-input" style="color: rgb(23, 54, 93); font-weight: 600; font-style: normal; font-size: 16px;">Kelas *</label> <select id="class-input" class="canva-dropdown field" required=""> <option value="" data-template-id="class-placeholder" style="font-weight: 400; font-style: normal; font-size: 16px;">Pilih kelas</option> <option value="Kelas A" data-template-id="class-a" style="font-weight: 400; font-style: normal; font-size: 16px;">Kelas A</option> <option value="Kelas B" data-template-id="class-b" style="font-weight: 400; font-style: normal; font-size: 16px;">Kelas B</option> </select>
-       </div><button id="start-button" data-template-id="start-button" class="canva-button w-full min-h-[52px] rounded-2xl px-6 py-3 font-semibold" type="submit" disabled="" style="background: rgb(25, 88, 181); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Mulai Kuis</button>
-      </form>
-     </section>
-     <section id="quiz-screen" data-template-id="quiz-card" class="canva-card surface rounded-[28px] p-6 sm:p-10 hidden" aria-labelledby="quiz-heading" style="background: rgb(255, 255, 255);">
-      <div class="flex flex-wrap gap-3 justify-between items-center">
-       <div>
-        <p data-template-id="quiz-eyebrow" class="canva-text font-semibold" style="color: rgb(25, 88, 181); font-weight: 400; font-style: normal; font-size: 16px;">TANTANGAN 25 SOAL</p>
-        <h2 id="quiz-heading" data-template-id="quiz-heading" class="canva-text font-bold" style="color: rgb(23, 54, 93); font-weight: 700; font-style: normal; font-size: 24px;">Saatnya menjawab!</h2>
-       </div>
-       <div class="flex flex-wrap gap-2"><span class="rounded-xl bg-[#eaf3ff] px-3 py-2 font-semibold text-[#1958b5]">Skor: <span id="live-score">0</span></span> <span id="timer-pill" class="rounded-xl bg-[#eaf3ff] px-3 py-2 font-semibold text-[#1958b5]" aria-live="off">⏱ <span id="timer-value">30</span> dtk</span>
-       </div>
-      </div>
-      <div class="mt-6 flex justify-between gap-3 font-medium text-sm"><span id="question-number"></span><span id="progress-text"></span>
-      </div>
-      <div id="progress-bar" data-template-id="progress-track" class="canva-progress mt-2 h-3 rounded-full overflow-hidden" role="progressbar" aria-label="Progres kuis" aria-valuemin="0" aria-valuemax="25" aria-valuenow="0" style="background: rgb(219, 234, 251);">
-       <div id="progress-fill" class="h-full bg-[#1958b5] rounded-full transition-[width] duration-300" style="width:0%"></div>
-      </div>
-      <h3 id="question-text" class="mt-9 mb-6 font-semibold leading-relaxed text-[clamp(1.15rem,2.7vw,1.5rem)]"></h3>
-      <div id="choices" class="grid gap-3" role="group" aria-label="Pilihan jawaban"></div>
-      <p id="feedback" class="mt-5 min-h-[28px] font-semibold" role="status" aria-live="polite"></p>
-      <div class="mt-5 flex justify-end"><button id="next-button" data-template-id="next-button" class="canva-button min-h-[48px] rounded-xl px-6 py-3 font-semibold hidden" type="button" style="background: rgb(25, 88, 181); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Berikutnya →</button>
-      </div>
-     </section>
-     <section id="result-screen" data-template-id="result-card" class="canva-card surface rounded-[28px] p-6 sm:p-10 hidden" aria-labelledby="result-heading" style="background: rgb(255, 255, 255);">
-      <div class="text-center">
-       <div class="mx-auto w-16 h-16 rounded-2xl bg-[#eaf3ff] text-[#1958b5] grid place-items-center text-3xl" aria-hidden="true">
-        ✦
-       </div>
-       <p data-template-id="result-eyebrow" class="canva-text mt-5 font-semibold" style="color: rgb(25, 88, 181); font-weight: 400; font-style: normal; font-size: 16px;">KUIS SELESAI</p>
-       <h2 id="result-heading" data-template-id="result-heading" class="canva-text font-bold mt-2" style="color: rgb(23, 54, 93); font-weight: 700; font-style: normal; font-size: 24px;">Hasil permainan</h2>
-       <p id="high-message" data-template-id="high-message" class="canva-text mt-3 hidden" style="color: rgb(20, 93, 63); font-weight: 400; font-style: normal; font-size: 16px;">Selamat! Pemahamanmu tentang standar gambar teknik sangat baik.</p>
-       <p id="low-message" data-template-id="low-message" class="canva-text mt-3 hidden" style="color: rgb(72, 98, 127); font-weight: 400; font-style: normal; font-size: 16px;">Terima kasih telah berpartisipasi. Terus berlatih untuk meningkatkan hasilmu!</p>
-       <div class="mt-7 rounded-2xl bg-[#eaf3ff] px-5 py-7">
-        <p data-template-id="score-caption" class="canva-text font-medium" style="color: rgb(72, 98, 127); font-weight: 400; font-style: normal; font-size: 16px;">SKOR AKHIR</p>
-        <p id="final-score" class="font-bold text-[#1958b5] text-5xl sm:text-6xl mt-1"></p>
-       </div>
-      </div>
-      <dl class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
-       <div class="rounded-xl bg-[#f5f9fe] p-4">
-        <dt data-template-id="result-name-label" class="canva-text text-sm" style="color: rgb(72, 98, 127); font-weight: 400; font-style: normal; font-size: 16px;">Nama</dt>
-        <dd id="result-name" class="font-semibold break-words mt-1"></dd>
-       </div>
-       <div class="rounded-xl bg-[#f5f9fe] p-4">
-        <dt data-template-id="result-nim-label" class="canva-text text-sm" style="color: rgb(72, 98, 127); font-weight: 400; font-style: normal; font-size: 16px;">NIM</dt>
-        <dd id="result-nim" class="font-semibold break-words mt-1"></dd>
-       </div>
-       <div class="rounded-xl bg-[#f5f9fe] p-4">
-        <dt data-template-id="result-class-label" class="canva-text text-sm" style="color: rgb(72, 98, 127); font-weight: 400; font-style: normal; font-size: 16px;">Kelas</dt>
-        <dd id="result-class" class="font-semibold mt-1"></dd>
-       </div>
-       <div class="rounded-xl bg-[#f5f9fe] p-4">
-        <dt data-template-id="result-duration-label" class="canva-text text-sm" style="color: rgb(72, 98, 127); font-weight: 400; font-style: normal; font-size: 16px;">Waktu penyelesaian</dt>
-        <dd id="result-duration" class="font-semibold mt-1"></dd>
-       </div>
-       <div class="rounded-xl bg-[#e5f7ec] p-4">
-        <dt data-template-id="correct-label" class="canva-text text-sm" style="color: rgb(20, 93, 63); font-weight: 400; font-style: normal; font-size: 16px;">Jawaban benar</dt>
-        <dd id="result-correct" class="font-bold text-[#145d3f] mt-1"></dd>
-       </div>
-       <div class="rounded-xl bg-[#fff0f1] p-4">
-        <dt data-template-id="wrong-label" class="canva-text text-sm" style="color: rgb(154, 38, 52); font-weight: 400; font-style: normal; font-size: 16px;">Jawaban salah</dt>
-        <dd id="result-wrong" class="font-bold text-[#9a2634] mt-1"></dd>
-       </div>
-       <div class="rounded-xl bg-[#fff6e6] p-4 sm:col-span-2">
-        <dt data-template-id="unanswered-label" class="canva-text text-sm" style="color: rgb(134, 83, 19); font-weight: 400; font-style: normal; font-size: 16px;">Tidak terjawab</dt>
-        <dd id="result-unanswered" class="font-bold text-[#865313] mt-1"></dd>
-       </div>
-      </dl>
-      <p id="save-status" class="mt-6 text-center text-sm font-medium" role="status" aria-live="polite"></p><button id="retry-save" data-template-id="retry-save" class="canva-button hidden w-full min-h-[48px] rounded-xl px-6 py-3 mt-3 font-semibold" type="button" style="background: rgb(234, 243, 255); color: rgb(25, 88, 181); font-weight: 600; font-style: normal; font-size: 16px;">Simpan Ulang</button> <button id="replay-button" data-template-id="replay-button" class="canva-button w-full min-h-[52px] rounded-2xl px-6 py-3 mt-5 font-semibold" type="button" style="background: rgb(25, 88, 181); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Main Lagi</button>
-     </section>
-    </div>
-   </main>
-   <footer class="w-full px-4 pb-7 text-center">
-    <p data-template-id="footer-text" class="canva-text max-w-3xl mx-auto leading-relaxed" style="color: rgb(72, 98, 127); font-weight: 400; font-style: normal; font-size: 13px;">© 2026 Dikembangkan Oleh Ir. Ahmad Janan Febrianto, S.T., M.Eng</p>
-   </footer>
-  </div>
-  <script>
-    const questions = [
-      {q:"Standar utama yang dirujuk untuk pengaturan jenis garis dan huruf dalam video materi https://youtu.be/AU4CJZzace4 adalah...",a:["ISO 9001","ASME Y14.2 & ISO 128","DIN 6776","JIS B 0001"],correct:1,time:45},
-      {q:"Kode mata kuliah dan program studi yang tertera pada video materi https://youtu.be/AU4CJZzace4 pendahuluan Standar Gambar Teknik adalah...",a:["TIN25105 - Teknik Industri","TKN25101 - Teknik Mesin","TIF10101 - Teknik Informatika","TIK20202 - Teknik Kimia"],correct:0,time:45},
-      {q:"Ukuran standar kertas A0 menurut video materi https://youtu.be/AU4CJZzace4 adalah...",a:["594 × 841 mm","841 × 1189 mm","420 × 594 mm","297 × 420 mm"],correct:1,time:30},
-      {q:"Ukuran standar kertas A1 dalam milimeter adalah...",a:["841 × 1189 mm","594 × 841 mm","420 × 594 mm","210 × 297 mm"],correct:1,time:30},
-      {q:"Dimensi standar untuk kertas gambar ukuran A2 adalah...",a:["420 × 594 mm","297 × 420 mm","210 × 297 mm","594 × 841 mm"],correct:0,time:30},
-      {q:"Ukuran standar kertas gambar A3 dalam milimeter adalah...",a:["210 × 297 mm","297 × 420 mm","420 × 594 mm","594 × 841 mm"],correct:1,time:30},
-      {q:"Dimensi standar untuk kertas gambar ukuran A4 adalah...",a:["210 × 297 mm","297 × 420 mm","148 × 210 mm","420 × 594 mm"],correct:0,time:30},
-      {q:"Standar jarak garis tepi (border) untuk sisi sebelah kiri kertas yang ditujukan untuk kebutuhan penjilidan adalah...",a:["5 mm","10 mm","15 mm","20 mm"],correct:3,time:45},
-      {q:"Jarak aman garis tepi (border) standar untuk sisi atas, kanan, dan bawah kertas gambar adalah...",a:["5 mm","10 mm","15 mm","20 mm"],correct:1,time:45},
-      {q:"Komponen tata letak yang berfungsi melokalisasi detail pada gambar kompleks menggunakan sistem huruf dan angka di pinggir kertas dinamakan...",a:["Blok Revisi","Etiket / Title Block","Sistem Referensi Grid / Zoning","Garis Tepi"],correct:2,time:60},
-      {q:"Posisi standar penempatan Etiket (Title Block) pada kanvas gambar teknik adalah...",a:["Sudut kiri atas","Sudut kanan atas","Sudut kiri bawah","Sudut kanan bawah"],correct:3,time:45},
-      {q:"Elemen informasi berikut yang tercantum di dalam Etiket (Title Block) menurut video materi https://youtu.be/AU4CJZzace4 adalah...",a:["Nama Part, Skala, Material, Toleransi Umum, Nama Drafter, dan Tanggal","Harga material, nama pemasok, dan garansi produk","Riwayat perubahan dan spesifikasi mesin manufaktur","Lokasi pabrik dan jam kerja operasional"],correct:0,time:60},
-      {q:"Posisi penempatan Blok Revisi pada tata letak gambar adalah...",a:["Di sudut kiri bawah","Di sudut kanan atas atau menyatu dengan etiket","Di sudut kiri atas","Di luar garis tepi kertas"],correct:1,time:45},
-      {q:"Garis Nyata (Visible Line) berfungsi untuk...",a:["Menunjukkan tepi/kontur benda yang terhalang dari pandangan","Menunjukkan sumbu simetri atau pusat lubang","Menunjukkan tepi atau kontur benda yang terlihat langsung","Menunjukkan permukaan material yang terpotong"],correct:2,time:30},
-      {q:"Ketebalan standar untuk Garis Nyata (Visible Line) adalah...",a:["0,35 mm","0,5 mm","0,7 mm","1,0 mm"],correct:2,time:45},
-      {q:"Ketebalan standar untuk Garis Tersembunyi (Hidden Line) dan Garis Sumbu (Center Line) adalah...",a:["0,25 mm","0,35 mm","0,7 mm","1,0 mm"],correct:1,time:45},
-      {q:"Pola garis yang digunakan untuk merepresentasikan Garis Sumbu (Center Line) adalah...",a:["Garis lurus penuh","Garis putus-putus (dashed)","Garis titik-garis (chain line)","Garis gelombang tipis"],correct:2,time:30},
-      {q:"Jenis garis yang digunakan untuk menunjukkan lokasi di mana benda “dibelah” untuk melihat bagian dalam adalah...",a:["Garis Nyata","Garis Bidang Potong (Cutting-Plane)","Garis Arsiran","Garis Ukur"],correct:1,time:45},
-      {q:"Jenis garis yang digunakan untuk menggambarkan permukaan material yang terpotong oleh bidang potong dinamakan...",a:["Garis Tersembunyi","Garis Arsiran (Section Line)","Garis Sumbu","Garis Bantu"],correct:1,time:45},
-      {q:"Urutan aturan prioritas garis (Line Precedence) dari prioritas tertinggi hingga terendah adalah...",a:["Garis Sumbu → Garis Tersembunyi → Garis Nyata","Garis Tersembunyi → Garis Nyata → Garis Sumbu","Garis Nyata → Garis Tersembunyi → Garis Sumbu","Garis Nyata → Garis Sumbu → Garis Tersembunyi"],correct:2,time:60},
-      {q:"Gaya huruf standar yang wajib digunakan dalam gambar teknik menurut video materi https://youtu.be/AU4CJZzace4 adalah...",a:["Times New Roman","Gothic (Sans-serif, tanpa ornamen)","Monotype Corsiva","Arial Black"],correct:1,time:45},
-      {q:"Ketinggian huruf standar minimum yang dianjurkan untuk penggunaan pada kertas A4/A3 adalah...",a:["1,5 mm","2 mm","3 mm","5 mm"],correct:2,time:45},
-      {q:"Penggunaan huruf kapital dalam gambar teknik umumnya diperuntukkan bagi...",a:["Seluruh catatan utama","Judul halaman saja","Nama pembuat saja","Garis bidang potong saja"],correct:0,time:30},
-      {q:"Ketentuan penulisan huruf dan angka yang benar untuk menjaga keterbacaan gambar teknik adalah...",a:["Menggunakan font dekoratif agar terlihat indah","Ketinggian, proporsi, dan spasi harus seragam demi keterbacaan mutlak","Ketinggian huruf dibuat bebas tanpa panduan garis bantu","Menggunakan kombinasi huruf miring dan tegak secara acak"],correct:1,time:60},
-      {q:"Topik materi yang dijadwalkan untuk dipelajari pada Pertemuan 4 setelah pembahasan tata letak, garis, dan huruf adalah...",a:["Pemilihan Material","Proyeksi Pandangan (Proyeksi Ortogonal 2D Amerika & Eropa)","Sketsa Tangan Bebas","Desain CAD Lanjutan"],correct:1,time:45}
-    ];
-    const $ = id => document.getElementById(id);
-    const screens = ['start-screen','quiz-screen','result-screen'];
-    let index=0, score=0, right=0, wrong=0, missed=0, remaining=0;
-    let interval=null, advanceTimeout=null, locked=false, startedAt=0, session=null;
-    let sdkReady=false, saving=false, saved=false, finalRecord=null;
-    function showScreen(id) {
-      screens.forEach(key => $(key).classList.toggle('hidden', key!==id));
-      window.scrollTo({top:0,behavior:'instant'});
-    }
-    function validForm() {
-      $('start-button').disabled = !($('name-input').value.trim() && $('nim-input').value.trim() && $('class-input').value);
-    }
-    ['name-input','nim-input','class-input'].forEach(id => {
-      $(id).addEventListener('input',validForm);
-      $(id).addEventListener('change',validForm);
-    });
-    const logo=$('quiz-logo');
-    logo.addEventListener('error',()=>{logo.classList.add('hidden');$('logo-fallback').classList.remove('hidden');});
-    function shuffleOptions(question) {
-      const options=question.a.map((text,i)=>({text,correct:i===question.correct}));
-      for(let i=options.length-1;i>0;i--) {
-        const j=Math.floor(Math.random()*(i+1));
-        [options[i],options[j]]=[options[j],options[i]];
-      }
-      return options;
-    }
-    let options=[];
-    function stopTimer() { if(interval) clearInterval(interval); interval=null; }
-    function displayTimer() {
-      $('timer-value').textContent=remaining;
-      $('timer-pill').classList.toggle('bg-[#fff0f1]',remaining<=10);
-      $('timer-pill').classList.toggle('text-[#9a2634]',remaining<=10);
-      $('timer-pill').classList.toggle('bg-[#eaf3ff]',remaining>10);
-      $('timer-pill').classList.toggle('text-[#1958b5]',remaining>10);
-    }
-    function renderQuestion() {
-      locked=false;
-      const question=questions[index];
-      options=shuffleOptions(question);
-      $('question-number').textContent=`Soal ${index+1} dari ${questions.length}`;
-      $('progress-text').textContent=`${Math.round(index/questions.length*100)}% selesai`;
-      $('progress-fill').style.width=`${index/questions.length*100}%`;
-      $('progress-bar').setAttribute('aria-valuenow',index);
-      $('question-text').textContent=question.q;
-      $('live-score').textContent=score;
-      $('feedback').textContent='';
-      $('feedback').className='mt-5 min-h-[28px] font-semibold';
-      $('next-button').classList.add('hidden');
-      const list=$('choices');
-      list.replaceChildren();
-      options.forEach((option,i)=>{
-        const button=document.createElement('button');
-        button.type='button';
-        button.className='choice';
-        const letter=document.createElement('span');
-        letter.className='choice-letter';
-        letter.setAttribute('aria-hidden','true');
-        letter.textContent='ABCD'[i];
-        const text=document.createElement('span');
-        text.textContent=option.text;
-        button.append(letter,text);
-        button.addEventListener('click',()=>answer(i));
-        list.appendChild(button);
-      });
-      remaining=question.time;
-      displayTimer();
-      let deadline=Date.now()+remaining*1000;
-      stopTimer();
-      interval=setInterval(()=>{
-        remaining=Math.max(0,Math.ceil((deadline-Date.now())/1000));
-        displayTimer();
-        if(remaining===0) timeoutQuestion();
-      },200);
-    }
-    function markChoices(selected) {
-      [...$('choices').children].forEach((button,i)=>{
-        button.disabled=true;
-        if(options[i].correct) button.classList.add('correct');
-        else if(i===selected) button.classList.add('wrong');
-      });
-    }
-    function celebrate() {
-      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const colors=['#1958b5','#55a9e6','#28a56c','#ffc34c'];
-      for(let i=0;i<22;i++) {
-        const part=document.createElement('span');
-        part.className='confetti-piece';
-        part.style.left=`${Math.random()*100}%`;
-        part.style.backgroundColor=colors[i%colors.length];
-        part.style.setProperty('--drift',`${Math.random()*160-80}px`);
-        part.style.animationDelay=`${Math.random()*.25}s`;
-        document.body.appendChild(part);
-        setTimeout(()=>part.remove(),2100);
-      }
-    }
-    function answer(choice) {
-      if(locked) return;
-      locked=true;
-      stopTimer();
-      markChoices(choice);
-      if(options[choice].correct) {
-        right++; score+=4; $('live-score').textContent=score;
-        $('feedback').textContent='Benar! +4 poin.';
-        $('feedback').classList.add('text-[#145d3f]');
-        celebrate();
-      } else {
-        wrong++;
-        $('feedback').textContent='Belum tepat. Jawaban yang benar ditandai hijau.';
-        $('feedback').classList.add('text-[#9a2634]');
-      }
-      $('next-button').classList.remove('hidden');
-      $('next-button').focus();
-    }
-    function timeoutQuestion() {
-      if(locked) return;
-      locked=true;
-      stopTimer();
-      missed++;
-      markChoices(-1);
-      $('feedback').textContent='Waktu habis. Soal ini tidak terjawab; lanjut otomatis…';
-      $('feedback').classList.add('text-[#865313]');
-      $('next-button').classList.remove('hidden');
-      advanceTimeout=setTimeout(nextQuestion,1900);
-    }
-    function nextQuestion() {
-      clearTimeout(advanceTimeout);
-      if(index<questions.length-1) { index++; renderQuestion(); }
-      else finishQuiz();
-    }
-    $('next-button').addEventListener('click',nextQuestion);
-    $('start-form').addEventListener('submit',event=>{
-      event.preventDefault();
-      validForm();
-      if($('start-button').disabled) return;
-      session={nama:$('name-input').value.trim(),nim:$('nim-input').value.trim(),kelas:$('class-input').value};
-      index=score=right=wrong=missed=0;
-      startedAt=Date.now();
-      showScreen('quiz-screen');
-      renderQuestion();
-    });
-    function finishQuiz() {
-      stopTimer();clearTimeout(advanceTimeout);
-      const seconds=Math.max(0,Math.floor((Date.now()-startedAt)/1000));
-      const duration=`${Math.floor(seconds/60)} menit ${seconds%60} detik`;
-      finalRecord={
-        nama:session.nama,nim:session.nim,kelas:session.kelas,skor:score,
-        jumlah_benar:right,jumlah_salah:wrong,jumlah_tidak_terjawab:missed,
-        waktu_penyelesaian:duration,tanggal:new Date().toISOString()
-      };
-      $('progress-fill').style.width='100%';
-      $('result-name').textContent=session.nama;
-      $('result-nim').textContent=session.nim;
-      $('result-class').textContent=session.kelas;
-      $('result-duration').textContent=duration;
-      $('result-correct').textContent=right;
-      $('result-wrong').textContent=wrong;
-      $('result-unanswered').textContent=missed;
-      $('final-score').textContent=`${score} / 100`;
-      $('high-message').classList.toggle('hidden',score<80);
-      $('low-message').classList.toggle('hidden',score>=80);
-      saved=false;
-      showScreen('result-screen');
-      saveResult();
-    }
-    async function saveResult() {
-      if(saving||saved||!finalRecord) return;
-      saving=true;
-      $('retry-save').classList.add('hidden');
-      $('save-status').textContent='Menyimpan hasil ke Canva Sheet…';
-      try {
-        if(!sdkReady) throw new Error('Layanan penyimpanan belum tersedia.');
-        const result=await window.dataSdk.create(finalRecord);
-        if(!result.isOk) throw result.error;
-        saved=true;
-        $('save-status').textContent='Hasil berhasil disimpan ke Canva Sheet.';
-        $('save-status').className='mt-6 text-center text-sm font-medium text-[#145d3f]';
-      } catch (_) {
-        $('save-status').textContent='Hasil belum tersimpan. Coba simpan ulang sebelum bermain lagi.';
-        $('save-status').className='mt-6 text-center text-sm font-medium text-[#9a2634]';
-        $('retry-save').classList.remove('hidden');
-      } finally {
-        saving=false;
-        $('retry-save').disabled=false;
-      }
-    }
-    $('retry-save').addEventListener('click',()=>{ $('retry-save').disabled=true; saveResult(); });
-    $('replay-button').addEventListener('click',()=>{
-      stopTimer();clearTimeout(advanceTimeout);
-      $('start-form').reset();
-      validForm();
-      session=null; finalRecord=null; saved=false;
-      showScreen('start-screen');
-      $('name-input').focus();
-    });
-    (async()=>{
-      try {
-        const result=await window.dataSdk.init({onDataChanged() {}});
-        sdkReady=!!result.isOk;
-      } catch (_) { sdkReady=false; }
-    })();
-  </script>
- 
-</body></html>
+
+    <script>
+        function checkAnswers() {
+            // Kunci Jawaban
+            const answers = { q1: "B", q2: "C", q3: "C" };
+            let score = 0;
+            let totalQuestions = Object.keys(answers).length;
+
+            for (let q in answers) {
+                let options = document.getElementsByName(q);
+                let selected = null;
+                
+                // Cari jawaban yang dipilih user
+                for (let opt of options) {
+                    opt.parentElement.classList.remove('correct-bg', 'wrong-bg'); // Reset warna
+                    if (opt.checked) selected = opt;
+                }
+
+                if (selected) {
+                    if (selected.value === answers[q]) {
+                        score++;
+                        selected.parentElement.classList.add('correct-bg'); // Benar = Hijau
+                    } else {
+                        selected.parentElement.classList.add('wrong-bg'); // Salah = Merah
+                        // Tunjukkan yang benar
+                        for (let opt of options) {
+                            if (opt.value === answers[q]) opt.parentElement.classList.add('correct-bg');
+                        }
+                    }
+                } else {
+                    // Jika tidak diisi, tunjukkan jawaban yang benar
+                    for (let opt of options) {
+                        if (opt.value === answers[q]) opt.parentElement.classList.add('correct-bg');
+                    }
+                }
+            }
+
+            // Tampilkan hasil
+            let resultBox = document.getElementById('result-box');
+            resultBox.style.display = 'block';
+            let nilai = Math.round((score / totalQuestions) * 100);
+            
+            if (nilai === 100) {
+                resultBox.style.backgroundColor = '#D1FAE5';
+                resultBox.style.color = '#065F46';
+                resultBox.innerHTML = `Luar Biasa! Nilai Anda: ${nilai} (Benar Semua)`;
+            } else if (nilai > 50) {
+                resultBox.style.backgroundColor = '#FEF3C7';
+                resultBox.style.color = '#92400E';
+                resultBox.innerHTML = `Bagus! Nilai Anda: ${nilai}. Periksa kembali materi yang salah.`;
+            } else {
+                resultBox.style.backgroundColor = '#FEE2E2';
+                resultBox.style.color = '#991B1B';
+                resultBox.innerHTML = `Nilai Anda: ${nilai}. Jangan menyerah, mari pelajari lagi standar ISO!`;
+            }
+        }
+    </script>
+</body>
+</html>
