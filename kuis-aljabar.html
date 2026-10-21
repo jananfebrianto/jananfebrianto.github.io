@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuis Aljabar Linier (Matriks & Vektor)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0A192F;
+            --secondary-color: #1E3A8A;
+            --accent-color: #3B82F6;
+            --bg-color: #F8FAFC;
+            --white: #FFFFFF;
+            --text-main: #334155;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; padding: 20px; }
+        
+        .quiz-container { max-width: 950px; margin: 40px auto; background: var(--white); padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-top: 5px solid var(--primary-color); }
+        .quiz-header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #E2E8F0; padding-bottom: 20px; }
+        .quiz-header h1 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 10px; }
+        
+        .matrix-intro { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 30px; }
+        .matrix-box { display: flex; align-items: center; font-size: 1.2rem; font-weight: 600; }
+        .matrix { display: inline-grid; grid-template-columns: repeat(3, 45px); grid-gap: 8px; padding: 5px 10px; border-left: 2px solid var(--primary-color); border-right: 2px solid var(--primary-color); border-radius: 8px; text-align: center; margin: 0 10px; font-weight: normal; align-items: center;}
+        
+        .question-box { background: #F8FAFC; padding: 25px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid var(--accent-color); }
+        .question-title { font-weight: 600; font-size: 1.1rem; color: var(--primary-color); margin-bottom: 15px; }
+        .sub-q { margin-left: 20px; margin-top: 15px; margin-bottom: 15px; }
+        
+        .blank-input { width: 45px; height: 35px; text-align: center; border: 2px solid #CBD5E1; border-radius: 4px; font-size: 1rem; font-weight: 600; color: var(--primary-color); outline: none; }
+        .blank-input:focus { border-color: var(--accent-color); }
+        .correct { background-color: #D1FAE5; border-color: #10B981; color: #065F46; }
+        .wrong { background-color: #FEE2E2; border-color: #EF4444; color: #991B1B; }
+        
+        .equation { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 1.1rem; margin-bottom: 10px; }
+        .fraction { display: inline-block; text-align: center; vertical-align: middle; margin: 0 5px; }
+        .fraction span { display: block; padding: 0.1em; }
+        .fraction span.fdn { border-top: 1px solid #334155; }
+        
+        .btn-submit { display: block; width: 100%; padding: 15px; background: var(--accent-color); color: var(--white); border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 20px; }
+        .btn-submit:hover { background: var(--secondary-color); }
+        .btn-back { display: inline-block; margin-bottom: 20px; color: var(--secondary-color); text-decoration: none; font-weight: 600; }
+        .btn-back:hover { text-decoration: underline; }
+        
+        #result-box { margin-top: 30px; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: bold; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container">
+        <a href="daftar-kuis.html" class="btn-back">← Kembali ke Katalog Kuis</a>
+        
+        <div class="quiz-header">
+            <h1>Kuis Aljabar Linier: Matriks & Vektor</h1>
+            <p>Lengkapi langkah-langkah penyelesaian operasi matriks di bawah ini. Kotak akan berwarna hijau jika jawaban Anda benar.</p>
+        </div>
+
+        <h3 style="text-align: center; margin-bottom: 15px; color: var(--primary-color);">Diketahui 3 Matriks (3x3):</h3>
+        <div class="matrix-intro">
+            <div class="matrix-box">A = 
+                <div class="matrix">
+                    <span>2</span><span>1</span><span>3</span>
+                    <span>0</span><span>-1</span><span>4</span>
+                    <span>5</span><span>2</span><span>1</span>
+                </div>
+            </div>
+            <div class="matrix-box">B = 
+                <div class="matrix">
+                    <span>1</span><span>0</span><span>2</span>
+                    <span>-1</span><span>3</span><span>1</span>
+                    <span>4</span><span>2</span><span>0</span>
+                </div>
+            </div>
+            <div class="matrix-box">C = 
+                <div class="matrix">
+                    <span>3</span><span>-1</span><span>0</span>
+                    <span>2</span><span>1</span><span>5</span>
+                    <span>-2</span><span>0</span><span>4</span>
+                </div>
+            </div>
+        </div>
+
+        <form id="quizForm">
+            <!-- Soal 1 -->
+            <div class="question-box">
+                <p class="question-title">1. Penjumlahan (A + B)</p>
+                <div class="equation">
+                    A + B = 
+                    <div class="matrix">
+                        <input type="text" class="blank-input" data-ans="3"> <span>1</span> <span>5</span>
+                        <span>-1</span> <input type="text" class="blank-input" data-ans="2"> <span>5</span>
+                        <span>9</span> <span>4</span> <input type="text" class="blank-input" data-ans="1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soal 2 -->
+            <div class="question-box">
+                <p class="question-title">2. Pengurangan (B - C)</p>
+                <div class="equation">
+                    B - C = 
+                    <div class="matrix">
+                        <span>-2</span> <input type="text" class="blank-input" data-ans="1"> <span>2</span>
+                        <input type="text" class="blank-input" data-ans="-3"> <span>2</span> <span>-4</span>
+                        <span>6</span> <span>2</span> <input type="text" class="blank-input" data-ans="-4">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soal 3 -->
+            <div class="question-box">
+                <p class="question-title">3. Operasi Campuran (B - C + A)</p>
+                <div class="equation">
+                    B - C + A = 
+                    <div class="matrix">
+                        <span>0</span> <span>2</span> <input type="text" class="blank-input" data-ans="5">
+                        <span>-3</span> <input type="text" class="blank-input" data-ans="1"> <span>0</span>
+                        <input type="text" class="blank-input" data-ans="11"> <span>4</span> <span>-3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soal 4 -->
+            <div class="question-box">
+                <p class="question-title">4. Perkalian (B × C)</p>
+                <div class="equation">
+                    B × C = 
+                    <div class="matrix">
+                        <span>-1</span> <span>-1</span> <input type="text" class="blank-input" data-ans="8">
+                        <input type="text" class="blank-input" data-ans="1"> <span>4</span> <span>19</span>
+                        <span>16</span> <input type="text" class="blank-input" data-ans="-2"> <span>10</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soal 5 -->
+            <div class="question-box">
+                <p class="question-title">5. Bukti Komutatif (A × B ≠ B × A)</p>
+                <div class="equation">
+                    A × B = 
+                    <div class="matrix" style="margin-right: 20px;">
+                        <input type="text" class="blank-input" data-ans="13"> <span>9</span> <span>5</span>
+                        <span>17</span> <input type="text" class="blank-input" data-ans="5"> <span>-1</span>
+                        <span>7</span> <span>8</span> <input type="text" class="blank-input" data-ans="12">
+                    </div>
+                    ; B × A = 
+                    <div class="matrix">
+                        <span>12</span> <input type="text" class="blank-input" data-ans="5"> <span>5</span>
+                        <input type="text" class="blank-input" data-ans="3"> <span>-2</span> <span>10</span>
+                        <span>8</span> <span>2</span> <input type="text" class="blank-input" data-ans="20">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soal 6 -->
+            <div class="question-box">
+                <p class="question-title">6. Determinan (Metode Sarrus)</p>
+                <div class="sub-q equation">
+                    <strong>6a. |A|</strong> = (<input type="text" class="blank-input" data-ans="-2">) + 20 + 0 - [ -15 + <input type="text" class="blank-input" data-ans="16"> + 0 ] = <input type="text" class="blank-input" data-ans="17">
+                </div>
+                <div class="sub-q equation">
+                    <strong>6b. |B|</strong> = 0 + 0 + (<input type="text" class="blank-input" data-ans="-4">) - [ <input type="text" class="blank-input" data-ans="24"> + 2 + 0 ] = <input type="text" class="blank-input" data-ans="-30">
+                </div>
+                <div class="sub-q equation">
+                    <strong>6c. |C|</strong> = 12 + (<input type="text" class="blank-input" data-ans="10">) + 0 - [ 0 + 0 + (<input type="text" class="blank-input" data-ans="-8">) ] = <input type="text" class="blank-input" data-ans="30">
+                </div>
+            </div>
+
+            <!-- Soal 7 -->
+            <div class="question-box">
+                <p class="question-title">7. Determinan (Metode Ekspansi Kofaktor Baris 1)</p>
+                <div class="sub-q">
+                    <strong>7a. Matriks A:</strong> |A| = 2(<input type="text" class="blank-input" data-ans="-9">) - 1(-20) + 3(<input type="text" class="blank-input" data-ans="5">) = 17
+                </div>
+                <div class="sub-q">
+                    <strong>7b. Matriks B:</strong> |B| = 1(<input type="text" class="blank-input" data-ans="-2">) - 0 + 2(<input type="text" class="blank-input" data-ans="-14">) = -30
+                </div>
+                <div class="sub-q">
+                    <strong>7c. Matriks C:</strong> |C| = 3(<input type="text" class="blank-input" data-ans="4">) - (-1)(<input type="text" class="blank-input" data-ans="18">) + 0 = 30
+                </div>
+            </div>
+
+            <!-- Soal 8 -->
+            <div class="question-box">
+                <p class="question-title">8. Determinan (Metode Reduksi Baris / Segitiga Atas)</p>
+                <p style="font-size:0.9rem; margin-bottom:10px; color:#64748B;">*Lengkapi elemen diagonal utama setelah dilakukan reduksi baris.</p>
+                <div class="sub-q equation">
+                    <strong>8a. |A|</strong> -> R3 - 2.5(R1) -> R3 - 0.5(R2) -> U = 
+                    <div class="matrix">
+                        <span>2</span> <span>1</span> <span>3</span>
+                        <span>0</span> <span>-1</span> <span>4</span>
+                        <span>0</span> <span>0</span> <input type="text" class="blank-input" data-ans="-8.5">
+                    </div>
+                    Det = 2 × -1 × -8.5 = <input type="text" class="blank-input" data-ans="17">
+                </div>
+                <div class="sub-q equation">
+                    <strong>8b. |B|</strong> -> R2+R1, R3-4R1 -> R3 - (2/3)R2 -> U = 
+                    <div class="matrix">
+                        <span>1</span> <span>0</span> <span>2</span>
+                        <span>0</span> <span>3</span> <span>3</span>
+                        <span>0</span> <span>0</span> <input type="text" class="blank-input" data-ans="-10">
+                    </div>
+                    Det = 1 × 3 × -10 = <input type="text" class="blank-input" data-ans="-30">
+                </div>
+                <div class="sub-q equation">
+                    <strong>8c. |C|</strong> -> R2 - (2/3)R1, R3 + (2/3)R1 -> R3 + (2/5)R2 -> U = 
+                    <div class="matrix">
+                        <span>3</span> <span>-1</span> <span>0</span>
+                        <span>0</span> <span>1.67</span> <span>5</span>
+                        <span>0</span> <span>0</span> <input type="text" class="blank-input" data-ans="6">
+                    </div>
+                    Det = 3 × (5/3) × 6 = <input type="text" class="blank-input" data-ans="30">
+                </div>
+            </div>
+
+            <!-- Soal 9 -->
+            <div class="question-box">
+                <p class="question-title">9. Transpose Matriks</p>
+                <div class="equation">
+                    <strong>9a. A<sup>T</sup> =</strong> 
+                    <div class="matrix">
+                        <span>2</span> <span>0</span> <span>5</span>
+                        <span>1</span> <input type="text" class="blank-input" data-ans="-1"> <span>2</span>
+                        <span>3</span> <span>4</span> <input type="text" class="blank-input" data-ans="1">
+                    </div>
+                </div>
+                <div class="equation">
+                    <strong>9b. B<sup>T</sup> =</strong> 
+                    <div class="matrix">
+                        <span>1</span> <span>-1</span> <span>4</span>
+                        <span>0</span> <input type="text" class="blank-input" data-ans="3"> <span>2</span>
+                        <input type="text" class="blank-input" data-ans="2"> <span>1</span> <span>0</span>
+                    </div>
+                </div>
+                <div class="equation">
+                    <strong>9c. C<sup>T</sup> =</strong> 
+                    <div class="matrix">
+                        <span>3</span> <span>2</span> <span>-2</span>
+                        <span>-1</span> <span>1</span> <input type="text" class="blank-input" data-ans="0">
+                        <span>0</span> <input type="text" class="blank-input" data-ans="5"> <span>4</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soal 10 -->
+            <div class="question-box">
+                <p class="question-title">10. Invers Matriks (Metode Adjoin)</p>
+                <p style="font-size:0.9rem; margin-bottom:10px; color:#64748B;">*M⁻¹ = (1/Det) × Adj(M). Lengkapi sel Adjoin (Kofaktor Transpose) yang kosong.</p>
+                
+                <div class="sub-q equation">
+                    <strong>10a. A<sup>-1</sup></strong> = <div class="fraction"><span>1</span><span class="fdn">17</span></div> ×
+                    <div class="matrix">
+                        <input type="text" class="blank-input" data-ans="-9"> <span>5</span> <span>7</span>
+                        <span>20</span> <input type="text" class="blank-input" data-ans="-13"> <span>-8</span>
+                        <span>5</span> <span>1</span> <input type="text" class="blank-input" data-ans="-2">
+                    </div>
+                </div>
+
+                <div class="sub-q equation">
+                    <strong>10b. B<sup>-1</sup></strong> = <div class="fraction"><span>1</span><span class="fdn">-30</span></div> ×
+                    <div class="matrix">
+                        <span>-2</span> <input type="text" class="blank-input" data-ans="4"> <span>-6</span>
+                        <input type="text" class="blank-input" data-ans="4"> <span>-8</span> <span>-3</span>
+                        <span>-14</span> <span>-2</span> <input type="text" class="blank-input" data-ans="3">
+                    </div>
+                </div>
+
+                <div class="sub-q equation">
+                    <strong>10c. C<sup>-1</sup></strong> = <div class="fraction"><span>1</span><span class="fdn">30</span></div> ×
+                    <div class="matrix">
+                        <input type="text" class="blank-input" data-ans="4"> <span>4</span> <span>-5</span>
+                        <span>-18</span> <input type="text" class="blank-input" data-ans="12"> <span>-15</span>
+                        <span>2</span> <input type="text" class="blank-input" data-ans="2"> <span>5</span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn-submit" onclick="checkAnswers()">Kirim Jawaban & Cek Nilai</button>
+        </form>
+
+        <div id="result-box"></div>
+    </div>
+
+    <script>
+        function checkAnswers() {
+            let inputs = document.querySelectorAll('.blank-input');
+            let correctCount = 0;
+            let totalCount = inputs.length; 
+
+            inputs.forEach(input => {
+                input.classList.remove('correct', 'wrong'); 
+                
+                // Menghapus spasi agar tetap benar walau mahasiswa tidak sengaja mengetik spasi
+                let userAnswer = input.value.trim();
+                let correctAnswer = input.getAttribute('data-ans');
+
+                if (userAnswer === correctAnswer) {
+                    input.classList.add('correct');
+                    correctCount++;
+                } else {
+                    input.classList.add('wrong');
+                }
+            });
+
+            // Hitung dan Tampilkan Nilai
+            let resultBox = document.getElementById('result-box');
+            resultBox.style.display = 'block';
+            let nilai = Math.round((correctCount / totalCount) * 100);
+            
+            if (nilai === 100) {
+                resultBox.style.backgroundColor = '#D1FAE5';
+                resultBox.style.color = '#065F46';
+                resultBox.innerHTML = `SEMPURNA! Nilai Anda: 100. Insting aljabar Anda sangat tajam!`;
+            } else if (nilai >= 70) {
+                resultBox.style.backgroundColor = '#FEF3C7';
+                resultBox.style.color = '#92400E';
+                resultBox.innerHTML = `Kerja Bagus! Anda mengisi benar ${correctCount} dari ${totalCount} sel. Nilai: ${nilai}. Perhatikan sel berwarna merah dan perbaiki hitungannya.`;
+            } else {
+                resultBox.style.backgroundColor = '#FEE2E2';
+                resultBox.style.color = '#991B1B';
+                resultBox.innerHTML = `Nilai Anda: ${nilai}. Jangan menyerah, ayo evaluasi ulang sel yang berwarna merah!`;
+            }
+        }
+    </script>
+</body>
+</html>
