@@ -316,7 +316,20 @@
       $("result-unanswered").textContent = unanswered;
       $("result-percent").textContent = `${percent}%`;
       $("result-message").textContent = percent >= 80 ? "Selamat! Penguasaan gambar teknikmu sangat baik!" : percent >= 50 ? "Terus semangat! Tinjau kembali materi dan coba tingkatkan skormu." : "Terima kasih telah berpartisipasi. Terus belajar dan jangan menyerah!";
-      
+    // --- MULAI KODE KIRIM KE GOOGLE SHEETS ---
+      // Ganti URL di bawah dengan URL Aplikasi Web Google Apps Script Anda
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzx_vgg_ETdAPXH6NdLDyUQSX97PbjB5fhPyEvG14HETQiXkmOcJMfGK64H494vV8nfMA/exec'; 
+      const formData = new FormData();
+      formData.append('nama', participant.name);
+      formData.append('nim', participant.nim);
+      formData.append('kelas', participant.className);
+      formData.append('skor', score);
+      formData.append('persentase', percent + '%');
+
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => console.log('Data berhasil disimpan ke Spreadsheet!'))
+        .catch(error => console.error('Gagal mengirim data!', error.message));
+      // --- SELESAI KODE KIRIM KE GOOGLE SHEETS ---
       const list = $("review-list");
       list.replaceChildren();
       
