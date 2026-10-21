@@ -13,14 +13,37 @@
             --bg-color: #F8FAFC;
             --white: #FFFFFF;
             --text-main: #334155;
+            --danger: #EF4444;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; padding: 20px; }
         
-        .quiz-container { max-width: 950px; margin: 40px auto; background: var(--white); padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-top: 5px solid var(--primary-color); }
-        .quiz-header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #E2E8F0; padding-bottom: 20px; }
+        .quiz-container { max-width: 950px; margin: 40px auto; background: var(--white); padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-top: 5px solid var(--primary-color); position: relative;}
+        .quiz-header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #E2E8F0; padding-bottom: 20px; }
         .quiz-header h1 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 10px; }
         
+        /* CSS UNTUK TIMER */
+        .timer-container {
+            position: sticky;
+            top: 10px;
+            background-color: #FEE2E2;
+            color: #991B1B;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-align: center;
+            border: 2px solid var(--danger);
+            z-index: 100;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .timer-warning { background-color: #7F1D1D; color: #FFFFFF; border-color: #450A0A; } /* Warna saat waktu hampir habis */
+
         .matrix-intro { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 30px; }
         .matrix-box { display: flex; align-items: center; font-size: 1.2rem; font-weight: 600; }
         .matrix { display: inline-grid; grid-template-columns: repeat(3, 45px); grid-gap: 8px; padding: 5px 10px; border-left: 2px solid var(--primary-color); border-right: 2px solid var(--primary-color); border-radius: 8px; text-align: center; margin: 0 10px; font-weight: normal; align-items: center;}
@@ -31,8 +54,9 @@
         
         .blank-input { width: 45px; height: 35px; text-align: center; border: 2px solid #CBD5E1; border-radius: 4px; font-size: 1rem; font-weight: 600; color: var(--primary-color); outline: none; }
         .blank-input:focus { border-color: var(--accent-color); }
-        .correct { background-color: #D1FAE5; border-color: #10B981; color: #065F46; }
-        .wrong { background-color: #FEE2E2; border-color: #EF4444; color: #991B1B; }
+        .blank-input:disabled { background-color: #E2E8F0; cursor: not-allowed; }
+        .correct { background-color: #D1FAE5 !important; border-color: #10B981 !important; color: #065F46 !important; }
+        .wrong { background-color: #FEE2E2 !important; border-color: #EF4444 !important; color: #991B1B !important; }
         
         .equation { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 1.1rem; margin-bottom: 10px; }
         .fraction { display: inline-block; text-align: center; vertical-align: middle; margin: 0 5px; }
@@ -41,6 +65,7 @@
         
         .btn-submit { display: block; width: 100%; padding: 15px; background: var(--accent-color); color: var(--white); border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 20px; }
         .btn-submit:hover { background: var(--secondary-color); }
+        .btn-submit:disabled { background-color: #94A3B8; cursor: not-allowed; }
         .btn-back { display: inline-block; margin-bottom: 20px; color: var(--secondary-color); text-decoration: none; font-weight: 600; }
         .btn-back:hover { text-decoration: underline; }
         
@@ -55,6 +80,11 @@
         <div class="quiz-header">
             <h1>Kuis Aljabar Linier: Matriks & Vektor</h1>
             <p>Lengkapi langkah-langkah penyelesaian operasi matriks di bawah ini. Kotak akan berwarna hijau jika jawaban Anda benar.</p>
+        </div>
+
+        <!-- FITUR TIMER -->
+        <div id="timer-box" class="timer-container">
+            ⏱️ Waktu Tersisa: <span id="time">60:00</span>
         </div>
 
         <h3 style="text-align: center; margin-bottom: 15px; color: var(--primary-color);">Diketahui 3 Matriks (3x3):</h3>
@@ -277,14 +307,61 @@
                 </div>
             </div>
 
-            <button type="button" class="btn-submit" onclick="checkAnswers()">Kirim Jawaban & Cek Nilai</button>
+            <button type="button" id="submitBtn" class="btn-submit" onclick="checkAnswers()">Kirim Jawaban & Cek Nilai</button>
         </form>
 
         <div id="result-box"></div>
     </div>
 
     <script>
+        // LOGIKA TIMER
+        let timeLeft = 60 * 60; // 60 menit dalam detik (ubah angka 60 pertama jika ingin mengubah menit)
+        let timerInterval;
+        let timerBox = document.getElementById('timer-box');
+        let timeDisplay = document.getElementById('time');
+
+        function startTimer() {
+            timerInterval = setInterval(function() {
+                timeLeft--;
+                
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                
+                // Tambahkan angka 0 di depan jika di bawah 10
+                if (minutes < 10) minutes = "0" + minutes;
+                if (seconds < 10) seconds = "0" + seconds;
+                
+                timeDisplay.innerText = minutes + ":" + seconds;
+                
+                // Ubah warna menjadi merah gelap jika sisa waktu kurang dari 5 menit (300 detik)
+                if (timeLeft <= 300) {
+                    timerBox.classList.add('timer-warning');
+                }
+                
+                // Jika waktu habis
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timeDisplay.innerText = "00:00";
+                    alert("Waktu habis! Jawaban Anda akan otomatis dikoreksi.");
+                    checkAnswers(); // Auto-submit
+                }
+            }, 1000);
+        }
+
+        // Jalankan timer saat halaman dimuat
+        window.onload = startTimer;
+
+        function disableInputs() {
+            let inputs = document.querySelectorAll('.blank-input');
+            inputs.forEach(input => input.disabled = true);
+            document.getElementById('submitBtn').disabled = true;
+            document.getElementById('submitBtn').innerText = "Kuis Selesai";
+        }
+
         function checkAnswers() {
+            // Hentikan timer karena user sudah klik submit
+            clearInterval(timerInterval);
+
             let inputs = document.querySelectorAll('.blank-input');
             let correctCount = 0;
             let totalCount = inputs.length; 
@@ -292,7 +369,6 @@
             inputs.forEach(input => {
                 input.classList.remove('correct', 'wrong'); 
                 
-                // Menghapus spasi agar tetap benar walau mahasiswa tidak sengaja mengetik spasi
                 let userAnswer = input.value.trim();
                 let correctAnswer = input.getAttribute('data-ans');
 
@@ -303,6 +379,9 @@
                     input.classList.add('wrong');
                 }
             });
+
+            // Kunci inputan agar tidak bisa diubah lagi setelah dinilai
+            disableInputs();
 
             // Hitung dan Tampilkan Nilai
             let resultBox = document.getElementById('result-box');
@@ -316,12 +395,15 @@
             } else if (nilai >= 70) {
                 resultBox.style.backgroundColor = '#FEF3C7';
                 resultBox.style.color = '#92400E';
-                resultBox.innerHTML = `Kerja Bagus! Anda mengisi benar ${correctCount} dari ${totalCount} sel. Nilai: ${nilai}. Perhatikan sel berwarna merah dan perbaiki hitungannya.`;
+                resultBox.innerHTML = `Kerja Bagus! Anda mengisi benar ${correctCount} dari ${totalCount} sel. Nilai: ${nilai}. Perhatikan sel berwarna merah dan perbaiki hitungannya di catatan Anda.`;
             } else {
                 resultBox.style.backgroundColor = '#FEE2E2';
                 resultBox.style.color = '#991B1B';
-                resultBox.innerHTML = `Nilai Anda: ${nilai}. Jangan menyerah, ayo evaluasi ulang sel yang berwarna merah!`;
+                resultBox.innerHTML = `Nilai Anda: ${nilai}. Waktu habis atau masih ada yang keliru, ayo evaluasi ulang materi Aljabar Linier!`;
             }
+            
+            // Gulir otomatis ke bagian hasil (bawah)
+            resultBox.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
