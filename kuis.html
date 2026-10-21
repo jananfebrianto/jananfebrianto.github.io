@@ -1,3 +1,9 @@
+Kode yang Anda salin dari Canva tersebut menjadi sangat panjang (memanjang dalam satu baris) karena Canva secara otomatis **mengompresi (minify)** kodenya.
+Sistem mereka menghapus semua spasi kosong dan tombol *Enter* (baris baru) untuk memperkecil ukuran file agar website memuat lebih cepat. Meskipun terlihat membingungkan bagi mata manusia, peramban (browser) sebenarnya sangat menyukai format rapat seperti ini dan bisa membacanya dengan sempurna.
+Jadi, Anda **tetap bisa langsung menempelkannya (paste)** di GitHub dan kuis tersebut akan berjalan normal.
+Namun, agar Anda lebih mudah membacanya jika sewaktu-waktu ingin mengedit soal atau teksnya, saya sudah membantu **merapikan (format)** kode Anda menjadi susunan vertikal yang rapi.
+Silakan salin kode yang sudah dirapikan di bawah ini, dan timpa (*paste*) ke dalam file **kuis.html** Anda di GitHub:
+```html
 <!doctype html>
 <html lang="id">
 <head>
@@ -196,4 +202,193 @@
       {q:"Ukuran 50 +0,2/−0,1 mm memiliki batas bawah berapa?",o:["49,8 mm","49,9 mm","50,1 mm","50,2 mm"],a:1,e:"Batas bawah dihitung dari 50 − 0,1 = 49,9 mm.",d:"Sulit",t:60,p:20},
       {q:"Jika sebuah lubang diberi simbol Ø12, apa yang harus dibaca oleh pembuat komponen?",o:["Jari-jari lubang 12 mm","Diameter lubang 12 mm","Kedalaman lubang 12 mm","Keliling lubang 12 mm"],a:1,e:"Ø12 menyatakan diameter nominal lubang sebesar 12 dalam satuan ukuran gambar.",d:"Sulit",t:60,p:20},
       {q:"Apa yang paling tepat dilakukan ketika dua pandangan tampak tidak cukup menjelaskan rongga dalam suatu komponen?",o:["Menghapus seluruh garis tersembunyi","Menambahkan pandangan potongan yang sesuai","Mengabaikan rongga tersebut","Mengganti semua ukuran menjadi perkiraan"],a:1,e:"Pandangan potongan yang tepat memperjelas bentuk dan ukuran bagian dalam.",d:"Sulit",t:60,p:20},
-      {q:"Ketika membaca gambar teknik untuk membuat komponen, kombinasi informasi mana yang paling perlu diperiksa sebelum produksi?",o:["Warna kertas dan jenis sampul","Etiket, satuan, skala, dimensi, toleransi, dan simbol proyeksi","Nama berkas saja","Jumlah halaman tanpa melihat isinya"],a:1,e:"Informasi identifikasi, ukuran, toleransi, dan metode proyeksi menentukan interpret
+      {q:"Ketika membaca gambar teknik untuk membuat komponen, kombinasi informasi mana yang paling perlu diperiksa sebelum produksi?",o:["Warna kertas dan jenis sampul","Etiket, satuan, skala, dimensi, toleransi, dan simbol proyeksi","Nama berkas saja","Jumlah halaman tanpa melihat isinya"],a:1,e:"Informasi identifikasi, ukuran, toleransi, dan metode proyeksi menentukan interpretasi gambar yang benar.",d:"Sulit",t:60,p:20}
+    ];
+    const $ = id => document.getElementById(id);
+    const screens = ["login-screen", "instructions-screen", "quiz-screen", "results-screen"];
+    const buttons = [...document.querySelectorAll(".answer")];
+    const letters = ["A", "B", "C", "D"];
+    const maxScore = questions.reduce((sum, q) => sum + q.p, 0);
+    let participant = null, index = 0, score = 0, answers = [], remaining = 0, ticker = null, advance = null, locked = false;
+    
+    function showScreen(id) {
+      screens.forEach(screen => $(screen).classList.toggle("hidden", screen !== id));
+      window.scrollTo({top: 0, behavior: "instant"});
+    }
+    
+    function clearClocks() {
+      clearInterval(ticker);
+      clearTimeout(advance);
+      ticker = null;
+      advance = null
+    }
+    
+    function renderTimer() {
+      $("time-value").textContent = remaining;
+      $("timer-box").classList.toggle("timer-warning", remaining <= 10 && remaining > 5);
+      $("timer-box").classList.toggle("timer-urgent", remaining <= 5);
+      $("timer-box").setAttribute("aria-label", `Sisa waktu ${remaining} detik`);
+    }
+    
+    function showQuestion() {
+      clearClocks();
+      locked = false;
+      const q = questions[index];
+      remaining = q.t;
+      $("question-progress").textContent = `Soal ${index + 1} dari ${questions.length}`;
+      $("difficulty-badge").textContent = `${q.d} · ${q.p} poin`;
+      $("question-heading").textContent = q.q;
+      $("score-value").textContent = score;
+      $("progress-fill").style.width = `${(index + 1) / questions.length * 100}%`;
+      $("progress-track").setAttribute("aria-valuenow", String(index + 1));
+      $("feedback").classList.add("hidden");
+      $("next-note").classList.add("hidden");
+      
+      buttons.forEach((button, i) => {
+        button.textContent = `${letters[i]}. ${q.o[i]}`;
+        button.disabled = false;
+        button.className = "answer rounded-2xl p-4 min-h-[76px] font-medium";
+        button.setAttribute("aria-label", `Jawaban ${letters[i]}: ${q.o[i]}`);
+      });
+      
+      renderTimer();
+      
+      ticker = setInterval(() => {
+        remaining = Math.max(0, remaining - 1);
+        renderTimer();
+        if (remaining === 0) resolveAnswer(null);
+      }, 1000);
+    }
+    
+    function confetti() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const colors = ["#1764ac", "#16a34a", "#f4b942"];
+      for (let i = 0; i < 16; i++) {
+        const piece = document.createElement("span");
+        piece.className = "confetti-piece";
+        piece.style.left = `${35 + Math.random() * 30}%`;
+        piece.style.top = "36%";
+        piece.style.background = colors[i % colors.length];
+        piece.style.setProperty("--dx", `${(Math.random() - .5) * 300}px`);
+        document.body.append(piece);
+        setTimeout(() => piece.remove(), 1000);
+      }
+    }
+    
+    function resolveAnswer(choice) {
+      if (locked) return;
+      locked = true;
+      clearInterval(ticker);
+      ticker = null;
+      const q = questions[index];
+      const correct = choice === q.a;
+      if (correct) { score += q.p; confetti() }
+      answers.push(choice);
+      
+      buttons.forEach((button, i) => {
+        button.disabled = true;
+        if (i === q.a) button.classList.add("correct");
+        else if (i === choice) button.classList.add("wrong");
+      });
+      
+      $("score-value").textContent = score;
+      const title = choice === null ? "Waktu habis — tidak terjawab." : correct ? "Benar!" : "Belum tepat.";
+      $("feedback-title").textContent = title;
+      $("feedback-detail").textContent = `${q.e} Jawaban benar: ${letters[q.a]}. ${q.o[q.a]}.`;
+      $("feedback").className = `mt-6 rounded-2xl p-5 ${correct ? "bg-green-50 text-green-900" : choice === null ? "bg-amber-50 text-amber-950" : "bg-red-50 text-red-900"}`;
+      $("next-note").classList.remove("hidden");
+      
+      advance = setTimeout(() => {
+        advance = null;
+        index++;
+        if (index === questions.length) showResults();
+        else showQuestion();
+      }, 2600);
+    }
+    
+    function showResults() {
+      clearClocks();
+      const correct = answers.filter((choice, i) => choice === questions[i].a).length;
+      const unanswered = answers.filter(choice => choice === null).length;
+      const wrong = questions.length - correct - unanswered;
+      const percent = Math.round(score / maxScore * 100);
+      
+      $("result-name").textContent = participant.name;
+      $("result-nim").textContent = participant.nim;
+      $("result-class").textContent = participant.className;
+      $("result-score").textContent = `${score}/${maxScore}`;
+      $("result-correct").textContent = correct;
+      $("result-wrong").textContent = wrong;
+      $("result-unanswered").textContent = unanswered;
+      $("result-percent").textContent = `${percent}%`;
+      $("result-message").textContent = percent >= 80 ? "Selamat! Penguasaan gambar teknikmu sangat baik!" : percent >= 50 ? "Terus semangat! Tinjau kembali materi dan coba tingkatkan skormu." : "Terima kasih telah berpartisipasi. Terus belajar dan jangan menyerah!";
+      
+      const list = $("review-list");
+      list.replaceChildren();
+      
+      questions.forEach((q, i) => {
+        const choice = answers[i];
+        const item = document.createElement("li");
+        item.className = "rounded-xl border border-[#d9e8f5] bg-[#f8fbff] p-4";
+        const heading = document.createElement("p");
+        heading.className = "font-semibold";
+        heading.textContent = `${i + 1}. ${q.q}`;
+        const detail = document.createElement("p");
+        detail.className = "mt-1 text-[#496580]";
+        detail.textContent = `${choice === null ? "Tidak terjawab" : choice === q.a ? "Benar" : "Salah"} · Jawabanmu: ${choice === null ? "—" : letters[choice] + ". " + q.o[choice]} · Kunci: ${letters[q.a]}. ${q.o[q.a]}`;
+        item.append(heading, detail);
+        list.append(item);
+      });
+      
+      $("review-panel").classList.add("hidden");
+      $("review-button").setAttribute("aria-expanded", "false");
+      showScreen("results-screen");
+    }
+    
+    $("identity-form").addEventListener("submit", event => {
+      event.preventDefault();
+      const name = $("participant-name").value.trim();
+      const nim = $("participant-nim").value.trim();
+      const className = $("participant-class").value;
+      
+      if (!name || !/^[0-9]+$/.test(nim) || !["Kelas A", "Kelas B"].includes(className)) {
+        $("form-error").classList.remove("hidden");
+        (!name ? $("participant-name") : !/^[0-9]+$/.test(nim) ? $("participant-nim") : $("participant-class")).focus();
+        return;
+      }
+      
+      $("form-error").classList.add("hidden");
+      participant = {name, nim, className};
+      $("instructions-participant").textContent = `${name} · ${className}`;
+      $("quiz-participant").textContent = `${name} · ${className}`;
+      showScreen("instructions-screen");
+    });
+    
+    $("play-button").addEventListener("click", () => {
+      index = 0; score = 0; answers = [];
+      showScreen("quiz-screen");
+      showQuestion();
+    });
+    
+    buttons.forEach((button, i) => button.addEventListener("click", () => resolveAnswer(i)));
+    
+    $("review-button").addEventListener("click", () => {
+      const opened = $("review-panel").classList.toggle("hidden") === false;
+      $("review-button").setAttribute("aria-expanded", String(opened));
+    });
+    
+    $("restart-button").addEventListener("click", () => {
+      clearClocks();
+      document.querySelectorAll(".confetti-piece").forEach(piece => piece.remove());
+      participant = null; index = 0; score = 0; answers = []; remaining = 0; locked = false;
+      $("identity-form").reset();
+      $("form-error").classList.add("hidden");
+      $("review-list").replaceChildren();
+      showScreen("login-screen");
+      $("participant-name").focus();
+    });
+  </script> 
+</body>
+</html>
+
+```
