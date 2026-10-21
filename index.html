@@ -344,6 +344,32 @@
                 flex-direction: column;
             }
         }
+    /* ================= PERBAIKAN MENU HP ================= */
+@media (max-width: 768px) {
+    /* Memaksa pembungkus menu utama untuk tampil */
+    header, nav {
+        display: block !important;
+        text-align: center;
+        padding: 15px 0;
+    }
+    
+    /* Memaksa daftar menu (link) untuk turun ke bawah dan tampil di tengah */
+    .nav-links, .menu, nav ul {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px;
+        padding: 0;
+        margin-top: 10px;
+    }
+    
+    /* Merapikan ukuran tombol menu */
+    .nav-links a, .menu a, nav a {
+        display: inline-block;
+        padding: 8px 15px;
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 5px;
+    }
+}
     </style>
 </head>
 <body>
