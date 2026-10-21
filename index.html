@@ -345,40 +345,68 @@
             }
         }
     /* ================= PERBAIKAN MENU HP ================= */
+/* ================= PENGATURAN MENU HP (HAMBURGER) ================= */
+/* Sembunyikan tombol ☰ di layar laptop */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--white); /* Sesuaikan dengan warna teks menu Anda */
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
 @media (max-width: 768px) {
-    /* Memaksa pembungkus menu utama untuk tampil */
-    header, nav {
-        display: block !important;
-        text-align: center;
-        padding: 15px 0;
+    /* Tampilkan tombol ☰ di HP */
+    .menu-toggle {
+        display: block;
+        position: absolute; /* Atur posisi agar di pojok kanan/kiri */
+        right: 20px;
+        top: 20px;
+        z-index: 1001; /* Pastikan tombol selalu di atas */
     }
-    
-    /* Memaksa daftar menu (link) untuk turun ke bawah dan tampil di tengah */
+
+    /* Sembunyikan daftar menu secara default di HP */
     .nav-links, .menu, nav ul {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 15px;
-        padding: 0;
-        margin-top: 10px;
+        display: none; 
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--primary-color); /* Warna latar menu dropdown (sesuaikan) */
+        position: absolute;
+        top: 60px; /* Jarak dari atas layar */
+        left: 0;
+        text-align: center;
+        padding: 20px 0;
+        z-index: 1000;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.3);
     }
     
-    /* Merapikan ukuran tombol menu */
-    .nav-links a, .menu a, nav a {
-        display: inline-block;
-        padding: 8px 15px;
-        background-color: rgba(255,255,255,0.1);
-        border-radius: 5px;
+    /* Atur jarak antar link di menu dropdown */
+    .nav-links a, .menu a, nav ul a {
+        display: block;
+        padding: 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.1); /* Garis batas tipis antar menu */
+    }
+
+    /* Class tambahan yang akan diaktifkan oleh JavaScript untuk menampilkan menu */
+    .nav-links.active, .menu.active, nav ul.active {
+        display: flex; 
     }
 }
     </style>
 </head>
 <body>
 
-    <!-- NAVBAR -->
+  <!-- NAVBAR -->
     <header>
         <div class="container">
             <nav>
                 <div class="logo">Portofolio Akademik</div>
+                
+                <!-- TAMBAHKAN BARIS INI: Tombol Hamburger untuk HP -->
+                <button class="menu-toggle" id="mobile-menu-btn">☰</button>
+
                 <ul class="nav-links">
                     <li><a href="#hero">Beranda</a></li>
                     <li><a href="#about">Tentang</a></li>
@@ -539,5 +567,27 @@
             });
         });
     </script>
+<!-- JavaScript untuk mengontrol Menu Hamburger -->
+<script>
+    // Memilih elemen tombol dan daftar menu
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    // Sesuaikan '.nav-links' di bawah ini dengan class menu Anda jika berbeda
+    const navLinks = document.querySelector('.nav-links') || document.querySelector('nav ul');
+
+    if(menuBtn && navLinks) {
+        // Ketika tombol diklik, tambahkan/hapus class 'active' pada menu
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // (Opsional) Tutup menu otomatis setelah salah satu tautan diklik
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+</script>
 </body>
 </html>
