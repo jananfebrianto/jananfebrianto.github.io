@@ -18,13 +18,13 @@
             --white: #FFFFFF;
         }
 
-.kotak-konten {
-        background-color: rgba(10, 25, 47, 0.85); /* Latar biru dongker gelap transparan */
-        color: #FFFFFF; /* Teks warna putih terang */
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Bayangan dipertegas */
-    }
+        .kotak-konten {
+            background-color: rgba(10, 25, 47, 0.85); /* Latar biru dongker gelap transparan */
+            color: #FFFFFF; /* Teks warna putih terang */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Bayangan dipertegas */
+        }
         
         /* ================= GLOBAL STYLES ================= */
         * {
@@ -38,18 +38,18 @@
             scroll-behavior: smooth; /* Smooth scrolling untuk navigasi menu */
         }
 
-     body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    line-height: 1.6;
-    
-    /* --- TAMBAHKAN KODE GAMBAR DI BAWAH INI --- */
-    background-image: url('latar.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            
+            /* --- TAMBAHKAN KODE GAMBAR DI BAWAH INI --- */
+            background-image: url('latar.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
 
         a {
             text-decoration: none;
@@ -78,6 +78,7 @@
         }
 
         nav {
+            position: relative; /* Penahan untuk tombol HP */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -103,6 +104,17 @@
 
         .nav-links a:hover {
             color: var(--accent-color);
+        }
+
+        /* ================= PENGATURAN MENU HP (HAMBURGER) ================= */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 32px;
+            color: var(--primary-color); /* Biru dongker agar terlihat di latar putih */
+            cursor: pointer;
+            padding: 5px;
         }
 
         /* ================= HERO SECTION ================= */
@@ -332,68 +344,50 @@
             color: var(--accent-color);
         }
 
-        /* ================= RESPONSIVE ================= */
+        /* ================= RESPONSIVE (MEDIA QUERIES) ================= */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* Sembunyikan menu di mobile untuk kesederhanaan, bisa ditambahkan hamburger menu nanti */
-            }
             .hero-title {
                 font-size: 2rem;
             }
+            
             .btn-group {
                 flex-direction: column;
             }
+
+            /* Logika Menu HP */
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 0px;
+                top: 15px;
+                z-index: 1001;
+            }
+
+            .nav-links {
+                display: none; /* Disembunyikan awalnya */
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--primary-color);
+                position: absolute;
+                top: 70px; /* Di bawah navbar putih */
+                left: 0;
+                text-align: center;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 15px;
+                color: var(--white);
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            /* Saat kelas 'active' dipanggil oleh JavaScript */
+            .nav-links.active {
+                display: flex; 
+            }
         }
-    /* ================= PERBAIKAN MENU HP ================= */
-/* ================= PENGATURAN MENU HP (HAMBURGER) ================= */
-/* Sembunyikan tombol ☰ di layar laptop */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 28px;
-    color: var(--white); /* Sesuaikan dengan warna teks menu Anda */
-    cursor: pointer;
-    padding: 5px 10px;
-}
-
-@media (max-width: 768px) {
-    /* Tampilkan tombol ☰ di HP */
-    .menu-toggle {
-        display: block;
-        position: absolute; /* Atur posisi agar di pojok kanan/kiri */
-        right: 20px;
-        top: 20px;
-        z-index: 1001; /* Pastikan tombol selalu di atas */
-    }
-
-    /* Sembunyikan daftar menu secara default di HP */
-    .nav-links, .menu, nav ul {
-        display: none; 
-        flex-direction: column;
-        width: 100%;
-        background-color: var(--primary-color); /* Warna latar menu dropdown (sesuaikan) */
-        position: absolute;
-        top: 60px; /* Jarak dari atas layar */
-        left: 0;
-        text-align: center;
-        padding: 20px 0;
-        z-index: 1000;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-    }
-    
-    /* Atur jarak antar link di menu dropdown */
-    .nav-links a, .menu a, nav ul a {
-        display: block;
-        padding: 15px;
-        border-bottom: 1px solid rgba(255,255,255,0.1); /* Garis batas tipis antar menu */
-    }
-
-    /* Class tambahan yang akan diaktifkan oleh JavaScript untuk menampilkan menu */
-    .nav-links.active, .menu.active, nav ul.active {
-        display: flex; 
-    }
-}
     </style>
 </head>
 <body>
