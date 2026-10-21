@@ -1,1 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Kuis Interaktif | Ir. Ahmad Janan Febrianto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ================= CSS VARIABLES ================= */
+        :root {
+            --primary-color: #0A192F; 
+            --secondary-color: #1E3A8A; 
+            --accent-color: #3B82F6; 
+            --bg-color: #F8FAFC; 
+            --text-main: #334155; 
+            --white: #FFFFFF;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ================= NAVBAR MINIMALIS ================= */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .btn-back {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-back:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* ================= HEADER KUIS ================= */
+        .quiz-header {
+            padding: 120px 0 60px;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--white), var(--bg-color));
+        }
+
+        .quiz-header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .quiz-header p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-main);
+            font-size: 1.1rem;
+        }
+
+        /* ================= KARTU KUIS ================= */
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0 80px;
+        }
+
+        .quiz-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid var(--accent-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .quiz-content {
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        .quiz-tag {
+            background-color: #E0E7FF;
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .quiz-title {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .quiz-desc {
+            font-size: 0.95rem;
+            color: #64748B;
+            margin-bottom: 25px;
+        }
+
+        .btn-start {
+            display: block;
+            text-align: center;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 12px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .btn-start:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* ================= FOOTER ================= */
+        footer {
+            background-color: #020617;
+            color: var(--white);
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .quiz-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR MINIMALIS -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Pusat Kuis Edukasi</div>
+                <!-- Tombol kembali ke index.html -->
+                <a href="index.html" class="btn-back">← Kembali ke Beranda</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HEADER KUIS -->
+    <section class="quiz-header">
+        <div class="container">
+            <h1>Katalog Kuis Interaktif</h1>
+            <p>Pilih mata kuliah atau topik di bawah ini untuk menguji pemahaman Anda. Kuis dirancang khusus untuk mahasiswa teknik mesin.</p>
+        </div>
+    </section>
+
+    <!-- DAFTAR KUIS -->
+    <section class="container">
+        <div class="quiz-grid">
+            
+            <!-- KARTU KUIS 1 -->
+            <div class="quiz-card">
+                <div class="quiz-content">
+                    <span class="quiz-tag">Gambar Teknik</span>
+                    <h2 class="quiz-title">Standar Gambar Teknik ISO</h2>
+                    <p class="quiz-desc">Uji pemahaman dasar mengenai garis, proyeksi ortogonal, dan standar toleransi dalam pembuatan gambar kerja mekanik.</p>
+                </div>
+                <!-- Menuju ke file kuis.html yang sudah Anda buat sebelumnya -->
+                <a href="kuis.html" class="btn-start">Mulai Kuis</a>
+            </div>
+
+            <!-- KARTU KUIS 2 -->
+            <div class="quiz-card">
+                <div class="quiz-content">
+                    <span class="quiz-tag">Matematika Teknik</span>
+                    <h2 class="quiz-title">Kalkulus Vektor Dasar</h2>
+                    <p class="quiz-desc">Evaluasi kemampuan Anda dalam menyelesaikan turunan parsial, gradien, dan penerapan matriks pada masalah teknik.</p>
+                </div>
+                <!-- Menuju ke file kuis-kalkulus.html (bisa Anda buat nanti) -->
+                <a href="#" class="btn-start">Segera Hadir</a>
+            </div>
+
+            <!-- KARTU KUIS 3 -->
+            <div class="quiz-card">
+                <div class="quiz-content">
+                    <span class="quiz-tag">Energi Terbarukan</span>
+                    <h2 class="quiz-title">Desain Sistem Fotovoltaik</h2>
+                    <p class="quiz-desc">Latihan menganalisis kemiringan panel surya, kekuatan struktur mekanik, dan optimasi daya sesuai SNI.</p>
+                </div>
+                <a href="#" class="btn-start">Segera Hadir</a>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Dosen Teknik Mesin - UST Yogyakarta. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
