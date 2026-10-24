@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <script>
+    window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20261021-05-123c82d","C":{"Abril Fatface":"YACgEZbkUVE,0","Albert Sans":"YAHO2HRfeh4,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo Black":"YACgEZulLoA,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Baloo 2":"YAHO2IcQUcM,0","Barlow Condensed":"YAFdJljEuFc,0","Barlow":"YAFdJsyuOPM,1","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Cairo":"YAFdtXpDzlQ,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Cinzel":"YACgEeV8bIQ,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Figtree":"YAHO2b-mV7A,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Fredoka":"YACgEZml080,0","Georgia":"YAGzXkO0pEM,0","Hanken Grotesk":"YAHO2VB9G0I,0","Helvetica":"YAFcf7zkXN0,0","IBM Plex Mono":"YAFdJkmvhGI,0","IBM Plex Sans":"YAFdJgT0SHI,0","Impact":"YAFcfnjI7Vk,0","Instrument Sans":"YAHO2bKyaSQ,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Italiana":"YAHO2Toik_w,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Karla":"YAHO2V2NSXM,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Libre Caslon Display":"YAHO2XhLmt0,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Noto Sans JP":"YAFdJiHXlcI,0","Noto Sans KR":"YAGsojZj-RQ,0","Nunito Sans":"YAFdtQJYB9w,1","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Open Sans":"YAFdJt8dAY0,1","Oswald":"YACgEQY10lw,0","Outfit":"YAHO2nVlg14,0","Pacifico":"YADLjORQ1u4,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAHO2gdhi18,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Public Sans":"YAFdJj8NdaU,1","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","STIX Two Text":"YAHO2joycuk,0","Sarabun":"YAFdJssSnME,0","Schibsted Grotesk":"YAHO2sWydRk,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Space Mono":"YADW1-vpsoc,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');
+  </script>
+  <script src="/_sdk/05db820ba1544614.telemetry_sdk.js" integrity="sha512-a7JzkQDDcioSXpM61nxTfeRW7PcxWQy5+BrhyeTFmQFsXJ+Gncm0y50u7fTA7qOPegFnRgqCfa0mGUOK1yjDWQ=="></script>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <title>Kuis Kinematika & Dinamika</title>  
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">  
+  <style>
+    :root {--navy: #12345b; --blue: #1764ac; --pale: #eef7ff; --line: #d9e8f5}
+    * {box-sizing: border-box}
+    body {font-family: Prompt, sans-serif; color: var(--navy); background: #eef7ff}
+    .app-shell {min-height: calc(100 * min(var(--vh, 1vh), 1vh)); display: flex; flex-direction: column; width: 100%; position: relative; isolation: isolate; background: linear-gradient(rgba(238,247,255,.91), rgba(238,247,255,.94)), url("https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg?auto=compress&cs=tinysrgb&w=1920") center/cover fixed}
+    .app-shell:before {content: ""; position: absolute; inset: 0; z-index: -1; opacity: .16; background-image: linear-gradient(rgba(23,100,172,.35) 1px, transparent 1px), linear-gradient(90deg, rgba(23,100,172,.35) 1px, transparent 1px); background-size: 32px 32px; pointer-events: none}
+    .app-shell > * {position: relative; z-index: 1}
+    .surface {background: white; border: 1px solid var(--line); box-shadow: 0 18px 55px rgba(19,64,110,.09)}
+    .action {transition: transform .2s, background-color .2s, box-shadow .2s}
+    .action:hover:not(:disabled) {transform: translateY(-2px); box-shadow: 0 8px 20px rgba(18,67,119,.17)}
+    .action:disabled {cursor: default}
+    :focus-visible {outline: 3px solid #ec9a19!important; outline-offset: 3px}
+    .answer {border: 2px solid #d8e8f7; background: #fff; text-align: left; transition: border-color .18s, background-color .18s, transform .18s, color .18s}
+    .answer:hover:not(:disabled), .answer:focus-visible {border-color: #1764ac; background: #eff7ff; transform: translateY(-2px)}
+    .answer.selected {border-color: #1764ac; background: #e4f2ff; color: #12345b; box-shadow: 0 4px 12px rgba(23,100,172,.15)}
+    .answer:disabled {opacity: 1}
+    .timer-warning {background: #fff0ce!important; color: #854d0e!important}
+    .timer-urgent {background: #fee2e2!important; color: #991b1b!important}
+    .confetti-piece {position: fixed; z-index: 30; pointer-events: none; width: 8px; height: 13px; animation: fall .9s ease-out forwards}
+    @keyframes fall {to {transform: translate(var(--dx), 130px) rotate(540deg); opacity: 0}}
+    @media(prefers-reduced-motion: reduce) {*, *:before, *:after {animation-duration: .01ms!important; transition-duration: .01ms!important; scroll-behavior: auto!important}}
+  </style>  
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>  
+</head> 
+<body data-template-id="__page-root" class="w-full" style="background: rgb(238, 247, 255);">  
+  <div class="app-shell">   
+    <header class="w-full px-4 pt-7 sm:pt-10">    
+      <div class="max-w-4xl mx-auto flex items-center gap-3">     
+        <span class="w-10 h-10 rounded-xl bg-[#1764ac] text-white grid place-items-center font-bold" aria-hidden="true">KD</span> 
+        <span data-template-id="header-brand" class="canva-text font-semibold tracking-wide" style="color: rgb(18, 52, 91); font-weight: 600; font-style: normal; font-size: 16px;">KUIS KINEMATIKA & DINAMIKA</span>    
+      </div>   
+    </header>   
+    <main class="flex-1 w-full px-4 py-7 sm:py-10">    
+      <div class="max-w-4xl mx-auto">     
+        
+        <!-- LOGIN SCREEN -->
+        <section id="login-screen" aria-labelledby="page-title" class="surface rounded-[28px] p-6 sm:p-10">      
+          <div class="text-center">        
+            <img data-template-id="opening-logo" class="canva-image block w-full max-w-[500px] h-auto max-h-48 object-contain mx-auto mb-7" loading="lazy" src="https://iili.io/nebonUv.jpg" alt="Logo pembuka Kuis KD"> 
+            <span data-template-id="opening-eyebrow" class="canva-tag inline-block px-4 py-2 rounded-full bg-[#e4f2ff] text-[#13558f] font-semibold mb-4" style="background: rgb(228, 242, 255); color: rgb(19, 85, 143); font-weight: 600; font-style: normal; font-size: 16px;">GAME EDUKASI • 30 SOAL</span>        
+            <h1 id="page-title" data-template-id="page-title" class="canva-text font-bold leading-tight mb-3" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 32px;">Kuis Kinematika & Dinamika</h1>        
+            <p data-template-id="opening-description" class="canva-text text-[#496580] max-w-xl mx-auto leading-relaxed" style="color: rgb(73, 101, 128); font-weight: 400; font-style: normal; font-size: 16px;">Uji pemahamanmu tentang analisis statis, prinsip D'Alembert, dan transmisi daya dalam perancangan mesin berkecepatan tinggi!</p>      
+          </div>      
+          <form id="identity-form" class="max-w-lg mx-auto mt-9 space-y-5" novalidate="">        
+            <div>        
+              <label data-template-id="name-label" for="participant-name" class="canva-text block font-semibold mb-2" style="color: rgb(18, 52, 91); font-weight: 600; font-style: normal; font-size: 16px;">Nama lengkap</label> 
+              <input id="participant-name" name="name" autocomplete="name" maxlength="80" required="" class="w-full rounded-xl border border-[#b9d3e9] bg-white px-4 py-3 text-[#12345b] focus:border-[#1764ac]" placeholder="Masukkan nama lengkap">        
+            </div>        
+            <div>        
+              <label data-template-id="nim-label" for="participant-nim" class="canva-text block font-semibold mb-2" style="color: rgb(18, 52, 91); font-weight: 600; font-style: normal; font-size: 16px;">NIM</label> 
+              <input id="participant-nim" name="nim" inputmode="numeric" autocomplete="off" maxlength="24" required="" class="w-full rounded-xl border border-[#b9d3e9] bg-white px-4 py-3 text-[#12345b] focus:border-[#1764ac]" placeholder="Masukkan NIM">        
+            </div>        
+            <div>        
+              <label data-template-id="class-label" for="participant-class" class="canva-text block font-semibold mb-2" style="color: rgb(18, 52, 91); font-weight: 600; font-style: normal; font-size: 16px;">Kelas</label> 
+              <select id="participant-class" name="class" required="" class="w-full rounded-xl border border-[#b9d3e9] bg-white px-4 py-3 text-[#12345b] focus:border-[#1764ac]"> 
+                <option value="">Pilih kelas</option>
+                <option value="Kelas A">Kelas A</option>
+                <option value="Kelas B">Kelas B</option> 
+              </select>        
+            </div>        
+            <p id="form-error" class="hidden rounded-xl bg-red-50 px-4 py-3 text-[#991b1b]" role="alert">Lengkapi nama, NIM berupa angka, dan pilih kelas terlebih dahulu.</p>
+            <button data-template-id="start-button" type="submit" class="canva-button action w-full rounded-xl bg-[#1764ac] px-5 py-4 font-semibold text-white" style="background: rgb(23, 100, 172); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Mulai Kuis →</button>      
+          </form>     
+        </section>     
+        
+        <!-- INSTRUCTIONS SCREEN -->
+        <section id="instructions-screen" aria-labelledby="instructions-title" class="surface rounded-[28px] p-6 sm:p-10 hidden">      
+          <span data-template-id="instructions-eyebrow" class="canva-tag inline-block rounded-full bg-[#e4f2ff] px-4 py-2 text-[#13558f] font-semibold mb-4" style="background: rgb(228, 242, 255); color: rgb(19, 85, 143); font-weight: 600; font-style: normal; font-size: 16px;">SEBELUM MULAI</span>      
+          <h2 id="instructions-title" data-template-id="instructions-title" class="canva-text font-bold mb-3" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 24px;">Petunjuk permainan</h2>      
+          <p id="instructions-participant" class="font-semibold text-[#1764ac] mb-6" aria-live="polite"></p>      
+          <div class="grid sm:grid-cols-2 gap-3 mb-8">        
+            <p data-template-id="instruction-one" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">01 · Terdiri dari soal teori, isian rumpang, dan perhitungan. Pilih opsi yang paling tepat.</p>        
+            <p data-template-id="instruction-two" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">02 · Waktu pengerjaan disesuaikan dengan tingkat kesulitan (45 - 150 detik). Perhatikan timer.</p>        
+            <p data-template-id="instruction-three" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">03 · Evaluasi jawaban (benar/salah) dan perhitungan skor baru akan dilakukan di akhir permainan.</p>        
+            <p data-template-id="instruction-four" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">04 · Beberapa soal dilengkapi referensi visual/gambar. Jika waktu habis, soal otomatis terlewat.</p>      
+          </div>
+          <button data-template-id="play-button" id="play-button" type="button" class="canva-button action w-full sm:w-auto rounded-xl bg-[#1764ac] px-8 py-4 font-semibold text-white" style="background: rgb(23, 100, 172); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Saya Siap, Mulai Bermain →</button>     
+        </section>     
+        
+        <!-- QUIZ SCREEN -->
+        <section id="quiz-screen" aria-labelledby="question-heading" class="hidden">      
+          <div class="surface rounded-[28px] p-5 sm:p-8">        
+            <div class="flex flex-wrap justify-between gap-4 items-center border-b border-[#d9e8f5] pb-5">        
+              <div>          
+                <p data-template-id="quiz-participant-label" class="canva-text text-[#526d87]" style="color: rgb(82, 109, 135); font-weight: 400; font-style: normal; font-size: 16px;">PESERTA</p>          
+                <p id="quiz-participant" class="font-semibold break-words"></p>        
+              </div>        
+              <div class="flex gap-2 flex-wrap">          
+                <div class="rounded-xl bg-[#eaf4ff] px-4 py-2">
+                  <span data-template-id="score-label" class="canva-text text-[#496580]" style="color: rgb(73, 101, 128); font-weight: 400; font-style: normal; font-size: 16px;">Terjawab</span> 
+                  <strong id="answered-value" aria-live="polite">0</strong>          
+                </div>          
+                <div id="timer-box" class="rounded-xl bg-[#eaf4ff] px-4 py-2 font-semibold" role="timer" aria-label="Sisa waktu">
+                  <span aria-hidden="true">⏱ </span>
+                  <span id="time-value">45</span>
+                  <span data-template-id="seconds-label" class="canva-text" style="color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;"> dtk</span>          
+                </div>        
+              </div>        
+            </div>        
+            <div class="mt-6 flex flex-wrap justify-between items-center gap-2">        
+              <span id="question-progress" class="font-semibold text-[#1764ac]">Soal 1 dari 30</span> 
+              <span id="difficulty-badge" class="rounded-full bg-[#e4f2ff] px-4 py-2 font-semibold text-[#13558f]">Teori · 10 poin</span>        
+            </div>        
+            <div id="progress-track" class="mt-4 h-3 overflow-hidden rounded-full bg-[#dcecf9]" role="progressbar" aria-label="Progres kuis" aria-valuemin="0" aria-valuemax="30" aria-valuenow="1">        
+              <div id="progress-fill" class="h-full rounded-full bg-[#1764ac] transition-all duration-300" style="width:3.33%"></div>        
+            </div>        
+            
+            <!-- GAMBAR SOAL (Dinamis disembunyikan/ditampilkan) -->
+            <img id="question-image" class="hidden w-full max-h-72 object-contain rounded-xl mt-6 border border-[#d9e8f5] bg-[#f8fbff] p-2" src="" alt="Ilustrasi Soal">
+
+            <h2 id="question-heading" class="mt-6 mb-6 font-bold leading-snug" style="font-size:clamp(1.2rem,3vw,1.75rem)"></h2>        
+            
+            <div id="answer-list" class="grid sm:grid-cols-2 gap-3" role="group" aria-label="Pilihan jawaban">        
+              <button type="button" class="answer rounded-2xl p-4 min-h-[76px] font-medium"></button> 
+              <button type="button" class="answer rounded-2xl p-4 min-h-[76px] font-medium"></button> 
+              <button type="button" class="answer rounded-2xl p-4 min-h-[76px] font-medium"></button> 
+              <button type="button" class="answer rounded-2xl p-4 min-h-[76px] font-medium"></button>        
+            </div>        
+            <p id="next-note" class="hidden mt-6 text-[#1764ac] font-semibold text-center bg-[#e4f2ff] p-3 rounded-lg">Jawaban disimpan. Beralih ke soal berikutnya...</p>      
+          </div>     
+        </section>     
+        
+        <!-- RESULTS SCREEN -->
+        <section id="results-screen" aria-labelledby="results-title" class="surface rounded-[28px] p-6 sm:p-10 hidden">      
+          <span data-template-id="result-eyebrow" class="canva-tag inline-block rounded-full bg-[#e4f2ff] px-4 py-2 text-[#13558f] font-semibold mb-4" style="background: rgb(228, 242, 255); color: rgb(19, 85, 143); font-weight: 600; font-style: normal; font-size: 16px;">KUIS SELESAI</span>      
+          <h2 id="results-title" data-template-id="results-title" class="canva-text font-bold mb-2" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 24px;">Hasil permainan</h2>      
+          <p id="result-message" class="font-semibold text-[#1764ac] mb-6" aria-live="polite"></p>      
+          <div class="rounded-2xl bg-[#f0f7fe] p-5 mb-6">        
+            <p><span class="font-semibold">Nama:</span> <span id="result-name"></span></p>        
+            <p><span class="font-semibold">NIM:</span> <span id="result-nim"></span></p>        
+            <p><span class="font-semibold">Kelas:</span> <span id="result-class"></span></p>      
+          </div>      
+          <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mb-8">        
+            <div class="rounded-2xl bg-[#e5f2ff] p-4">        
+              <p>Skor</p><strong id="result-score" class="text-2xl"></strong>        
+            </div>        
+            <div class="rounded-2xl bg-[#e6f8ec] p-4">        
+              <p>Benar</p><strong id="result-correct" class="text-2xl"></strong>        
+            </div>        
+            <div class="rounded-2xl bg-[#fff0ee] p-4">        
+              <p>Salah</p><strong id="result-wrong" class="text-2xl"></strong>        
+            </div>        
+            <div class="rounded-2xl bg-[#fff5df] p-4">        
+              <p>Tidak dijawab</p><strong id="result-unanswered" class="text-2xl"></strong>        
+            </div>        
+            <div class="rounded-2xl bg-[#e5f2ff] p-4">        
+              <p>Persentase</p><strong id="result-percent" class="text-2xl"></strong>        
+            </div>      
+          </div>      
+          <div class="flex flex-wrap gap-3">        
+            <button id="review-button" data-template-id="review-button" type="button" aria-expanded="false" aria-controls="review-panel" class="canva-button action rounded-xl border-2 border-[#1764ac] bg-white px-6 py-3 font-semibold text-[#13558f]" style="background: rgb(255, 255, 255); color: rgb(19, 85, 143); font-weight: 600; font-style: normal; font-size: 16px;">Tinjau Hasil</button> 
+            <button id="restart-button" data-template-id="restart-button" type="button" class="canva-button action rounded-xl bg-[#1764ac] px-6 py-3 font-semibold text-white" style="background: rgb(23, 100, 172); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Main Lagi</button>      
+          </div>      
+          <div id="review-panel" class="hidden mt-8 border-t border-[#d9e8f5] pt-6">        
+            <h3 data-template-id="review-title" class="canva-text font-bold mb-4" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 19px;">Hasil per soal</h3>        
+            <ol id="review-list" class="space-y-3"></ol>      
+          </div>     
+        </section>    
+      </div>   
+    </main>   
+    <footer class="w-full px-4 pb-7 text-center">    
+      <p data-template-id="footer-credit" class="canva-text text-[#496580] leading-relaxed" style="color: rgb(73, 101, 128); font-weight: 400; font-style: normal; font-size: 16px;">© 2026 Dikembangkan Oleh Ir. Ahmad Janan Febrianto, S.T., M.Eng</p>   
+    </footer>  
+  </div>  
+  <script>
+    const questions = [
+      // BAGIAN 1: PILIHAN GANDA (TEORI)
+      {q:"Dalam evolusi perancangan mesin, cabang ilmu yang fokus mengevaluasi gaya dinamis akibat kecepatan mesin disebut...", o:["Statika","Kekuatan Bahan","Kinematika","Dinamika"], a:3, e:"Dinamika memperhitungkan massa dan gaya dinamis yang dihasilkan dari percepatan mesin.", d:"Teori", t:45, p:10},
+      {q:"Perbedaan utama antara analisis kinematika dan dinamika adalah...", o:["Kinematika memperhitungkan material, dinamika mengabaikannya","Kinematika fokus pada ilmu gerak murni, sedangkan dinamika memperhitungkan massa dan gaya","Kinematika digunakan saat mesin mati, dinamika saat hidup","Kinematika menghitung kekuatan, dinamika beban statis"], a:1, e:"Kinematika hanya menganalisis posisi dan kecepatan tanpa mempertimbangkan massa.", d:"Teori", t:45, p:10},
+      {q:"Pada mesin berkecepatan tinggi, gaya yang dihasilkan dan dampaknya dapat melebihi beban statis sehingga tidak boleh diabaikan. Gaya tersebut adalah...", o:["Gaya gesek","Gaya inersia (gaya dinamik)","Gaya normal","Gaya gravitasi"], a:1, e:"Gaya inersia akibat kecepatan sering kali melampaui tegangan dari berat struktur itu sendiri.", d:"Teori", t:45, p:10},
+      {q:"Prinsip D'Alembert memanipulasi Hukum Newton II dengan menambahkan variabel agar sistem seolah berada dalam keseimbangan statik murni. Variabel tersebut adalah...", o:["Gaya sentrifugal murni","Beban mati (dead weight)","Gaya Inersia imajiner (-ma)","Torsi mesin"], a:2, e:"D'Alembert memanipulasi F=ma menjadi F - ma = 0 dengan memperkenalkan gaya inersia imajiner.", d:"Teori", t:45, p:10, img: "https://placehold.co/600x300/e4f2ff/1764ac?text=Prinsip+D'Alembert:-ma"},
+      {q:"Gaya inersia yang bekerja pada pusat massa memiliki sifat...", o:["Searah dengan percepatan dan besarnya setara","Bekerja di titik tumpu utama","Gaya resultan yang dibalik, bekerja dengan arah berlawanan dari percepatan","Hanya terjadi pada kecepatan konstan"], a:2, e:"Gaya inersia selalu bekerja dengan magnitudo setara percepatan, tetapi ke arah yang berlawanan (F = -ma).", d:"Teori", t:45, p:10},
+      {q:"Torsi resultan yang dibalik untuk melawan arah putaran dari percepatan sudut benda berdasarkan momen inersia massanya disebut...", o:["Torsi Input","Torsi Reaksi","Torsi Inersia","Torsi Motor"], a:2, e:"Sama seperti gaya inersia linier, torsi inersia berlawanan arah dengan percepatan sudut (-I*alpha).", d:"Teori", t:45, p:10},
+      {q:"Saat membuat Sistem Ekuivalen Dinamis (model dua titik), terdapat syarat mutlak fisika. Berikut yang BUKAN merupakan syarat tersebut adalah...", o:["Hukum Massa (Translasi)","Hukum Pusat Massa (Keseimbangan)","Hukum Inersia (Rotasi)","Hukum Kekekalan Energi"], a:3, e:"3 Hukum mutlak ekuivalensi dinamis: kesamaan massa total, pusat massa yang sama, dan momen inersia rotasi yang sama.", d:"Teori", t:45, p:10},
+      {q:"Dalam sistem mekanisme, komponen yang berfungsi menyalurkan daya internal dari input ke bagian akhir disebut...", o:["Driver","Coupler","Follower","Frame"], a:1, e:"Coupler (batang penghubung) mentransmisikan daya di antara penggerak dan pengikut.", d:"Teori", t:45, p:10},
+      {q:"Karakteristik utama dari Batang Dua-Gaya (Two-Force Member) adalah...", o:["Gaya saling berpotongan di 3 titik","Mengalami gaya lentur dari segala sisi","Garis gaya segaris, berlawanan, dan magnitudo sama (tarik/tekan murni)","Titik tumpu lebih dari dua"], a:2, e:"Batang dua gaya hanya menanggung gaya tarik atau gaya tekan murni sepanjang porosnya.", d:"Teori", t:45, p:10},
+      {q:"Batang dengan gaya di 3 titik berbeda (Concurrent) sehingga garis kerjanya berpotongan untuk mencapai kesetimbangan disebut...", o:["Batang Dua-Gaya","Batang Tiga-Gaya","Frame Kaku","Piston"], a:1, e:"Untuk mempertahankan kesetimbangan rotasi, garis kerja tiga gaya tersebut harus bertemu di satu titik.", d:"Teori", t:45, p:10},
+      {q:"Pada mekanisme empat batang (Four-Bar linkage), komponen yang menerima torsi masukan dinamakan...", o:["Rocker","Coupler","Frame","Crank (Penggerak)"], a:3, e:"Crank (engkol) adalah komponen utama yang dihubungkan ke motor untuk menerima torsi putaran awal.", d:"Teori", t:45, p:10},
+      {q:"Mekanisme dalam mesin pembakaran dalam yang berfungsi mengubah tekanan gas linier menjadi rotasi torsi tinggi adalah...", o:["Engkol Peluncur (Slider-Crank)","Mesin Sekrap (Shaper)","Empat Batang Hubung","Sistem Ekuivalen"], a:0, e:"Mesin piston menggunakan mekanisme Slider-Crank untuk menerjemahkan gaya gas menjadi putaran engkol.", d:"Teori", t:45, p:10, img: "https://placehold.co/600x300/e4f2ff/1764ac?text=Gambar+Mekanisme+Engkol+Peluncur"},
+      {q:"Pada mekanisme Engkol Peluncur, Link 4 (Piston) bergerak dengan lintasan...", o:["Rotasi murni","Kompleks (translasi & rotasi)","Translasi murni","Ayunan"], a:2, e:"Piston dikunci di dalam blok silinder sehingga hanya bisa bergerak lurus maju-mundur (translasi murni).", d:"Teori", t:45, p:10},
+      {q:"Mekanisme yang dirancang untuk langkah kerja kuat dan langkah kembali cepat (quick-return) menggunakan lengan ayun adalah...", o:["Engkol Peluncur","Mesin Sekrap (Shaper)","Roda Gigi Planet","Batang Dua-Gaya"], a:1, e:"Mesin sekrap (shaper) memanfaatkan engkol meluncur dalam ayunan untuk durasi gerak maju-mundur yang asimetris.", d:"Teori", t:45, p:10},
+      {q:"Langkah pertama dalam alur penyelesaian masalah gaya statis pada mekanisme adalah...", o:["Menghitung Torsi Inersia","Mencari Batang Dua-Gaya","Identifikasi titik awal komponen yang bebannya diketahui","Menghapus tumpuan Frame"], a:2, e:"Analisis selalu dimulai dari komponen (mata rantai) di mana variabel beban luar atau gaya inputnya sudah diketahui.", d:"Teori", t:45, p:10},
+      
+      // BAGIAN 2: ISIAN RUMPANG (PILIHAN GANDA)
+      {q:"Isi bagian rumpang: Hukum Newton menetapkan bahwa untuk kondisi batas (diam/kecepatan konstan), sistem statis harus berada dalam kondisi (________) sempurna.", o:["bergetar","seimbang","berputar","hancur"], a:1, e:"Sigma F = 0 dan Sigma M = 0 merupakan syarat mutlak keseimbangan sempurna tanpa percepatan.", d:"Rumpang", t:60, p:10},
+      {q:"Isi bagian rumpang: Mengabaikan gaya dinamik pada mesin berkecepatan tinggi sama dengan membiarkan terjadinya (________) seketika pada komponen mesin.", o:["keseimbangan statis","resonansi","kegagalan struktur","efisiensi"], a:2, e:"Gaya dinamik berpotensi melampaui kekuatan luluh material (yield strength), mengakibatkan patah/bengkok.", d:"Rumpang", t:60, p:10},
+      {q:"Isi bagian rumpang: Prinsip D'Alembert mengubah sistem dinamis menjadi analisis statika murni dengan menciptakan keseimbangan semu atau (________).", o:["pseudo-statics","aero-dynamics","thermo-dynamics","fluid-mechanics"], a:0, e:"Pseudo-statics (keseimbangan semu) adalah trik matematika mengubah dinamika menjadi keseimbangan statika biasa.", d:"Rumpang", t:60, p:10},
+      {q:"Isi bagian rumpang: Dalam mereduksi komponen menjadi titik imajiner, massa total (M1 + M2) tidak boleh berubah sesuai dengan Hukum (________).", o:["Kekekalan Energi","Inersia (Rotasi)","Massa (Translasi)","Pusat Massa (Keseimbangan)"], a:2, e:"Hukum Massa (translasi) mewajibkan massa pengganti memiliki total yang sama persis dengan objek aslinya.", d:"Rumpang", t:60, p:10},
+      {q:"Isi bagian rumpang: Pada transmisi daya statis, elemen struktural yang bertugas menahan reaksi sistem (pondasi ditahan kuat) disebut sebagai (________).", o:["Crank","Coupler","Rocker","Frame"], a:3, e:"Frame berperan sebagai 'ground' atau referensi tak bergerak yang menahan beban dan gaya reaksi dari komponen lainnya.", d:"Rumpang", t:60, p:10},
+      {q:"Isi bagian rumpang: Dalam diagram poligon vektor gaya, agar sistem terbukti setimbang maka kurva vektornya harus tertutup kembali ke titik awal (membuktikan nilai persamaan (________)).", o:["ΣF = 0","ΣM = 1","ΣF = ma","Tak terhingga"], a:0, e:"Ujung vektor terakhir yang bertemu dengan pangkal vektor pertama pada poligon membuktikan resultan gaya nol (ΣF=0).", d:"Rumpang", t:60, p:10},
+      {q:"Isi bagian rumpang: Pada lengan ayun sekrap, karena gesekan diabaikan, blok peluncur hanya dapat memberikan gaya (________) terhadap lintasannya.", o:["geser","normal / tegak lurus","aksial","sentrifugal"], a:1, e:"Permukaan geser sempurna tanpa friksi hanya mampu menyalurkan gaya dorong normal (tegak lurus) terhadap permukaannya.", d:"Rumpang", t:60, p:10},
+      {q:"Isi bagian rumpang: Saat menganalisis transmisi daya, gaya reaksi tumpuan pin yang berputar biasanya diuraikan menjadi komponen gaya (________) dan normal.", o:["gravitasi","tangensial","sentripetal","aksial"], a:1, e:"Gaya reaksi pin biasanya dipecah ke sumbu X (tangensial) dan sumbu Y (normal) untuk menyederhanakan vektor.", d:"Rumpang", t:60, p:10},
+      {q:"Isi bagian rumpang: Syarat ekuivalen dinamis M1·h1 = M2·h2 menggunakan jarak 'h' dari massa imajiner menuju koordinat (________).", o:["ujung batang","titik tumpu","pusat massa (G)","pusat rotasi"], a:2, e:"Persamaan ini memastikan titik koordinat pusat massa (G) imajiner tidak bergeser sedikit pun dari komponen fisiknya.", d:"Rumpang", t:60, p:10},
+      {q:"Isi bagian rumpang: Di akhir proses analisis statis transmisi gaya, insinyur biasanya menghitung nilai (________) untuk menentukan spesifikasi penggerak awal secara akurat.", o:["Torsi Motor (Torsi Input)","Gaya Gesek","Kecepatan Sudut","Momen Inersia"], a:0, e:"Tujuan akhir analisis transmisi gaya statis adalah merumuskan Torsi Input (T2) minimal yang diperlukan motor.", d:"Rumpang", t:60, p:10},
+
+      // BAGIAN 3: HITUNGAN (DURASI LEBIH LAMA)
+      {q:"[PERHITUNGAN] Piston (m = 2 kg) mengalami percepatan linier 150 m/s² ke arah kanan. Berapa besar dan arah Gaya Inersia D'Alembert-nya?", o:["300 N ke arah kanan","300 N ke arah kiri","150 N ke arah kanan","150 N ke arah kiri"], a:1, e:"F_inersia = -m * a = -(2 kg * 150 m/s²) = -300 N. Nilai minus mengindikasikan gaya fiktif tersebut melawan percepatan (yakni ke kiri).", d:"Hitungan", t:120, p:20},
+      {q:"[PERHITUNGAN] Poros engkol berputar dengan percepatan sudut 40 rad/s² CW (searah jarum jam). Momen inersia massa I = 0.5 kg.m². Berapakah besaran Torsi Inersianya?", o:["20 N.m CCW","20 N.m CW","80 N.m CCW","80 N.m CW"], a:0, e:"T_inersia = -I * alpha = -(0.5 * 40) = 20 N.m. Arahnya melawan perputaran engkol, yakni CCW (Counter-Clockwise / berlawanan jarum jam).", d:"Hitungan", t:120, p:20},
+      {q:"[PERHITUNGAN] Batang asimetris 3 kg akan diubah menjadi Sistem Ekuivalen Dinamis dua-titik (M1 & M2). M1 diletakkan sejauh h1 = 0.2 m dari Pusat Massa (G), dan M2 sejauh h2 = 0.4 m dari (G). Tentukan nilai M1 dan M2!", o:["M1 = 1.5 kg, M2 = 1.5 kg","M1 = 1 kg, M2 = 2 kg","M1 = 2 kg, M2 = 1 kg","M1 = 0.5 kg, M2 = 2.5 kg"], a:2, e:"Hukum 1: M1+M2=3. Hukum 2: M1(0.2)=M2(0.4) -> M1=2M2. Substitusi: 2M2+M2=3 -> 3M2=3 -> M2=1 kg. Maka M1=2 kg.", d:"Hitungan", t:150, p:20, img: "https://placehold.co/600x300/e4f2ff/1764ac?text=Model+Sistem+Ekuivalen"},
+      {q:"[PERHITUNGAN] Melanjutkan soal sebelumnya: Jika M1 = 2 kg (h1 = 0.2 m) dan M2 = 1 kg (h2 = 0.4 m), buktikan berapakah Momen Inersia rotasi (I) total dari sistem dua-titik ini?", o:["0.12 kg.m²","0.24 kg.m²","0.48 kg.m²","0.80 kg.m²"], a:1, e:"Berdasarkan Hukum Inersia Rotasi, I = M1*(h1²) + M2*(h2²) = 2*(0.04) + 1*(0.16) = 0.08 + 0.16 = 0.24 kg.m².", d:"Hitungan", t:120, p:20},
+      {q:"[PERHITUNGAN] Gaya dorong internal Coupler diketahui F32 = 500 N. Dari geometri, lengan momen tegak lurus (h) dari titik pusat poros putar engkol ke garis gaya F32 adalah 0.1 meter. Berapakah Torsi Input (T2) agar setimbang statis?", o:["5 N.m","50 N.m","500 N.m","5000 N.m"], a:1, e:"Keseimbangan momen: Torsi (T2) = Gaya Transmisi (F32) * lengan momen tegak lurus (h) = 500 N * 0.1 m = 50 N.m.", d:"Hitungan", t:120, p:20, img: "https://placehold.co/600x300/e4f2ff/1764ac?text=Skema+Transmisi+Gaya"}
+    ];
+    
+    const $ = id => document.getElementById(id);
+    const screens = ["login-screen", "instructions-screen", "quiz-screen", "results-screen"];
+    const buttons = [...document.querySelectorAll(".answer")];
+    const letters = ["A", "B", "C", "D"];
+    const maxScore = questions.reduce((sum, q) => sum + q.p, 0);
+    let participant = null, index = 0, score = 0, answers = [], remaining = 0, ticker = null, advance = null, locked = false;
+    
+    function showScreen(id) {
+      screens.forEach(screen => $(screen).classList.toggle("hidden", screen !== id));
+      window.scrollTo({top: 0, behavior: "instant"});
+    }
+    
+    function clearClocks() {
+      clearInterval(ticker);
+      clearTimeout(advance);
+      ticker = null;
+      advance = null
+    }
+    
+    function renderTimer() {
+      $("time-value").textContent = remaining;
+      $("timer-box").classList.toggle("timer-warning", remaining <= 10 && remaining > 5);
+      $("timer-box").classList.toggle("timer-urgent", remaining <= 5);
+      $("timer-box").setAttribute("aria-label", `Sisa waktu ${remaining} detik`);
+    }
+    
+    function showQuestion() {
+      clearClocks();
+      locked = false;
+      const q = questions[index];
+      remaining = q.t;
+      $("question-progress").textContent = `Soal ${index + 1} dari ${questions.length}`;
+      $("difficulty-badge").textContent = `${q.d} · ${q.p} poin`;
+      $("question-heading").textContent = q.q;
+      $("answered-value").textContent = index; 
+      $("progress-fill").style.width = `${(index + 1) / questions.length * 100}%`;
+      $("progress-track").setAttribute("aria-valuenow", String(index + 1));
+      $("next-note").classList.add("hidden");
+      
+      // LOGIKA UNTUK MENAMPILKAN GAMBAR SOAL JIKA ADA
+      const qImg = $("question-image");
+      if (q.img) {
+        qImg.src = q.img;
+        qImg.classList.remove("hidden");
+      } else {
+        qImg.classList.add("hidden");
+        qImg.src = ""; // Clear src if not used
+      }
+      
+      buttons.forEach((button, i) => {
+        button.textContent = `${letters[i]}. ${q.o[i]}`;
+        button.disabled = false;
+        button.className = "answer rounded-2xl p-4 min-h-[76px] font-medium";
+        button.setAttribute("aria-label", `Jawaban ${letters[i]}: ${q.o[i]}`);
+      });
+      
+      renderTimer();
+      
+      ticker = setInterval(() => {
+        remaining = Math.max(0, remaining - 1);
+        renderTimer();
+        if (remaining === 0) resolveAnswer(null);
+      }, 1000);
+    }
+    
+    function confetti() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const colors = ["#1764ac", "#16a34a", "#f4b942"];
+      for (let i = 0; i < 16; i++) {
+        const piece = document.createElement("span");
+        piece.className = "confetti-piece";
+        piece.style.left = `${35 + Math.random() * 30}%`;
+        piece.style.top = "36%";
+        piece.style.background = colors[i % colors.length];
+        piece.style.setProperty("--dx", `${(Math.random() - .5) * 300}px`);
+        document.body.append(piece);
+        setTimeout(() => piece.remove(), 1000);
+      }
+    }
+    
+    function resolveAnswer(choice) {
+      if (locked) return;
+      locked = true;
+      clearInterval(ticker);
+      ticker = null;
+      
+      answers.push(choice);
+      
+      buttons.forEach((button, i) => {
+        button.disabled = true;
+        if (i === choice) button.classList.add("selected");
+      });
+      
+      if (choice === null) {
+          $("next-note").textContent = "Waktu habis! Beralih ke soal berikutnya...";
+          $("next-note").className = "mt-6 text-[#991b1b] font-semibold text-center bg-[#fee2e2] p-3 rounded-lg";
+      } else {
+          $("next-note").textContent = "Jawaban disimpan. Beralih ke soal berikutnya...";
+          $("next-note").className = "mt-6 text-[#1764ac] font-semibold text-center bg-[#e4f2ff] p-3 rounded-lg";
+      }
+      $("next-note").classList.remove("hidden");
+      
+      advance = setTimeout(() => {
+        advance = null;
+        index++;
+        if (index === questions.length) showResults();
+        else showQuestion();
+      }, 1500); 
+    }
+    
+    function showResults() {
+      clearClocks();
+      
+      score = answers.reduce((sum, choice, i) => sum + (choice === questions[i].a ? questions[i].p : 0), 0);
+      const correct = answers.filter((choice, i) => choice === questions[i].a).length;
+      const unanswered = answers.filter(choice => choice === null).length;
+      const wrong = questions.length - correct - unanswered;
+      const percent = Math.round(score / maxScore * 100);
+      
+      if (percent >= 80) confetti();
+      
+      $("result-name").textContent = participant.name;
+      $("result-nim").textContent = participant.nim;
+      $("result-class").textContent = participant.className;
+      $("result-score").textContent = `${score}/${maxScore}`;
+      $("result-correct").textContent = correct;
+      $("result-wrong").textContent = wrong;
+      $("result-unanswered").textContent = unanswered;
+      $("result-percent").textContent = `${percent}%`;
+      $("result-message").textContent = percent >= 80 ? "Selamat! Penguasaan materi Kinematika & Dinamika Anda sangat baik!" : percent >= 50 ? "Terus semangat! Tinjau kembali materi gaya ekuilibrium dan tingkatkan skormu." : "Terima kasih telah berpartisipasi. Terus pelajari konsep mekanika gerak!";
+      
+      // CATATAN: Ubah URL ini menjadi Web App URL khusus Spreadsheet Kinematika Anda (jika sudah membuat yang baru)
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbxx-jhE6iJwNya7rXwlRJB7z5w_eI8m7C1haYhuDTNtu-8OYd8ALxAudHlRnaqxjNUe/exec'; 
+      const formData = new FormData();
+      formData.append('nama', participant.name);
+      formData.append('nim', participant.nim);
+      formData.append('kelas', participant.className);
+      formData.append('skor', score);
+      formData.append('persentase', percent + '%');
+
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => console.log('Data berhasil disimpan ke Spreadsheet!'))
+        .catch(error => console.error('Gagal mengirim data!', error.message));
+      
+      const list = $("review-list");
+      list.replaceChildren();
+      
+      questions.forEach((q, i) => {
+        const choice = answers[i];
+        const item = document.createElement("li");
+        item.className = "rounded-xl border border-[#d9e8f5] bg-[#f8fbff] p-4";
+        const heading = document.createElement("p");
+        heading.className = "font-semibold";
+        heading.textContent = `${i + 1}. ${q.q}`;
+        const detail = document.createElement("p");
+        detail.className = "mt-1 text-[#496580]";
+        detail.textContent = `${choice === null ? "Tidak terjawab" : choice === q.a ? "Benar" : "Salah"} · Jawabanmu: ${choice === null ? "—" : letters[choice] + ". " + q.o[choice]} · Kunci: ${letters[q.a]}. ${q.o[q.a]}`;
+        
+        const expl = document.createElement("p");
+        expl.className = "mt-2 text-sm text-[#1764ac] bg-[#eaf4ff] p-2 rounded";
+        expl.innerHTML = `<strong>Penjelasan:</strong> ${q.e}`;
+        
+        item.append(heading, detail, expl);
+        list.append(item);
+      });
+      
+      $("review-panel").classList.add("hidden");
+      $("review-button").setAttribute("aria-expanded", "false");
+      showScreen("results-screen");
+    }
+    
+    $("identity-form").addEventListener("submit", event => {
+      event.preventDefault();
+      const name = $("participant-name").value.trim();
+      const nim = $("participant-nim").value.trim();
+      const className = $("participant-class").value;
+      
+      if (!name || !/^[0-9]+$/.test(nim) || !["Kelas A", "Kelas B"].includes(className)) {
+        $("form-error").classList.remove("hidden");
+        (!name ? $("participant-name") : !/^[0-9]+$/.test(nim) ? $("participant-nim") : $("participant-class")).focus();
+        return;
+      }
+      
+      $("form-error").classList.add("hidden");
+      participant = {name, nim, className};
+      $("instructions-participant").textContent = `${name} · ${className}`;
+      $("quiz-participant").textContent = `${name} · ${className}`;
+      showScreen("instructions-screen");
+    });
+    
+    $("play-button").addEventListener("click", () => {
+      index = 0; score = 0; answers = [];
+      showScreen("quiz-screen");
+      showQuestion();
+    });
+    
+    buttons.forEach((button, i) => button.addEventListener("click", () => resolveAnswer(i)));
+    
+    $("review-button").addEventListener("click", () => {
+      const opened = $("review-panel").classList.toggle("hidden") === false;
+      $("review-button").setAttribute("aria-expanded", String(opened));
+    });
+    
+    $("restart-button").addEventListener("click", () => {
+      clearClocks();
+      document.querySelectorAll(".confetti-piece").forEach(piece => piece.remove());
+      participant = null; index = 0; score = 0; answers = []; remaining = 0; locked = false;
+      $("identity-form").reset();
+      $("form-error").classList.add("hidden");
+      $("review-list").replaceChildren();
+      showScreen("login-screen");
+      $("participant-name").focus();
+    });
+  </script> 
+</body>
+</html>
