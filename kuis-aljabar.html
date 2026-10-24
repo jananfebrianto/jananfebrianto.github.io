@@ -1,410 +1,812 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuis Aljabar Linier (Matriks & Vektor)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Kuis Aljabar Linier: Eksplorasi Matriks</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
     <style>
-        :root {
-            --primary-color: #0A192F;
-            --secondary-color: #1E3A8A;
-            --accent-color: #3B82F6;
-            --bg-color: #F8FAFC;
-            --white: #FFFFFF;
-            --text-main: #334155;
-            --danger: #EF4444;
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #eff6ff; /* blue-50 */
+            /* Background pola Grid/Matriks CSS */
+            background-image: 
+                linear-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.15) 1px, transparent 1px);
+            background-size: 40px 40px;
+            color: #1e3a8a; /* blue-900 */
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; padding: 20px; }
         
-        .quiz-container { max-width: 950px; margin: 40px auto; background: var(--white); padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-top: 5px solid var(--primary-color); position: relative;}
-        .quiz-header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #E2E8F0; padding-bottom: 20px; }
-        .quiz-header h1 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 10px; }
-        
-        /* CSS UNTUK TIMER */
-        .timer-container {
-            position: sticky;
-            top: 10px;
-            background-color: #FEE2E2;
-            color: #991B1B;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-align: center;
-            border: 2px solid var(--danger);
-            z-index: 100;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+        /* Custom scrollbar for matrix containers to ensure mobile responsiveness */
+        .scroll-container::-webkit-scrollbar {
+            height: 6px;
         }
-        .timer-warning { background-color: #7F1D1D; color: #FFFFFF; border-color: #450A0A; } /* Warna saat waktu hampir habis */
+        .scroll-container::-webkit-scrollbar-thumb {
+            background-color: #93c5fd;
+            border-radius: 10px;
+        }
 
-        .matrix-intro { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 30px; }
-        .matrix-box { display: flex; align-items: center; font-size: 1.2rem; font-weight: 600; }
-        .matrix { display: inline-grid; grid-template-columns: repeat(3, 45px); grid-gap: 8px; padding: 5px 10px; border-left: 2px solid var(--primary-color); border-right: 2px solid var(--primary-color); border-radius: 8px; text-align: center; margin: 0 10px; font-weight: normal; align-items: center;}
+        /* Matrix styling: Adding the large brackets using pseudo-elements */
+        .matrix {
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            background: white;
+            border-radius: 0.25rem;
+        }
+        .matrix::before, .matrix::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 10px;
+            border: 2px solid #1e40af; /* blue-800 */
+        }
+        .matrix::before {
+            left: 0;
+            border-right: none;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+        .matrix::after {
+            right: 0;
+            border-left: none;
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+        .matrix table {
+            border-collapse: collapse;
+        }
+        .matrix td {
+            padding: 0.5rem;
+            text-align: center;
+            min-width: 40px;
+            font-weight: 500;
+        }
+
+        /* Input field styling inside matrices */
+        .ans-input {
+            width: 50px;
+            text-align: center;
+            border: 2px solid #bfdbfe; /* blue-200 */
+            border-radius: 0.375rem;
+            padding: 0.25rem;
+            font-weight: 600;
+            outline: none;
+            transition: all 0.3s ease;
+            background-color: #f8fafc;
+        }
+        .ans-input:focus {
+            border-color: #3b82f6; /* blue-500 */
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+        .ans-input.correct {
+            background-color: #d1fae5;
+            border-color: #10b981;
+            color: #065f46;
+        }
+        .ans-input.incorrect {
+            background-color: #fee2e2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
         
-        .question-box { background: #F8FAFC; padding: 25px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid var(--accent-color); }
-        .question-title { font-weight: 600; font-size: 1.1rem; color: var(--primary-color); margin-bottom: 15px; }
-        .sub-q { margin-left: 20px; margin-top: 15px; margin-bottom: 15px; }
-        
-        .blank-input { width: 45px; height: 35px; text-align: center; border: 2px solid #CBD5E1; border-radius: 4px; font-size: 1rem; font-weight: 600; color: var(--primary-color); outline: none; }
-        .blank-input:focus { border-color: var(--accent-color); }
-        .blank-input:disabled { background-color: #E2E8F0; cursor: not-allowed; }
-        .correct { background-color: #D1FAE5 !important; border-color: #10B981 !important; color: #065F46 !important; }
-        .wrong { background-color: #FEE2E2 !important; border-color: #EF4444 !important; color: #991B1B !important; }
-        
-        .equation { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 1.1rem; margin-bottom: 10px; }
-        .fraction { display: inline-block; text-align: center; vertical-align: middle; margin: 0 5px; }
-        .fraction span { display: block; padding: 0.1em; }
-        .fraction span.fdn { border-top: 1px solid #334155; }
-        
-        .btn-submit { display: block; width: 100%; padding: 15px; background: var(--accent-color); color: var(--white); border: none; border-radius: 8px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: 0.3s; margin-top: 20px; }
-        .btn-submit:hover { background: var(--secondary-color); }
-        .btn-submit:disabled { background-color: #94A3B8; cursor: not-allowed; }
-        .btn-back { display: inline-block; margin-bottom: 20px; color: var(--secondary-color); text-decoration: none; font-weight: 600; }
-        .btn-back:hover { text-decoration: underline; }
-        
-        #result-box { margin-top: 30px; padding: 20px; border-radius: 8px; text-align: center; font-size: 1.2rem; font-weight: bold; display: none; }
+        /* Fade in animation for screen transitions */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col items-center">
 
-    <div class="quiz-container">
-        <a href="daftar-kuis.html" class="btn-back">← Kembali ke Katalog Kuis</a>
+    <header class="w-full bg-white shadow-md py-3 flex flex-col items-center justify-center z-10 sticky top-0">
+        <img src="https://iili.io/nOiYd5G.jpg" alt="Logo" class="h-20 md:h-28 lg:h-32 w-auto object-contain px-4">
+    </header>
+
+    <main class="flex-grow w-full max-w-5xl px-4 py-8 relative">
         
-        <div class="quiz-header">
-            <h1>Kuis Aljabar Linier: Matriks & Vektor</h1>
-            <p>Lengkapi langkah-langkah penyelesaian operasi matriks di bawah ini. Kotak akan berwarna hijau jika jawaban Anda benar.</p>
-        </div>
-
-        <!-- FITUR TIMER -->
-        <div id="timer-box" class="timer-container">
-            ⏱️ Waktu Tersisa: <span id="time">60:00</span>
-        </div>
-
-        <h3 style="text-align: center; margin-bottom: 15px; color: var(--primary-color);">Diketahui 3 Matriks (3x3):</h3>
-        <div class="matrix-intro">
-            <div class="matrix-box">A = 
-                <div class="matrix">
-                    <span>2</span><span>1</span><span>3</span>
-                    <span>0</span><span>-1</span><span>4</span>
-                    <span>5</span><span>2</span><span>1</span>
-                </div>
-            </div>
-            <div class="matrix-box">B = 
-                <div class="matrix">
-                    <span>1</span><span>0</span><span>2</span>
-                    <span>-1</span><span>3</span><span>1</span>
-                    <span>4</span><span>2</span><span>0</span>
-                </div>
-            </div>
-            <div class="matrix-box">C = 
-                <div class="matrix">
-                    <span>3</span><span>-1</span><span>0</span>
-                    <span>2</span><span>1</span><span>5</span>
-                    <span>-2</span><span>0</span><span>4</span>
-                </div>
+        <!-- MODAL (Custom Alert Replacement) -->
+        <div id="custom-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+            <div class="bg-white rounded-xl shadow-2xl p-6 max-w-sm w-full mx-4 transform transition-all text-center">
+                <h3 id="modal-title" class="text-xl font-bold text-blue-900 mb-2">Informasi</h3>
+                <p id="modal-message" class="text-gray-700 mb-6"></p>
+                <button onclick="closeModal()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors">Tutup</button>
             </div>
         </div>
 
-        <form id="quizForm">
-            <!-- Soal 1 -->
-            <div class="question-box">
-                <p class="question-title">1. Penjumlahan (A + B)</p>
-                <div class="equation">
-                    A + B = 
-                    <div class="matrix">
-                        <input type="text" class="blank-input" data-ans="3"> <span>1</span> <span>5</span>
-                        <span>-1</span> <input type="text" class="blank-input" data-ans="2"> <span>5</span>
-                        <span>9</span> <span>4</span> <input type="text" class="blank-input" data-ans="1">
+        <!-- 1. LOGIN SCREEN -->
+        <section id="screen-login" class="fade-in bg-white rounded-2xl shadow-lg p-8 max-w-md mx-auto border-t-4 border-blue-500">
+            <h2 class="text-2xl font-bold text-center mb-6 text-blue-800">Registrasi Pemain</h2>
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap</label>
+                    <input type="text" id="user-name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">NIM</label>
+                    <input type="text" id="user-nim" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Kelas</label>
+                    <select id="user-class" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                        <option value="">-- Pilih Kelas --</option>
+                        <option value="Kelas A">Kelas A</option>
+                        <option value="Kelas B">Kelas B</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg shadow-md transition-colors mt-4">
+                    Masuk & Baca Instruksi
+                </button>
+            </form>
+        </section>
+
+        <!-- 2. INSTRUCTIONS SCREEN -->
+        <section id="screen-instructions" class="fade-in bg-white rounded-2xl shadow-lg p-8 hidden max-w-3xl mx-auto border-t-4 border-blue-500">
+            <h2 class="text-3xl font-bold text-center mb-6 text-blue-800">Instruksi Permainan</h2>
+            <div class="space-y-4 text-gray-700 mb-8 leading-relaxed">
+                <p>Selamat datang <span id="display-name" class="font-bold text-blue-600"></span>! Berikut adalah aturan mainnya:</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>Terdapat <strong>25 Soal</strong> seputar Matriks (Operasi, Determinan, Invers, dll).</li>
+                    <li>Setiap soal adalah model <strong>rumpang (Isian Kosong)</strong>. Anda harus mengisi kotak-kotak yang disediakan dengan angka yang tepat.</li>
+                    <li>Waktu pengerjaan keseluruhan adalah <strong>45 Menit</strong>. Jika waktu habis, permainan otomatis selesai.</li>
+                    <li>Klik tombol <strong>"Selanjutnya"</strong> untuk berpindah soal. Pemeriksaan jawaban dan perhitungan skor hanya akan dilakukan di <strong>akhir sesi permainan</strong>.</li>
+                    <li>Raih skor 100 (sempurna) untuk memecahkan rekor terbaik Anda!</li>
+                </ul>
+            </div>
+            <div class="flex justify-center">
+                <button onclick="startQuiz()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all">
+                    Mulai Permainan Sekarang!
+                </button>
+            </div>
+        </section>
+
+        <!-- 3. QUIZ SCREEN -->
+        <section id="screen-quiz" class="fade-in hidden w-full max-w-4xl mx-auto">
+            
+            <!-- Progress & Stats Header -->
+            <div class="bg-white rounded-xl shadow-md p-4 mb-6 flex flex-wrap justify-between items-center border-b-4 border-blue-400">
+                <div class="w-full md:w-1/3 mb-2 md:mb-0">
+                    <span class="text-sm text-gray-500 font-semibold block">Progres Soal</span>
+                    <span class="text-xl font-bold text-blue-800" id="question-counter">1 / 25</span>
+                </div>
+                <div class="w-full md:w-1/3 text-center mb-2 md:mb-0 flex flex-col items-center">
+                    <span class="text-sm text-gray-500 font-semibold block">Sisa Waktu Global</span>
+                    <div class="relative w-20 h-20">
+                        <svg class="w-20 h-20 transform -rotate-90">
+                            <circle cx="40" cy="40" r="36" stroke="#e2e8f0" stroke-width="8" fill="none"></circle>
+                            <circle id="timer-circle" cx="40" cy="40" r="36" stroke="#ef4444" stroke-width="8" fill="none" stroke-dasharray="226" stroke-dashoffset="0" class="transition-all duration-1000 linear"></circle>
+                        </svg>
+                        <span id="timer-text" class="absolute inset-0 flex items-center justify-center text-sm font-bold text-red-600">45:00</span>
                     </div>
+                </div>
+                <div class="w-full md:w-1/3 text-right">
+                    <span class="text-sm text-gray-500 font-semibold block">Skor Sementara</span>
+                    <span class="text-2xl font-bold text-gray-400" id="score-display">?</span>
                 </div>
             </div>
 
-            <!-- Soal 2 -->
-            <div class="question-box">
-                <p class="question-title">2. Pengurangan (B - C)</p>
-                <div class="equation">
-                    B - C = 
-                    <div class="matrix">
-                        <span>-2</span> <input type="text" class="blank-input" data-ans="1"> <span>2</span>
-                        <input type="text" class="blank-input" data-ans="-3"> <span>2</span> <span>-4</span>
-                        <span>6</span> <span>2</span> <input type="text" class="blank-input" data-ans="-4">
-                    </div>
+            <!-- Question Content -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 min-h-[400px] flex flex-col border-t-4 border-blue-500">
+                <div id="reference-matrices" class="mb-6 pb-4 border-b-2 border-gray-100 hidden scroll-container overflow-x-auto text-center">
+                    <!-- Base Matrices A, B, C will be injected here for questions 6-25 -->
                 </div>
-            </div>
-
-            <!-- Soal 3 -->
-            <div class="question-box">
-                <p class="question-title">3. Operasi Campuran (B - C + A)</p>
-                <div class="equation">
-                    B - C + A = 
-                    <div class="matrix">
-                        <span>0</span> <span>2</span> <input type="text" class="blank-input" data-ans="5">
-                        <span>-3</span> <input type="text" class="blank-input" data-ans="1"> <span>0</span>
-                        <input type="text" class="blank-input" data-ans="11"> <span>4</span> <span>-3</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Soal 4 -->
-            <div class="question-box">
-                <p class="question-title">4. Perkalian (B × C)</p>
-                <div class="equation">
-                    B × C = 
-                    <div class="matrix">
-                        <span>-1</span> <span>-1</span> <input type="text" class="blank-input" data-ans="8">
-                        <input type="text" class="blank-input" data-ans="1"> <span>4</span> <span>19</span>
-                        <span>16</span> <input type="text" class="blank-input" data-ans="-2"> <span>10</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Soal 5 -->
-            <div class="question-box">
-                <p class="question-title">5. Bukti Komutatif (A × B ≠ B × A)</p>
-                <div class="equation">
-                    A × B = 
-                    <div class="matrix" style="margin-right: 20px;">
-                        <input type="text" class="blank-input" data-ans="13"> <span>9</span> <span>5</span>
-                        <span>17</span> <input type="text" class="blank-input" data-ans="5"> <span>-1</span>
-                        <span>7</span> <span>8</span> <input type="text" class="blank-input" data-ans="12">
-                    </div>
-                    ; B × A = 
-                    <div class="matrix">
-                        <span>12</span> <input type="text" class="blank-input" data-ans="5"> <span>5</span>
-                        <input type="text" class="blank-input" data-ans="3"> <span>-2</span> <span>10</span>
-                        <span>8</span> <span>2</span> <input type="text" class="blank-input" data-ans="20">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Soal 6 -->
-            <div class="question-box">
-                <p class="question-title">6. Determinan (Metode Sarrus)</p>
-                <div class="sub-q equation">
-                    <strong>6a. |A|</strong> = (<input type="text" class="blank-input" data-ans="-2">) + 20 + 0 - [ -15 + <input type="text" class="blank-input" data-ans="16"> + 0 ] = <input type="text" class="blank-input" data-ans="17">
-                </div>
-                <div class="sub-q equation">
-                    <strong>6b. |B|</strong> = 0 + 0 + (<input type="text" class="blank-input" data-ans="-4">) - [ <input type="text" class="blank-input" data-ans="24"> + 2 + 0 ] = <input type="text" class="blank-input" data-ans="-30">
-                </div>
-                <div class="sub-q equation">
-                    <strong>6c. |C|</strong> = 12 + (<input type="text" class="blank-input" data-ans="10">) + 0 - [ 0 + 0 + (<input type="text" class="blank-input" data-ans="-8">) ] = <input type="text" class="blank-input" data-ans="30">
-                </div>
-            </div>
-
-            <!-- Soal 7 -->
-            <div class="question-box">
-                <p class="question-title">7. Determinan (Metode Ekspansi Kofaktor Baris 1)</p>
-                <div class="sub-q">
-                    <strong>7a. Matriks A:</strong> |A| = 2(<input type="text" class="blank-input" data-ans="-9">) - 1(-20) + 3(<input type="text" class="blank-input" data-ans="5">) = 17
-                </div>
-                <div class="sub-q">
-                    <strong>7b. Matriks B:</strong> |B| = 1(<input type="text" class="blank-input" data-ans="-2">) - 0 + 2(<input type="text" class="blank-input" data-ans="-14">) = -30
-                </div>
-                <div class="sub-q">
-                    <strong>7c. Matriks C:</strong> |C| = 3(<input type="text" class="blank-input" data-ans="4">) - (-1)(<input type="text" class="blank-input" data-ans="18">) + 0 = 30
-                </div>
-            </div>
-
-            <!-- Soal 8 -->
-            <div class="question-box">
-                <p class="question-title">8. Determinan (Metode Reduksi Baris / Segitiga Atas)</p>
-                <p style="font-size:0.9rem; margin-bottom:10px; color:#64748B;">*Lengkapi elemen diagonal utama setelah dilakukan reduksi baris.</p>
-                <div class="sub-q equation">
-                    <strong>8a. |A|</strong> -> R3 - 2.5(R1) -> R3 - 0.5(R2) -> U = 
-                    <div class="matrix">
-                        <span>2</span> <span>1</span> <span>3</span>
-                        <span>0</span> <span>-1</span> <span>4</span>
-                        <span>0</span> <span>0</span> <input type="text" class="blank-input" data-ans="-8.5">
-                    </div>
-                    Det = 2 × -1 × -8.5 = <input type="text" class="blank-input" data-ans="17">
-                </div>
-                <div class="sub-q equation">
-                    <strong>8b. |B|</strong> -> R2+R1, R3-4R1 -> R3 - (2/3)R2 -> U = 
-                    <div class="matrix">
-                        <span>1</span> <span>0</span> <span>2</span>
-                        <span>0</span> <span>3</span> <span>3</span>
-                        <span>0</span> <span>0</span> <input type="text" class="blank-input" data-ans="-10">
-                    </div>
-                    Det = 1 × 3 × -10 = <input type="text" class="blank-input" data-ans="-30">
-                </div>
-                <div class="sub-q equation">
-                    <strong>8c. |C|</strong> -> R2 - (2/3)R1, R3 + (2/3)R1 -> R3 + (2/5)R2 -> U = 
-                    <div class="matrix">
-                        <span>3</span> <span>-1</span> <span>0</span>
-                        <span>0</span> <span>1.67</span> <span>5</span>
-                        <span>0</span> <span>0</span> <input type="text" class="blank-input" data-ans="6">
-                    </div>
-                    Det = 3 × (5/3) × 6 = <input type="text" class="blank-input" data-ans="30">
-                </div>
-            </div>
-
-            <!-- Soal 9 -->
-            <div class="question-box">
-                <p class="question-title">9. Transpose Matriks</p>
-                <div class="equation">
-                    <strong>9a. A<sup>T</sup> =</strong> 
-                    <div class="matrix">
-                        <span>2</span> <span>0</span> <span>5</span>
-                        <span>1</span> <input type="text" class="blank-input" data-ans="-1"> <span>2</span>
-                        <span>3</span> <span>4</span> <input type="text" class="blank-input" data-ans="1">
-                    </div>
-                </div>
-                <div class="equation">
-                    <strong>9b. B<sup>T</sup> =</strong> 
-                    <div class="matrix">
-                        <span>1</span> <span>-1</span> <span>4</span>
-                        <span>0</span> <input type="text" class="blank-input" data-ans="3"> <span>2</span>
-                        <input type="text" class="blank-input" data-ans="2"> <span>1</span> <span>0</span>
-                    </div>
-                </div>
-                <div class="equation">
-                    <strong>9c. C<sup>T</sup> =</strong> 
-                    <div class="matrix">
-                        <span>3</span> <span>2</span> <span>-2</span>
-                        <span>-1</span> <span>1</span> <input type="text" class="blank-input" data-ans="0">
-                        <span>0</span> <input type="text" class="blank-input" data-ans="5"> <span>4</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Soal 10 -->
-            <div class="question-box">
-                <p class="question-title">10. Invers Matriks (Metode Adjoin)</p>
-                <p style="font-size:0.9rem; margin-bottom:10px; color:#64748B;">*M⁻¹ = (1/Det) × Adj(M). Lengkapi sel Adjoin (Kofaktor Transpose) yang kosong.</p>
                 
-                <div class="sub-q equation">
-                    <strong>10a. A<sup>-1</sup></strong> = <div class="fraction"><span>1</span><span class="fdn">17</span></div> ×
-                    <div class="matrix">
-                        <input type="text" class="blank-input" data-ans="-9"> <span>5</span> <span>7</span>
-                        <span>20</span> <input type="text" class="blank-input" data-ans="-13"> <span>-8</span>
-                        <span>5</span> <span>1</span> <input type="text" class="blank-input" data-ans="-2">
-                    </div>
+                <h3 id="question-text" class="text-lg md:text-xl font-semibold text-gray-800 mb-6 text-center leading-relaxed">
+                    <!-- Question Prompt goes here -->
+                </h3>
+                
+                <div id="question-interactive-area" class="flex-grow flex flex-col items-center justify-center scroll-container overflow-x-auto w-full py-4 text-center text-lg">
+                    <!-- Dynamic Matrix/Inputs go here -->
                 </div>
 
-                <div class="sub-q equation">
-                    <strong>10b. B<sup>-1</sup></strong> = <div class="fraction"><span>1</span><span class="fdn">-30</span></div> ×
-                    <div class="matrix">
-                        <span>-2</span> <input type="text" class="blank-input" data-ans="4"> <span>-6</span>
-                        <input type="text" class="blank-input" data-ans="4"> <span>-8</span> <span>-3</span>
-                        <span>-14</span> <span>-2</span> <input type="text" class="blank-input" data-ans="3">
-                    </div>
-                </div>
-
-                <div class="sub-q equation">
-                    <strong>10c. C<sup>-1</sup></strong> = <div class="fraction"><span>1</span><span class="fdn">30</span></div> ×
-                    <div class="matrix">
-                        <input type="text" class="blank-input" data-ans="4"> <span>4</span> <span>-5</span>
-                        <span>-18</span> <input type="text" class="blank-input" data-ans="12"> <span>-15</span>
-                        <span>2</span> <input type="text" class="blank-input" data-ans="2"> <span>5</span>
-                    </div>
+                <div class="mt-8 flex justify-center space-x-4">
+                    <button id="btn-check" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors w-full md:w-auto">
+                        Selanjutnya ➔
+                    </button>
                 </div>
             </div>
+        </section>
 
-            <button type="button" id="submitBtn" class="btn-submit" onclick="checkAnswers()">Kirim Jawaban & Cek Nilai</button>
-        </form>
+        <!-- 4. SUMMARY SCREEN -->
+        <section id="screen-summary" class="fade-in bg-white rounded-2xl shadow-lg p-8 hidden max-w-2xl mx-auto text-center border-t-4 border-blue-500">
+            <h2 class="text-3xl font-bold mb-2 text-blue-800" id="summary-title">Permainan Selesai!</h2>
+            <p class="text-gray-600 mb-8" id="summary-subtitle">Terima kasih telah berpartisipasi.</p>
+            
+            <div class="bg-blue-50 rounded-xl p-6 mb-8 inline-block shadow-inner w-full max-w-md">
+                <p class="text-sm text-gray-500 font-semibold uppercase tracking-wider mb-1">Skor Akhir Anda</p>
+                <p class="text-6xl font-black text-blue-600 mb-2" id="final-score">0</p>
+                <p class="text-md text-gray-700 font-medium" id="high-score-msg"></p>
+            </div>
 
-        <div id="result-box"></div>
-    </div>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <button onclick="location.reload()" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg transition-colors">
+                    Ganti Pemain
+                </button>
+                <button onclick="resetGameSameUser()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors">
+                    Main Lagi (Pemain Sama)
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="w-full bg-blue-900 text-blue-100 py-6 text-center mt-auto shadow-inner">
+        <p class="text-sm font-light">© 2026 Dikembangkan Oleh Ir. Ahmad Janan Febrianto, S.T., M.Eng</p>
+        <p class="text-xs text-blue-300 mt-1">Sistem Pembelajaran Aljabar Linier Interaktif</p>
+    </footer>
 
     <script>
-        // LOGIKA TIMER
-        let timeLeft = 60 * 60; // 60 menit dalam detik (ubah angka 60 pertama jika ingin mengubah menit)
-        let timerInterval;
-        let timerBox = document.getElementById('timer-box');
-        let timeDisplay = document.getElementById('time');
+        // --- BASE MATRICES DEFINITION ---
+        // Carefully selected matrices to ensure integer arithmetic for determinants and inverses.
+        const matA = [
+            [1, 2, -1],
+            [2, 5, 1],
+            [3, 6, 2]
+        ]; // Det = 1(10-6) - 2(4-3) - 1(12-15) = 4 - 2 + 3 = 5
+        
+        const matB = [
+            [1, 1, 2],
+            [1, 2, 2],
+            [2, 2, 5]
+        ]; // Det = 1(10-4) - 1(5-4) + 2(2-4) = 6 - 1 - 4 = 1
+        
+        const matC = [
+            [2, 1, 1],
+            [4, 3, 5],
+            [2, 2, 7]
+        ]; // Det = 2(21-10) - 1(28-10) + 1(8-6) = 22 - 18 + 2 = 6
 
-        function startTimer() {
-            timerInterval = setInterval(function() {
-                timeLeft--;
-                
-                let minutes = Math.floor(timeLeft / 60);
-                let seconds = timeLeft % 60;
-                
-                // Tambahkan angka 0 di depan jika di bawah 10
-                if (minutes < 10) minutes = "0" + minutes;
-                if (seconds < 10) seconds = "0" + seconds;
-                
-                timeDisplay.innerText = minutes + ":" + seconds;
-                
-                // Ubah warna menjadi merah gelap jika sisa waktu kurang dari 5 menit (300 detik)
-                if (timeLeft <= 300) {
-                    timerBox.classList.add('timer-warning');
+        // --- MATH HELPERS ---
+        const math = {
+            add: (m1, m2) => m1.map((row, i) => row.map((val, j) => val + m2[i][j])),
+            sub: (m1, m2) => m1.map((row, i) => row.map((val, j) => val - m2[i][j])),
+            mul: (m1, m2) => {
+                let res = [[0,0,0],[0,0,0],[0,0,0]];
+                for(let i=0; i<3; i++) {
+                    for(let j=0; j<3; j++) {
+                        for(let k=0; k<3; k++) {
+                            res[i][j] += m1[i][k] * m2[k][j];
+                        }
+                    }
                 }
-                
-                // Jika waktu habis
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    timeDisplay.innerText = "00:00";
-                    alert("Waktu habis! Jawaban Anda akan otomatis dikoreksi.");
-                    checkAnswers(); // Auto-submit
+                return res;
+            },
+            transpose: (m) => m[0].map((_, colIndex) => m.map(row => row[colIndex])),
+            cofactor: (m, r, c) => {
+                let sub = m.filter((_, i) => i !== r).map(row => row.filter((_, j) => j !== c));
+                return (sub[0][0]*sub[1][1] - sub[0][1]*sub[1][0]) * ((r+c)%2 === 0 ? 1 : -1);
+            },
+            cofactorMatrix: (m) => m.map((row, i) => row.map((_, j) => math.cofactor(m, i, j))),
+            adjoint: (m) => math.transpose(math.cofactorMatrix(m)),
+            det: (m) => m[0][0]*math.cofactor(m,0,0) + m[0][1]*math.cofactor(m,0,1) + m[0][2]*math.cofactor(m,0,2)
+        };
+
+        // --- HTML GENERATORS FOR MATRICES ---
+        function renderMatHTML(matrix, blanks = []) {
+            let html = `<div class="matrix"><table>`;
+            for(let i=0; i<matrix.length; i++) {
+                html += `<tr>`;
+                for(let j=0; j<matrix[i].length; j++) {
+                    let blankDef = blanks.find(b => b[0] === i && b[1] === j);
+                    if(blankDef) {
+                        let ans = blankDef[2] !== undefined ? blankDef[2] : matrix[i][j];
+                        html += `<td><input type="text" class="ans-input" data-ans="${ans}" autocomplete="off"></td>`;
+                    } else {
+                        html += `<td>${matrix[i][j]}</td>`;
+                    }
                 }
-            }, 1000);
+                html += `</tr>`;
+            }
+            html += `</table></div>`;
+            return html;
         }
 
-        // Jalankan timer saat halaman dimuat
-        window.onload = startTimer;
-
-        function disableInputs() {
-            let inputs = document.querySelectorAll('.blank-input');
-            inputs.forEach(input => input.disabled = true);
-            document.getElementById('submitBtn').disabled = true;
-            document.getElementById('submitBtn').innerText = "Kuis Selesai";
+        function renderStaticMat(name, m) {
+            return `<div class="inline-block mx-4 text-center"><div class="font-bold mb-1">${name} =</div>${renderMatHTML(m, [])}</div>`;
         }
 
-        function checkAnswers() {
-            // Hentikan timer karena user sudah klik submit
-            clearInterval(timerInterval);
+        // --- QUESTION GENERATION LOGIC ---
+        let questions = [];
 
-            let inputs = document.querySelectorAll('.blank-input');
-            let correctCount = 0;
-            let totalCount = inputs.length; 
+        // Q1: Zero Matrix
+        questions.push({
+            id: 1, type: 'normal', time: 60,
+            title: "Tema Matriks Nol",
+            text: "Lengkapilah bagian yang rumpang agar menjadi Matriks Nol (3x3).",
+            html: renderMatHTML([[0,0,0],[0,0,0],[0,0,0]], [[0,1,0], [1,0,0], [2,2,0]])
+        });
 
-            inputs.forEach(input => {
-                input.classList.remove('correct', 'wrong'); 
-                
-                let userAnswer = input.value.trim();
-                let correctAnswer = input.getAttribute('data-ans');
+        // Q2: Diagonal Matrix
+        questions.push({
+            id: 2, type: 'diagonal', time: 60,
+            title: "Tema Matriks Diagonal",
+            text: "Isilah bagian rumpang. Elemen diagonal dapat diisi angka berapapun (tidak boleh kosong), sedangkan elemen lainnya harus tepat agar membentuk Matriks Diagonal.",
+            html: renderMatHTML([['d',0,0],[0,'d',0],[0,0,'d']], [[0,1,0],[0,2,0],[1,0,0],[1,1,'any'],[2,0,0],[2,2,'any']])
+        });
 
-                if (userAnswer === correctAnswer) {
-                    input.classList.add('correct');
-                    correctCount++;
-                } else {
-                    input.classList.add('wrong');
-                }
+        // Q3: Scalar Matrix
+        questions.push({
+            id: 3, type: 'scalar', time: 60,
+            title: "Tema Matriks Skalar",
+            text: "Isilah bagian rumpang. Angka berapapun boleh untuk diagonal, namun harus sama agar menjadi Matriks Skalar.",
+            html: renderMatHTML([['s',0,0],[0,'s',0],[0,0,'s']], [[0,0,'scalar'], [0,1,0], [1,0,0], [1,1,'scalar'], [2,2,'scalar']])
+        });
+
+        // Q4: Identity Matrix
+        questions.push({
+            id: 4, type: 'normal', time: 60,
+            title: "Tema Matriks Identitas",
+            text: "Lengkapilah agar menjadi Matriks Identitas 3x3.",
+            html: renderMatHTML([[1,0,0],[0,1,0],[0,0,1]], [[0,0,1], [1,0,0], [1,1,1], [2,1,0], [2,2,1]])
+        });
+
+        // Q5: Triangular Matrices
+        questions.push({
+            id: 5, type: 'normal', time: 90,
+            title: "Tema Matriks Segitiga",
+            text: "Lengkapilah matriks pertama menjadi Segitiga Atas dan matriks kedua menjadi Segitiga Bawah.",
+            html: `<div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
+                <div>
+                    <p class="mb-2 font-semibold">Segitiga Atas</p>
+                    ${renderMatHTML([[5,2,3],[0,4,1],[0,0,7]], [[1,0,0], [2,0,0], [2,1,0], [0,1,2], [1,2,1]])}
+                </div>
+                <div>
+                    <p class="mb-2 font-semibold">Segitiga Bawah</p>
+                    ${renderMatHTML([[8,0,0],[3,2,0],[4,1,9]], [[0,1,0], [0,2,0], [1,2,0], [1,0,3], [2,1,1]])}
+                </div>
+            </div>`
+        });
+
+        // Helpers for operations
+        const ops = [
+            { id: 6, m1: matA, m2: matB, name: "A + B", calc: math.add(matA, matB), blanks: [[0,1],[1,1],[2,0],[2,2]] },
+            { id: 7, m1: matB, m2: matC, name: "B - C", calc: math.sub(matB, matC), blanks: [[0,0],[1,2],[2,1],[2,2]] },
+            { id: 8, m1: matB, m2: matC, name: "B - C + A", calc: math.add(math.sub(matB, matC), matA), blanks: [[0,2],[1,0],[1,1],[2,1]] },
+            { id: 9, m1: matB, m2: matC, name: "B × C", calc: math.mul(matB, matC), blanks: [[0,0],[1,1],[2,0],[2,2]] }
+        ];
+
+        ops.forEach(op => {
+            questions.push({
+                id: op.id, type: 'normal', time: 120, refs: true,
+                title: `Operasi Matriks: ${op.name}`,
+                text: `Tentukan hasil dari operasi ${op.name} dengan melengkapi kotak yang kosong.`,
+                html: `<div class="flex items-center space-x-4">
+                    <span class="font-bold text-xl">${op.name} = </span>
+                    ${renderMatHTML(op.calc, op.blanks)}
+                </div>`
             });
+        });
 
-            // Kunci inputan agar tidak bisa diubah lagi setelah dinilai
-            disableInputs();
+        // Q10: A*B != B*A
+        let ab = math.mul(matA, matB);
+        let ba = math.mul(matB, matA);
+        questions.push({
+            id: 10, type: 'normal', time: 150, refs: true,
+            title: "Sifat Tidak Komutatif: A × B ≠ B × A",
+            text: "Lengkapi kedua hasil kali berikut untuk membuktikan bahwa perkalian matriks tidak komutatif.",
+            html: `<div class="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
+                <div class="flex items-center space-x-2"><span class="font-bold">A × B =</span>${renderMatHTML(ab, [[0,0],[1,2],[2,1]])}</div>
+                <div class="text-xl font-bold text-red-500">≠</div>
+                <div class="flex items-center space-x-2"><span class="font-bold">B × A =</span>${renderMatHTML(ba, [[0,0],[1,2],[2,1]])}</div>
+            </div>`
+        });
 
-            // Hitung dan Tampilkan Nilai
-            let resultBox = document.getElementById('result-box');
-            resultBox.style.display = 'block';
-            let nilai = Math.round((correctCount / totalCount) * 100);
+        // Sarrus Helper
+        function genSarrus(id, matName, m) {
+            let diag1 = m[0][0]*m[1][1]*m[2][2];
+            let diag2 = m[0][1]*m[1][2]*m[2][0];
+            let diag3 = m[0][2]*m[1][0]*m[2][1];
+            let diag4 = m[0][2]*m[1][1]*m[2][0];
+            let diag5 = m[0][0]*m[1][2]*m[2][1];
+            let diag6 = m[0][1]*m[1][0]*m[2][2];
+            let sum1 = diag1 + diag2 + diag3;
+            let sum2 = diag4 + diag5 + diag6;
+            let det = sum1 - sum2;
+
+            return {
+                id: id, type: 'normal', time: 120, refs: true,
+                title: `Determinan (Sarrus): Matriks ${matName}`,
+                text: `Lengkapi penjabaran metode Sarrus untuk Matriks ${matName} berikut:`,
+                html: `<div class="text-left bg-gray-50 p-4 rounded-lg inline-block border border-gray-200 shadow-inner">
+                    <p class="mb-3 font-mono">Det(${matName}) = ( ${diag1} + <input type="text" class="ans-input w-16" data-ans="${diag2}"> + ${diag3} ) - ( <input type="text" class="ans-input w-16" data-ans="${diag4}"> + ${diag5} + ${diag6} )</p>
+                    <p class="mb-3 font-mono">Det(${matName}) = <input type="text" class="ans-input w-16" data-ans="${sum1}"> - ${sum2}</p>
+                    <p class="font-mono font-bold text-blue-800">Det(${matName}) = <input type="text" class="ans-input w-16" data-ans="${det}"></p>
+                </div>`
+            };
+        }
+        questions.push(genSarrus(11, 'A', matA));
+        questions.push(genSarrus(12, 'B', matB));
+        questions.push(genSarrus(13, 'C', matC));
+
+        // Cofactor Helper
+        function genCofactor(id, matName, m) {
+            let c11 = math.cofactor(m,0,0);
+            let c12 = math.cofactor(m,0,1);
+            let c13 = math.cofactor(m,0,2);
+            let det = math.det(m);
+
+            return {
+                id: id, type: 'normal', time: 150, refs: true,
+                title: `Determinan (Ekspansi Kofaktor): Matriks ${matName}`,
+                text: `Lengkapi penjabaran ekspansi kofaktor sepanjang Baris 1 untuk Matriks ${matName}:`,
+                html: `<div class="text-left bg-gray-50 p-4 rounded-lg inline-block border border-gray-200 shadow-inner">
+                    <p class="mb-3 font-mono">Det(${matName}) = a₁₁·C₁₁ + a₁₂·C₁₂ + a₁₃·C₁₃</p>
+                    <p class="mb-3 font-mono">Det(${matName}) = ${m[0][0]}(<input type="text" class="ans-input w-12" data-ans="${c11}">) - ${Math.abs(m[0][1])}(<input type="text" class="ans-input w-12" data-ans="${c12}">) + ${m[0][2]}(<input type="text" class="ans-input w-12" data-ans="${c13}">)</p>
+                    <p class="font-mono font-bold text-blue-800">Det(${matName}) = <input type="text" class="ans-input w-16" data-ans="${det}"></p>
+                </div>`
+            };
+        }
+        questions.push(genCofactor(14, 'A', matA));
+        questions.push(genCofactor(15, 'B', matB));
+        questions.push(genCofactor(16, 'C', matC));
+
+        // Row Reduction helper (Simplified for space: direct to triangular form steps)
+        function genRowRed(id, matName, m, stepsHtml, det) {
+             return {
+                id: id, type: 'normal', time: 180, refs: true,
+                title: `Determinan (Reduksi Baris): Matriks ${matName}`,
+                text: `Lengkapi proses reduksi baris menjadi matriks segitiga atas berikut, kemudian tentukan nilai determinannya. (Ingat sifat determinan saat OBE!)`,
+                html: `<div class="flex flex-col items-center space-y-4">
+                    ${stepsHtml}
+                    <div class="mt-4 p-2 bg-blue-100 rounded font-bold">
+                        Det(${matName}) = <input type="text" class="ans-input" data-ans="${det}">
+                    </div>
+                </div>`
+            };
+        }
+        // Specific manual steps for predefined matrices to keep math clean
+        // Mat A: [[1, 2, -1], [2, 5, 1], [3, 6, 2]]
+        // R2-2R1 -> [0, 1, 3], R3-3R1 -> [0, 0, 5]. Det = 1*1*5 = 5.
+        questions.push(genRowRed(17, 'A', matA, 
+            `<div class="flex items-center space-x-2">
+                <span>R₂ - 2R₁<br>R₃ - 3R₁</span> ➔ 
+                ${renderMatHTML([[1,2,-1],[0,1,3],[0,0,5]], [[1,2,3],[2,2,5]])}
+            </div>`, 5
+        ));
+        // Mat B: [[1, 1, 2], [1, 2, 2], [2, 2, 5]]
+        // R2-R1 -> [0, 1, 0], R3-2R1 -> [0, 0, 1]. Det = 1.
+        questions.push(genRowRed(18, 'B', matB, 
+             `<div class="flex items-center space-x-2">
+                <span>R₂ - R₁<br>R₃ - 2R₁</span> ➔ 
+                ${renderMatHTML([[1,1,2],[0,1,0],[0,0,1]], [[1,1,1],[2,2,1]])}
+            </div>`, 1
+        ));
+        // Mat C: [[2, 1, 1], [4, 3, 5], [2, 2, 7]]
+        // R2-2R1 -> [0,1,3], R3-R1 -> [0,1,6]. R3-R2 -> [0,0,3]. Det = 2*1*3 = 6
+        questions.push(genRowRed(19, 'C', matC, 
+             `<div class="flex items-center space-x-2">
+                <span>1. R₂ - 2R₁, R₃ - R₁</span> ➔ 
+                ${renderMatHTML([[2,1,1],[0,1,3],[0,1,6]], [[1,2,3],[2,1,1]])}
+            </div>
+            <div class="flex items-center space-x-2 mt-2">
+                <span>2. R₃ - R₂</span> ➔ 
+                ${renderMatHTML([[2,1,1],[0,1,3],[0,0,3]], [[2,2,3]])}
+            </div>`, 6
+        ));
+
+        // Transpose Q20-22
+        function genTranspose(id, matName, m) {
+            let t = math.transpose(m);
+            return {
+                id: id, type: 'normal', time: 60, refs: true,
+                title: `Transpose Matriks ${matName}`,
+                text: `Lengkapi elemen matriks transpose ${matName}ᵀ.`,
+                html: `<div class="flex items-center space-x-4">
+                    <span class="font-bold text-xl">${matName}ᵀ = </span>
+                    ${renderMatHTML(t, [[0,1],[1,0],[2,2]])}
+                </div>`
+            };
+        }
+        questions.push(genTranspose(20, 'A', matA));
+        questions.push(genTranspose(21, 'B', matB));
+        questions.push(genTranspose(22, 'C', matC));
+
+        // Inverse Adjoint Q23-25
+        function genInverse(id, matName, m) {
+            let adj = math.adjoint(m);
+            let det = math.det(m);
+            return {
+                id: id, type: 'normal', time: 180, refs: true,
+                title: `Invers (Metode Adjoin): Matriks ${matName}`,
+                text: `Tentukan Invers dari matriks ${matName} menggunakan rumus A⁻¹ = 1/|A| × Adj(A). Lengkapi nilai Determinan dan elemen Adjoin-nya.`,
+                html: `<div class="flex items-center space-x-2 bg-gray-50 p-6 rounded-xl border border-gray-200">
+                    <span class="font-bold text-xl">${matName}⁻¹ = </span>
+                    <div class="flex flex-col items-center justify-center mx-2">
+                        <span class="border-b-2 border-black w-8 text-center pb-1">1</span>
+                        <input type="text" class="ans-input w-10 mt-1" data-ans="${det}" placeholder="|${matName}|">
+                    </div>
+                    <span class="font-bold text-xl"> × </span>
+                    ${renderMatHTML(adj, [[0,0],[1,1],[2,2],[0,2]])}
+                </div>`
+            };
+        }
+        questions.push(genInverse(23, 'A', matA));
+        questions.push(genInverse(24, 'B', matB));
+        questions.push(genInverse(25, 'C', matC));
+
+
+        // --- APP STATE ---
+        let gameState = {
+            user: { name: '', nim: '', class: '' },
+            currentIndex: 0,
+            score: 0,
+            timeLeft: 0,
+            timerInterval: null,
+            answers: {} // Menyimpan jawaban sementara per soal
+        };
+
+        // UI Elements
+        const screens = {
+            login: document.getElementById('screen-login'),
+            instructions: document.getElementById('screen-instructions'),
+            quiz: document.getElementById('screen-quiz'),
+            summary: document.getElementById('screen-summary')
+        };
+        const modal = document.getElementById('custom-modal');
+
+        // Helper: Show Screen
+        function showScreen(screenId) {
+            Object.values(screens).forEach(s => s.classList.add('hidden'));
+            screens[screenId].classList.remove('hidden');
+        }
+
+        // Helper: Custom Modal
+        function showCustomAlert(title, message) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = message;
+            modal.classList.remove('hidden');
+        }
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        // Login Logic
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            gameState.user.name = document.getElementById('user-name').value.trim();
+            gameState.user.nim = document.getElementById('user-nim').value.trim();
+            gameState.user.class = document.getElementById('user-class').value;
             
-            if (nilai === 100) {
-                resultBox.style.backgroundColor = '#D1FAE5';
-                resultBox.style.color = '#065F46';
-                resultBox.innerHTML = `SEMPURNA! Nilai Anda: 100. Insting aljabar Anda sangat tajam!`;
-            } else if (nilai >= 70) {
-                resultBox.style.backgroundColor = '#FEF3C7';
-                resultBox.style.color = '#92400E';
-                resultBox.innerHTML = `Kerja Bagus! Anda mengisi benar ${correctCount} dari ${totalCount} sel. Nilai: ${nilai}. Perhatikan sel berwarna merah dan perbaiki hitungannya di catatan Anda.`;
-            } else {
-                resultBox.style.backgroundColor = '#FEE2E2';
-                resultBox.style.color = '#991B1B';
-                resultBox.innerHTML = `Nilai Anda: ${nilai}. Waktu habis atau masih ada yang keliru, ayo evaluasi ulang materi Aljabar Linier!`;
+            if(!gameState.user.name || !gameState.user.nim || !gameState.user.class) {
+                showCustomAlert("Peringatan", "Mohon lengkapi semua data!");
+                return;
             }
             
-            // Gulir otomatis ke bagian hasil (bawah)
-            resultBox.scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('display-name').innerText = gameState.user.name;
+            showScreen('instructions');
+        });
+
+        // Start Quiz
+        function startQuiz() {
+            gameState.currentIndex = 0;
+            gameState.score = 0;
+            gameState.answers = {};
+            gameState.timeLeft = 45 * 60; // 45 menit timer global
+            showScreen('quiz');
+            
+            // Start Global Timer
+            clearInterval(gameState.timerInterval);
+            updateTimerUI();
+            gameState.timerInterval = setInterval(() => {
+                gameState.timeLeft--;
+                updateTimerUI();
+                if(gameState.timeLeft <= 0) {
+                    clearInterval(gameState.timerInterval);
+                    finishQuiz(true); // true menandakan waktu habis
+                }
+            }, 1000);
+            
+            loadQuestion();
         }
+
+        // Load Question
+        function loadQuestion() {
+            const q = questions[gameState.currentIndex];
+            
+            // Update UI
+            document.getElementById('question-counter').innerText = `${gameState.currentIndex + 1} / 25`;
+            document.getElementById('question-text').innerHTML = `<span class="block text-sm text-blue-500 mb-1">Soal ${gameState.currentIndex + 1}: ${q.title}</span>${q.text}`;
+            
+            // Render References A, B, C if needed
+            const refDiv = document.getElementById('reference-matrices');
+            if(q.refs) {
+                refDiv.innerHTML = renderStaticMat('A', matA) + renderStaticMat('B', matB) + renderStaticMat('C', matC);
+                refDiv.classList.remove('hidden');
+            } else {
+                refDiv.classList.add('hidden');
+                refDiv.innerHTML = '';
+            }
+
+            // Render Content
+            document.getElementById('question-interactive-area').innerHTML = q.html;
+            
+            // Atur Logika Tombol
+            const btn = document.getElementById('btn-check');
+            btn.className = "text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors w-full md:w-auto ";
+            if (gameState.currentIndex === questions.length - 1) {
+                btn.innerText = "Selesai & Periksa Jawaban";
+                btn.className += "bg-green-600 hover:bg-green-700";
+            } else {
+                btn.innerText = "Selanjutnya ➔";
+                btn.className += "bg-blue-600 hover:bg-blue-700";
+            }
+            btn.onclick = processNext;
+
+            // Auto focus first input
+            const firstInput = document.querySelector('.ans-input');
+            if(firstInput) firstInput.focus();
+        }
+
+        // Timer UI Update
+        function updateTimerUI() {
+            const timeText = document.getElementById('timer-text');
+            const circle = document.getElementById('timer-circle');
+            
+            let m = Math.floor(gameState.timeLeft / 60);
+            let s = gameState.timeLeft % 60;
+            timeText.innerText = `${m}:${s.toString().padStart(2, '0')}`;
+            
+            // Circle math: circumference = 226, Total Max = 45 mins (2700s)
+            let percent = gameState.timeLeft / 2700;
+            let offset = 226 - (percent * 226);
+            circle.style.strokeDashoffset = offset;
+
+            // Color changing based on time left
+            if(percent > 0.5) circle.setAttribute('stroke', '#10b981'); // Hijau
+            else if(percent > 0.15) circle.setAttribute('stroke', '#f59e0b'); // Kuning
+            else circle.setAttribute('stroke', '#ef4444'); // Merah
+        }
+
+        function processNext() {
+            // Simpan jawaban untuk soal saat ini
+            const inputs = document.querySelectorAll('.ans-input');
+            let userAnswers = [];
+            inputs.forEach(input => {
+                userAnswers.push({
+                    val: input.value.trim(),
+                    expected: input.getAttribute('data-ans')
+                });
+            });
+            gameState.answers[gameState.currentIndex] = userAnswers;
+
+            // Pindah soal
+            gameState.currentIndex++;
+            if(gameState.currentIndex >= questions.length) {
+                finishQuiz(false); // Selesai karena semua soal dikerjakan
+            } else {
+                loadQuestion();
+            }
+        }
+
+        function finishQuiz(timeOut = false) {
+            clearInterval(gameState.timerInterval);
+            
+            // Jika waktu habis saat sedang mengerjakan soal, simpan jawaban yang ada di layar
+            if(timeOut && gameState.currentIndex < questions.length) {
+                const inputs = document.querySelectorAll('.ans-input');
+                let userAnswers = [];
+                inputs.forEach(input => {
+                    userAnswers.push({
+                        val: input.value.trim(),
+                        expected: input.getAttribute('data-ans')
+                    });
+                });
+                gameState.answers[gameState.currentIndex] = userAnswers;
+                showCustomAlert("Waktu Habis", "Waktu 45 menit telah selesai. Jawaban Anda akan otomatis diperiksa.");
+            }
+
+            // Hitung Skor Akhir (Evaluasi seluruh jawaban tersimpan)
+            let totalCorrect = 0;
+            for(let i = 0; i < questions.length; i++) {
+                let ansArray = gameState.answers[i];
+                if(!ansArray) continue;
+                
+                let q = questions[i];
+                let allCorrect = true;
+                let scalarValues = [];
+
+                ansArray.forEach(ans => {
+                    let userVal = ans.val;
+                    let expected = ans.expected;
+
+                    if(userVal === "") {
+                        allCorrect = false;
+                        return;
+                    }
+
+                    // Logika validasi khusus (Diagonal, Skalar, dll)
+                    if(q.type === 'diagonal' && expected === 'any') {
+                        if(isNaN(userVal)) allCorrect = false;
+                    } else if(q.type === 'scalar' && expected === 'scalar') {
+                        scalarValues.push(userVal);
+                    } else {
+                        if(userVal != expected) allCorrect = false;
+                    }
+                });
+
+                if(q.type === 'scalar' && scalarValues.length > 0) {
+                    let firstVal = scalarValues[0];
+                    let scalarCorrect = scalarValues.every(v => v === firstVal && !isNaN(v));
+                    if(!scalarCorrect) allCorrect = false;
+                }
+
+                if(allCorrect) {
+                    totalCorrect++;
+                }
+            }
+
+            // 4 Poin per soal (Total 25 soal) -> Maksimal 100
+            gameState.score = totalCorrect * 4;
+
+            showScreen('summary');
+            document.getElementById('final-score').innerText = gameState.score;
+            
+            // Menentukan pesan kustom dan trigger confetti
+            let title = "Permainan Selesai!";
+            let subtitle = "";
+            if(gameState.score >= 80) { 
+                title = "Luar Biasa, Selamat!"; 
+                subtitle = "Pemahaman Aljabar Linier Anda sangat kuat.";
+                confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            }
+            else if(gameState.score >= 60) { 
+                title = "Kerja Bagus!"; 
+                subtitle = "Anda sudah memahami konsep dasar dengan baik.";
+                confetti({ particleCount: 80, spread: 50, origin: { y: 0.6 } });
+            }
+            else { 
+                title = "Tetap Semangat!"; 
+                subtitle = "Teruslah berlatih operasi matriks ya!"; 
+            }
+            
+            document.getElementById('summary-title').innerText = title;
+            document.getElementById('summary-subtitle').innerText = subtitle;
+
+            // Proses Rekor Tersimpan di LocalStorage
+            handleHighScore();
+        }
+
+        function handleHighScore() {
+            let scores = JSON.parse(localStorage.getItem('linearAlgebraQuizScores')) || [];
+            let currentUserKey = `${gameState.user.nim}-${gameState.user.class}`;
+            
+            let prevRecord = scores.find(s => s.key === currentUserKey);
+            let msgEl = document.getElementById('high-score-msg');
+
+            if(prevRecord) {
+                if(gameState.score > prevRecord.score) {
+                    msgEl.innerHTML = `<span class="text-green-600 font-bold">🎉 Rekor Baru!</span> Mengalahkan rekor sebelumnya: ${prevRecord.score}`;
+                    prevRecord.score = gameState.score; // update
+                } else {
+                    msgEl.innerHTML = `<span class="text-red-500 font-bold">Perhatian:</span> Nilai Anda lebih rendah dari sebelumnya (Skor Tertinggi: ${prevRecord.score})`;
+                }
+            } else {
+                msgEl.innerText = "Skor perdana Anda telah disimpan!";
+                scores.push({
+                    key: currentUserKey,
+                    name: gameState.user.name,
+                    score: gameState.score
+                });
+            }
+            
+            localStorage.setItem('linearAlgebraQuizScores', JSON.stringify(scores));
+        }
+
+        function resetGameSameUser() {
+            // Keep same user identity, skip login
+            showScreen('instructions');
+        }
+
     </script>
 </body>
 </html>
+
+```
