@@ -21,10 +21,11 @@
     .action:hover:not(:disabled) {transform: translateY(-2px); box-shadow: 0 8px 20px rgba(18,67,119,.17)}
     .action:disabled {cursor: default}
     :focus-visible {outline: 3px solid #ec9a19!important; outline-offset: 3px}
-    .answer {border: 2px solid #d8e8f7; background: #fff; text-align: left; transition: border-color .18s, background-color .18s, transform .18s}
+    .answer {border: 2px solid #d8e8f7; background: #fff; text-align: left; transition: border-color .18s, background-color .18s, transform .18s, color .18s}
     .answer:hover:not(:disabled), .answer:focus-visible {border-color: #1764ac; background: #eff7ff; transform: translateY(-2px)}
-    .answer.correct {border-color: #15803d; background: #dcfce7; color: #14532d}
-    .answer.wrong {border-color: #dc2626; background: #fee2e2; color: #991b1b}
+    /* Styling saat jawaban dipilih (hanya sorotan biru, bukan benar/salah) */
+    .answer.selected {border-color: #1764ac; background: #e4f2ff; color: #12345b; box-shadow: 0 4px 12px rgba(23,100,172,.15)}
+    
     .answer:disabled {opacity: 1}
     .timer-warning {background: #fff0ce!important; color: #854d0e!important}
     .timer-urgent {background: #fee2e2!important; color: #991b1b!important}
@@ -48,118 +49,121 @@
     </header>   
     <main class="flex-1 w-full px-4 py-7 sm:py-10">    
       <div class="max-w-4xl mx-auto">     
+        <!-- LOGIN SCREEN -->
         <section id="login-screen" aria-labelledby="page-title" class="surface rounded-[28px] p-6 sm:p-10">      
-          <div class="text-center">       
+          <div class="text-center">        
             <img data-template-id="opening-logo" class="canva-image block w-full max-w-[500px] h-auto max-h-48 object-contain mx-auto mb-7" loading="lazy" src="https://iili.io/nwSd5mb.jpg" alt="Logo pembuka Kuis Gambar Teknik Standar"> 
-            <span data-template-id="opening-eyebrow" class="canva-tag inline-block px-4 py-2 rounded-full bg-[#e4f2ff] text-[#13558f] font-semibold mb-4" style="background: rgb(228, 242, 255); color: rgb(19, 85, 143); font-weight: 600; font-style: normal; font-size: 16px;">GAME EDUKASI • 25 SOAL</span>       
-            <h1 id="page-title" data-template-id="page-title" class="canva-text font-bold leading-tight mb-3" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 32px;">Kuis Gambar Teknik Standar</h1>       
+            <span data-template-id="opening-eyebrow" class="canva-tag inline-block px-4 py-2 rounded-full bg-[#e4f2ff] text-[#13558f] font-semibold mb-4" style="background: rgb(228, 242, 255); color: rgb(19, 85, 143); font-weight: 600; font-style: normal; font-size: 16px;">GAME EDUKASI • 25 SOAL</span>        
+            <h1 id="page-title" data-template-id="page-title" class="canva-text font-bold leading-tight mb-3" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 32px;">Kuis Gambar Teknik Standar</h1>        
             <p data-template-id="opening-description" class="canva-text text-[#496580] max-w-xl mx-auto leading-relaxed" style="color: rgb(73, 101, 128); font-weight: 400; font-style: normal; font-size: 16px;">Uji pemahamanmu tentang standar, simbol, proyeksi, dan cara membaca gambar teknik. Siapkan diri dan raih skor terbaik!</p>      
           </div>      
-          <form id="identity-form" class="max-w-lg mx-auto mt-9 space-y-5" novalidate="">       
+          <form id="identity-form" class="max-w-lg mx-auto mt-9 space-y-5" novalidate="">        
             <div>        
               <label data-template-id="name-label" for="participant-name" class="canva-text block font-semibold mb-2" style="color: rgb(18, 52, 91); font-weight: 600; font-style: normal; font-size: 16px;">Nama lengkap</label> 
-              <input id="participant-name" name="name" autocomplete="name" maxlength="80" required="" class="w-full rounded-xl border border-[#b9d3e9] bg-white px-4 py-3 text-[#12345b] focus:border-[#1764ac]" placeholder="Masukkan nama lengkap">       
-            </div>       
+              <input id="participant-name" name="name" autocomplete="name" maxlength="80" required="" class="w-full rounded-xl border border-[#b9d3e9] bg-white px-4 py-3 text-[#12345b] focus:border-[#1764ac]" placeholder="Masukkan nama lengkap">        
+            </div>        
             <div>        
               <label data-template-id="nim-label" for="participant-nim" class="canva-text block font-semibold mb-2" style="color: rgb(18, 52, 91); font-weight: 600; font-style: normal; font-size: 16px;">NIM</label> 
-              <input id="participant-nim" name="nim" inputmode="numeric" autocomplete="off" maxlength="24" required="" class="w-full rounded-xl border border-[#b9d3e9] bg-white px-4 py-3 text-[#12345b] focus:border-[#1764ac]" placeholder="Masukkan NIM">       
-            </div>       
+              <input id="participant-nim" name="nim" inputmode="numeric" autocomplete="off" maxlength="24" required="" class="w-full rounded-xl border border-[#b9d3e9] bg-white px-4 py-3 text-[#12345b] focus:border-[#1764ac]" placeholder="Masukkan NIM">        
+            </div>        
             <div>        
               <label data-template-id="class-label" for="participant-class" class="canva-text block font-semibold mb-2" style="color: rgb(18, 52, 91); font-weight: 600; font-style: normal; font-size: 16px;">Kelas</label> 
               <select id="participant-class" name="class" required="" class="w-full rounded-xl border border-[#b9d3e9] bg-white px-4 py-3 text-[#12345b] focus:border-[#1764ac]"> 
                 <option value="">Pilih kelas</option>
                 <option value="Kelas A">Kelas A</option>
                 <option value="Kelas B">Kelas B</option> 
-              </select>       
-            </div>       
+              </select>        
+            </div>        
             <p id="form-error" class="hidden rounded-xl bg-red-50 px-4 py-3 text-[#991b1b]" role="alert">Lengkapi nama, NIM berupa angka, dan pilih kelas terlebih dahulu.</p>
             <button data-template-id="start-button" type="submit" class="canva-button action w-full rounded-xl bg-[#1764ac] px-5 py-4 font-semibold text-white" style="background: rgb(23, 100, 172); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Mulai Kuis →</button>      
           </form>     
         </section>     
+        
+        <!-- INSTRUCTIONS SCREEN -->
         <section id="instructions-screen" aria-labelledby="instructions-title" class="surface rounded-[28px] p-6 sm:p-10 hidden">      
           <span data-template-id="instructions-eyebrow" class="canva-tag inline-block rounded-full bg-[#e4f2ff] px-4 py-2 text-[#13558f] font-semibold mb-4" style="background: rgb(228, 242, 255); color: rgb(19, 85, 143); font-weight: 600; font-style: normal; font-size: 16px;">SEBELUM MULAI</span>      
           <h2 id="instructions-title" data-template-id="instructions-title" class="canva-text font-bold mb-3" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 24px;">Petunjuk permainan</h2>      
           <p id="instructions-participant" class="font-semibold text-[#1764ac] mb-6" aria-live="polite"></p>      
-          <div class="grid sm:grid-cols-2 gap-3 mb-8">       
-            <p data-template-id="instruction-one" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">01 · Jawab 25 soal pilihan ganda. Pilih satu jawaban terbaik untuk setiap soal.</p>       
-            <p data-template-id="instruction-two" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">02 · Waktu per soal: mudah 30 detik, sedang 45 detik, sulit 60 detik.</p>       
-            <p data-template-id="instruction-three" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">03 · Jawaban benar mendapat poin. Jawaban yang sudah dipilih tidak dapat diubah.</p>       
+          <div class="grid sm:grid-cols-2 gap-3 mb-8">        
+            <p data-template-id="instruction-one" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">01 · Jawab 25 soal pilihan ganda. Pilih satu jawaban terbaik untuk setiap soal.</p>        
+            <p data-template-id="instruction-two" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">02 · Waktu per soal: mudah 30 detik, sedang 45 detik, sulit 60 detik.</p>        
+            <p data-template-id="instruction-three" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">03 · Evaluasi jawaban (benar/salah) dan perhitungan skor baru akan dilakukan di akhir permainan.</p>        
             <p data-template-id="instruction-four" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">04 · Jika waktu habis, soal dicatat tidak terjawab dan kuis otomatis berlanjut.</p>      
           </div>
           <button data-template-id="play-button" id="play-button" type="button" class="canva-button action w-full sm:w-auto rounded-xl bg-[#1764ac] px-8 py-4 font-semibold text-white" style="background: rgb(23, 100, 172); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Saya Siap, Mulai Bermain →</button>     
         </section>     
+        
+        <!-- QUIZ SCREEN -->
         <section id="quiz-screen" aria-labelledby="question-heading" class="hidden">      
-          <div class="surface rounded-[28px] p-5 sm:p-8">       
+          <div class="surface rounded-[28px] p-5 sm:p-8">        
             <div class="flex flex-wrap justify-between gap-4 items-center border-b border-[#d9e8f5] pb-5">        
-              <div>         
-                <p data-template-id="quiz-participant-label" class="canva-text text-[#526d87]" style="color: rgb(82, 109, 135); font-weight: 400; font-style: normal; font-size: 16px;">PESERTA</p>         
+              <div>          
+                <p data-template-id="quiz-participant-label" class="canva-text text-[#526d87]" style="color: rgb(82, 109, 135); font-weight: 400; font-style: normal; font-size: 16px;">PESERTA</p>          
                 <p id="quiz-participant" class="font-semibold break-words"></p>        
               </div>        
-              <div class="flex gap-2 flex-wrap">         
+              <div class="flex gap-2 flex-wrap">          
                 <div class="rounded-xl bg-[#eaf4ff] px-4 py-2">
-                  <span data-template-id="score-label" class="canva-text text-[#496580]" style="color: rgb(73, 101, 128); font-weight: 400; font-style: normal; font-size: 16px;">Skor</span> 
-                  <strong id="score-value" aria-live="polite">0</strong>         
-                </div>         
+                  <span data-template-id="score-label" class="canva-text text-[#496580]" style="color: rgb(73, 101, 128); font-weight: 400; font-style: normal; font-size: 16px;">Terjawab</span> 
+                  <strong id="answered-value" aria-live="polite">0</strong>          
+                </div>          
                 <div id="timer-box" class="rounded-xl bg-[#eaf4ff] px-4 py-2 font-semibold" role="timer" aria-label="Sisa waktu">
                   <span aria-hidden="true">⏱ </span>
                   <span id="time-value">30</span>
-                  <span data-template-id="seconds-label" class="canva-text" style="color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;"> dtk</span>         
+                  <span data-template-id="seconds-label" class="canva-text" style="color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;"> dtk</span>          
                 </div>        
-              </div>       
-            </div>       
+              </div>        
+            </div>        
             <div class="mt-6 flex flex-wrap justify-between items-center gap-2">        
               <span id="question-progress" class="font-semibold text-[#1764ac]">Soal 1 dari 25</span> 
-              <span id="difficulty-badge" class="rounded-full bg-[#e4f2ff] px-4 py-2 font-semibold text-[#13558f]">Mudah · 10 poin</span>       
-            </div>       
+              <span id="difficulty-badge" class="rounded-full bg-[#e4f2ff] px-4 py-2 font-semibold text-[#13558f]">Mudah · 10 poin</span>        
+            </div>        
             <div id="progress-track" class="mt-4 h-3 overflow-hidden rounded-full bg-[#dcecf9]" role="progressbar" aria-label="Progres kuis" aria-valuemin="0" aria-valuemax="25" aria-valuenow="1">        
-              <div id="progress-fill" class="h-full rounded-full bg-[#1764ac] transition-all duration-300" style="width:4%"></div>       
-            </div>       
-            <h2 id="question-heading" class="mt-8 mb-6 font-bold leading-snug" style="font-size:clamp(1.2rem,3vw,1.75rem)"></h2>       
+              <div id="progress-fill" class="h-full rounded-full bg-[#1764ac] transition-all duration-300" style="width:4%"></div>        
+            </div>        
+            <h2 id="question-heading" class="mt-8 mb-6 font-bold leading-snug" style="font-size:clamp(1.2rem,3vw,1.75rem)"></h2>        
             <div id="answer-list" class="grid sm:grid-cols-2 gap-3" role="group" aria-label="Pilihan jawaban">        
               <button type="button" class="answer rounded-2xl p-4 min-h-[76px] font-medium"></button> 
               <button type="button" class="answer rounded-2xl p-4 min-h-[76px] font-medium"></button> 
               <button type="button" class="answer rounded-2xl p-4 min-h-[76px] font-medium"></button> 
-              <button type="button" class="answer rounded-2xl p-4 min-h-[76px] font-medium"></button>       
-            </div>       
-            <div id="feedback" class="hidden mt-6 rounded-2xl p-5" role="status" aria-live="polite">        
-              <strong id="feedback-title" class="block mb-1"></strong>        
-              <p id="feedback-detail"></p>       
-            </div>       
-            <p id="next-note" class="hidden mt-4 text-[#496580]">Soal berikutnya akan tampil sebentar lagi…</p>      
+              <button type="button" class="answer rounded-2xl p-4 min-h-[76px] font-medium"></button>        
+            </div>        
+            <p id="next-note" class="hidden mt-6 text-[#1764ac] font-semibold text-center bg-[#e4f2ff] p-3 rounded-lg">Jawaban disimpan. Beralih ke soal berikutnya...</p>      
           </div>     
         </section>     
+        
+        <!-- RESULTS SCREEN -->
         <section id="results-screen" aria-labelledby="results-title" class="surface rounded-[28px] p-6 sm:p-10 hidden">      
           <span data-template-id="result-eyebrow" class="canva-tag inline-block rounded-full bg-[#e4f2ff] px-4 py-2 text-[#13558f] font-semibold mb-4" style="background: rgb(228, 242, 255); color: rgb(19, 85, 143); font-weight: 600; font-style: normal; font-size: 16px;">KUIS SELESAI</span>      
           <h2 id="results-title" data-template-id="results-title" class="canva-text font-bold mb-2" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 24px;">Hasil permainan</h2>      
           <p id="result-message" class="font-semibold text-[#1764ac] mb-6" aria-live="polite"></p>      
-          <div class="rounded-2xl bg-[#f0f7fe] p-5 mb-6">       
-            <p><span class="font-semibold">Nama:</span> <span id="result-name"></span></p>       
-            <p><span class="font-semibold">NIM:</span> <span id="result-nim"></span></p>       
+          <div class="rounded-2xl bg-[#f0f7fe] p-5 mb-6">        
+            <p><span class="font-semibold">Nama:</span> <span id="result-name"></span></p>        
+            <p><span class="font-semibold">NIM:</span> <span id="result-nim"></span></p>        
             <p><span class="font-semibold">Kelas:</span> <span id="result-class"></span></p>      
           </div>      
-          <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mb-8">       
+          <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mb-8">        
             <div class="rounded-2xl bg-[#e5f2ff] p-4">        
-              <p>Skor</p><strong id="result-score" class="text-2xl"></strong>       
-            </div>       
+              <p>Skor</p><strong id="result-score" class="text-2xl"></strong>        
+            </div>        
             <div class="rounded-2xl bg-[#e6f8ec] p-4">        
-              <p>Benar</p><strong id="result-correct" class="text-2xl"></strong>       
-            </div>       
+              <p>Benar</p><strong id="result-correct" class="text-2xl"></strong>        
+            </div>        
             <div class="rounded-2xl bg-[#fff0ee] p-4">        
-              <p>Salah</p><strong id="result-wrong" class="text-2xl"></strong>       
-            </div>       
+              <p>Salah</p><strong id="result-wrong" class="text-2xl"></strong>        
+            </div>        
             <div class="rounded-2xl bg-[#fff5df] p-4">        
-              <p>Tidak dijawab</p><strong id="result-unanswered" class="text-2xl"></strong>       
-            </div>       
+              <p>Tidak dijawab</p><strong id="result-unanswered" class="text-2xl"></strong>        
+            </div>        
             <div class="rounded-2xl bg-[#e5f2ff] p-4">        
-              <p>Persentase</p><strong id="result-percent" class="text-2xl"></strong>       
+              <p>Persentase</p><strong id="result-percent" class="text-2xl"></strong>        
             </div>      
           </div>      
-          <div class="flex flex-wrap gap-3">       
+          <div class="flex flex-wrap gap-3">        
             <button id="review-button" data-template-id="review-button" type="button" aria-expanded="false" aria-controls="review-panel" class="canva-button action rounded-xl border-2 border-[#1764ac] bg-white px-6 py-3 font-semibold text-[#13558f]" style="background: rgb(255, 255, 255); color: rgb(19, 85, 143); font-weight: 600; font-style: normal; font-size: 16px;">Tinjau Hasil</button> 
             <button id="restart-button" data-template-id="restart-button" type="button" class="canva-button action rounded-xl bg-[#1764ac] px-6 py-3 font-semibold text-white" style="background: rgb(23, 100, 172); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Main Lagi</button>      
           </div>      
-          <div id="review-panel" class="hidden mt-8 border-t border-[#d9e8f5] pt-6">       
-            <h3 data-template-id="review-title" class="canva-text font-bold mb-4" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 19px;">Hasil per soal</h3>       
+          <div id="review-panel" class="hidden mt-8 border-t border-[#d9e8f5] pt-6">        
+            <h3 data-template-id="review-title" class="canva-text font-bold mb-4" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 19px;">Hasil per soal</h3>        
             <ol id="review-list" class="space-y-3"></ol>      
           </div>     
         </section>    
@@ -170,7 +174,6 @@
     </footer>  
   </div>  
   <script>
-    // Urutan jawaban benar menggunakan indeks 0–3.
     const questions = [
       {q:"Apa tujuan utama penerapan standar pada gambar teknik?",o:["Menyeragamkan penyampaian informasi teknik","Memperbanyak hiasan gambar","Menghilangkan kebutuhan ukuran","Mengganti proses pembuatan komponen"],a:0,e:"Standar membuat gambar dapat dipahami secara konsisten oleh perancang, pembuat, dan pemeriksa.",d:"Mudah",t:30,p:10},
       {q:"Apa kepanjangan ISO dalam konteks standardisasi internasional?",o:["International Organization for Standardization","International Office for Sketching","Institute of Structural Objects","International System of Orthography"],a:0,e:"ISO adalah organisasi internasional yang menerbitkan berbagai standar, termasuk standar gambar teknik.",d:"Mudah",t:30,p:10},
@@ -232,10 +235,9 @@
       $("question-progress").textContent = `Soal ${index + 1} dari ${questions.length}`;
       $("difficulty-badge").textContent = `${q.d} · ${q.p} poin`;
       $("question-heading").textContent = q.q;
-      $("score-value").textContent = score;
+      $("answered-value").textContent = index; // Menampilkan jumlah soal yang sudah terjawab
       $("progress-fill").style.width = `${(index + 1) / questions.length * 100}%`;
       $("progress-track").setAttribute("aria-valuenow", String(index + 1));
-      $("feedback").classList.add("hidden");
       $("next-note").classList.add("hidden");
       
       buttons.forEach((button, i) => {
@@ -274,22 +276,23 @@
       locked = true;
       clearInterval(ticker);
       ticker = null;
-      const q = questions[index];
-      const correct = choice === q.a;
-      if (correct) { score += q.p; confetti() }
+      
       answers.push(choice);
       
+      // Menonaktifkan tombol dan memberi sorotan (highlight) murni tanpa evaluasi benar/salah
       buttons.forEach((button, i) => {
         button.disabled = true;
-        if (i === q.a) button.classList.add("correct");
-        else if (i === choice) button.classList.add("wrong");
+        if (i === choice) button.classList.add("selected");
       });
       
-      $("score-value").textContent = score;
-      const title = choice === null ? "Waktu habis — tidak terjawab." : correct ? "Benar!" : "Belum tepat.";
-      $("feedback-title").textContent = title;
-      $("feedback-detail").textContent = `${q.e} Jawaban benar: ${letters[q.a]}. ${q.o[q.a]}.`;
-      $("feedback").className = `mt-6 rounded-2xl p-5 ${correct ? "bg-green-50 text-green-900" : choice === null ? "bg-amber-50 text-amber-950" : "bg-red-50 text-red-900"}`;
+      // Menampilkan indikator lanjut
+      if (choice === null) {
+          $("next-note").textContent = "Waktu habis! Beralih ke soal berikutnya...";
+          $("next-note").className = "mt-6 text-[#991b1b] font-semibold text-center bg-[#fee2e2] p-3 rounded-lg";
+      } else {
+          $("next-note").textContent = "Jawaban disimpan. Beralih ke soal berikutnya...";
+          $("next-note").className = "mt-6 text-[#1764ac] font-semibold text-center bg-[#e4f2ff] p-3 rounded-lg";
+      }
       $("next-note").classList.remove("hidden");
       
       advance = setTimeout(() => {
@@ -297,15 +300,20 @@
         index++;
         if (index === questions.length) showResults();
         else showQuestion();
-      }, 2600);
+      }, 1500); // 1.5 detik transisi
     }
     
     function showResults() {
       clearClocks();
+      
+      // Hitung evaluasi murni di akhir
+      score = answers.reduce((sum, choice, i) => sum + (choice === questions[i].a ? questions[i].p : 0), 0);
       const correct = answers.filter((choice, i) => choice === questions[i].a).length;
       const unanswered = answers.filter(choice => choice === null).length;
       const wrong = questions.length - correct - unanswered;
       const percent = Math.round(score / maxScore * 100);
+      
+      if (percent >= 80) confetti();
       
       $("result-name").textContent = participant.name;
       $("result-nim").textContent = participant.nim;
@@ -316,8 +324,8 @@
       $("result-unanswered").textContent = unanswered;
       $("result-percent").textContent = `${percent}%`;
       $("result-message").textContent = percent >= 80 ? "Selamat! Penguasaan gambar teknikmu sangat baik!" : percent >= 50 ? "Terus semangat! Tinjau kembali materi dan coba tingkatkan skormu." : "Terima kasih telah berpartisipasi. Terus belajar dan jangan menyerah!";
+      
     // --- MULAI KODE KIRIM KE GOOGLE SHEETS ---
-      // Ganti URL di bawah dengan URL Aplikasi Web Google Apps Script Anda
       const scriptURL = 'https://script.google.com/macros/s/AKfycbzx_vgg_ETdAPXH6NdLDyUQSX97PbjB5fhPyEvG14HETQiXkmOcJMfGK64H494vV8nfMA/exec'; 
       const formData = new FormData();
       formData.append('nama', participant.name);
@@ -330,6 +338,7 @@
         .then(response => console.log('Data berhasil disimpan ke Spreadsheet!'))
         .catch(error => console.error('Gagal mengirim data!', error.message));
       // --- SELESAI KODE KIRIM KE GOOGLE SHEETS ---
+      
       const list = $("review-list");
       list.replaceChildren();
       
@@ -397,5 +406,3 @@
   </script> 
 </body>
 </html>
-
-```
