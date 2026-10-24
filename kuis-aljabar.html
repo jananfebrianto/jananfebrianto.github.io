@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -245,24 +244,23 @@
 
     <script>
         // --- BASE MATRICES DEFINITION ---
-        // Carefully selected matrices to ensure integer arithmetic for determinants and inverses.
         const matA = [
             [1, 2, -1],
             [2, 5, 1],
             [3, 6, 2]
-        ]; // Det = 1(10-6) - 2(4-3) - 1(12-15) = 4 - 2 + 3 = 5
+        ]; 
         
         const matB = [
             [1, 1, 2],
             [1, 2, 2],
             [2, 2, 5]
-        ]; // Det = 1(10-4) - 1(5-4) + 2(2-4) = 6 - 1 - 4 = 1
+        ]; 
         
         const matC = [
             [2, 1, 1],
             [4, 3, 5],
             [2, 2, 7]
-        ]; // Det = 2(21-10) - 1(28-10) + 1(8-6) = 22 - 18 + 2 = 6
+        ];
 
         // --- MATH HELPERS ---
         const math = {
@@ -316,7 +314,6 @@
         // --- QUESTION GENERATION LOGIC ---
         let questions = [];
 
-        // Q1: Zero Matrix
         questions.push({
             id: 1, type: 'normal', time: 60,
             title: "Tema Matriks Nol",
@@ -324,7 +321,6 @@
             html: renderMatHTML([[0,0,0],[0,0,0],[0,0,0]], [[0,1,0], [1,0,0], [2,2,0]])
         });
 
-        // Q2: Diagonal Matrix
         questions.push({
             id: 2, type: 'diagonal', time: 60,
             title: "Tema Matriks Diagonal",
@@ -332,7 +328,6 @@
             html: renderMatHTML([['d',0,0],[0,'d',0],[0,0,'d']], [[0,1,0],[0,2,0],[1,0,0],[1,1,'any'],[2,0,0],[2,2,'any']])
         });
 
-        // Q3: Scalar Matrix
         questions.push({
             id: 3, type: 'scalar', time: 60,
             title: "Tema Matriks Skalar",
@@ -340,7 +335,6 @@
             html: renderMatHTML([['s',0,0],[0,'s',0],[0,0,'s']], [[0,0,'scalar'], [0,1,0], [1,0,0], [1,1,'scalar'], [2,2,'scalar']])
         });
 
-        // Q4: Identity Matrix
         questions.push({
             id: 4, type: 'normal', time: 60,
             title: "Tema Matriks Identitas",
@@ -348,7 +342,6 @@
             html: renderMatHTML([[1,0,0],[0,1,0],[0,0,1]], [[0,0,1], [1,0,0], [1,1,1], [2,1,0], [2,2,1]])
         });
 
-        // Q5: Triangular Matrices
         questions.push({
             id: 5, type: 'normal', time: 90,
             title: "Tema Matriks Segitiga",
@@ -365,7 +358,6 @@
             </div>`
         });
 
-        // Helpers for operations
         const ops = [
             { id: 6, m1: matA, m2: matB, name: "A + B", calc: math.add(matA, matB), blanks: [[0,1],[1,1],[2,0],[2,2]] },
             { id: 7, m1: matB, m2: matC, name: "B - C", calc: math.sub(matB, matC), blanks: [[0,0],[1,2],[2,1],[2,2]] },
@@ -385,7 +377,6 @@
             });
         });
 
-        // Q10: A*B != B*A
         let ab = math.mul(matA, matB);
         let ba = math.mul(matB, matA);
         questions.push({
@@ -399,7 +390,6 @@
             </div>`
         });
 
-        // Sarrus Helper
         function genSarrus(id, matName, m) {
             let diag1 = m[0][0]*m[1][1]*m[2][2];
             let diag2 = m[0][1]*m[1][2]*m[2][0];
@@ -426,7 +416,6 @@
         questions.push(genSarrus(12, 'B', matB));
         questions.push(genSarrus(13, 'C', matC));
 
-        // Cofactor Helper
         function genCofactor(id, matName, m) {
             let c11 = math.cofactor(m,0,0);
             let c12 = math.cofactor(m,0,1);
@@ -448,7 +437,6 @@
         questions.push(genCofactor(15, 'B', matB));
         questions.push(genCofactor(16, 'C', matC));
 
-        // Row Reduction helper (Simplified for space: direct to triangular form steps)
         function genRowRed(id, matName, m, stepsHtml, det) {
              return {
                 id: id, type: 'normal', time: 180, refs: true,
@@ -462,25 +450,18 @@
                 </div>`
             };
         }
-        // Specific manual steps for predefined matrices to keep math clean
-        // Mat A: [[1, 2, -1], [2, 5, 1], [3, 6, 2]]
-        // R2-2R1 -> [0, 1, 3], R3-3R1 -> [0, 0, 5]. Det = 1*1*5 = 5.
         questions.push(genRowRed(17, 'A', matA, 
             `<div class="flex items-center space-x-2">
                 <span>R₂ - 2R₁<br>R₃ - 3R₁</span> ➔ 
                 ${renderMatHTML([[1,2,-1],[0,1,3],[0,0,5]], [[1,2,3],[2,2,5]])}
             </div>`, 5
         ));
-        // Mat B: [[1, 1, 2], [1, 2, 2], [2, 2, 5]]
-        // R2-R1 -> [0, 1, 0], R3-2R1 -> [0, 0, 1]. Det = 1.
         questions.push(genRowRed(18, 'B', matB, 
              `<div class="flex items-center space-x-2">
                 <span>R₂ - R₁<br>R₃ - 2R₁</span> ➔ 
                 ${renderMatHTML([[1,1,2],[0,1,0],[0,0,1]], [[1,1,1],[2,2,1]])}
             </div>`, 1
         ));
-        // Mat C: [[2, 1, 1], [4, 3, 5], [2, 2, 7]]
-        // R2-2R1 -> [0,1,3], R3-R1 -> [0,1,6]. R3-R2 -> [0,0,3]. Det = 2*1*3 = 6
         questions.push(genRowRed(19, 'C', matC, 
              `<div class="flex items-center space-x-2">
                 <span>1. R₂ - 2R₁, R₃ - R₁</span> ➔ 
@@ -492,7 +473,6 @@
             </div>`, 6
         ));
 
-        // Transpose Q20-22
         function genTranspose(id, matName, m) {
             let t = math.transpose(m);
             return {
@@ -509,7 +489,6 @@
         questions.push(genTranspose(21, 'B', matB));
         questions.push(genTranspose(22, 'C', matC));
 
-        // Inverse Adjoint Q23-25
         function genInverse(id, matName, m) {
             let adj = math.adjoint(m);
             let det = math.det(m);
@@ -540,10 +519,9 @@
             score: 0,
             timeLeft: 0,
             timerInterval: null,
-            answers: {} // Menyimpan jawaban sementara per soal
+            answers: {} 
         };
 
-        // UI Elements
         const screens = {
             login: document.getElementById('screen-login'),
             instructions: document.getElementById('screen-instructions'),
@@ -552,13 +530,11 @@
         };
         const modal = document.getElementById('custom-modal');
 
-        // Helper: Show Screen
         function showScreen(screenId) {
             Object.values(screens).forEach(s => s.classList.add('hidden'));
             screens[screenId].classList.remove('hidden');
         }
 
-        // Helper: Custom Modal
         function showCustomAlert(title, message) {
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-message').innerText = message;
@@ -568,7 +544,6 @@
             modal.classList.add('hidden');
         }
 
-        // Login Logic
         document.getElementById('login-form').addEventListener('submit', function(e) {
             e.preventDefault();
             gameState.user.name = document.getElementById('user-name').value.trim();
@@ -584,7 +559,6 @@
             showScreen('instructions');
         });
 
-        // Start Quiz
         function startQuiz() {
             gameState.currentIndex = 0;
             gameState.score = 0;
@@ -592,7 +566,6 @@
             gameState.timeLeft = 45 * 60; // 45 menit timer global
             showScreen('quiz');
             
-            // Start Global Timer
             clearInterval(gameState.timerInterval);
             updateTimerUI();
             gameState.timerInterval = setInterval(() => {
@@ -607,15 +580,12 @@
             loadQuestion();
         }
 
-        // Load Question
         function loadQuestion() {
             const q = questions[gameState.currentIndex];
             
-            // Update UI
             document.getElementById('question-counter').innerText = `${gameState.currentIndex + 1} / 25`;
             document.getElementById('question-text').innerHTML = `<span class="block text-sm text-blue-500 mb-1">Soal ${gameState.currentIndex + 1}: ${q.title}</span>${q.text}`;
             
-            // Render References A, B, C if needed
             const refDiv = document.getElementById('reference-matrices');
             if(q.refs) {
                 refDiv.innerHTML = renderStaticMat('A', matA) + renderStaticMat('B', matB) + renderStaticMat('C', matC);
@@ -625,10 +595,8 @@
                 refDiv.innerHTML = '';
             }
 
-            // Render Content
             document.getElementById('question-interactive-area').innerHTML = q.html;
             
-            // Atur Logika Tombol
             const btn = document.getElementById('btn-check');
             btn.className = "text-white font-bold py-3 px-8 rounded-lg shadow-md transition-colors w-full md:w-auto ";
             if (gameState.currentIndex === questions.length - 1) {
@@ -640,12 +608,10 @@
             }
             btn.onclick = processNext;
 
-            // Auto focus first input
             const firstInput = document.querySelector('.ans-input');
             if(firstInput) firstInput.focus();
         }
 
-        // Timer UI Update
         function updateTimerUI() {
             const timeText = document.getElementById('timer-text');
             const circle = document.getElementById('timer-circle');
@@ -654,19 +620,16 @@
             let s = gameState.timeLeft % 60;
             timeText.innerText = `${m}:${s.toString().padStart(2, '0')}`;
             
-            // Circle math: circumference = 226, Total Max = 45 mins (2700s)
             let percent = gameState.timeLeft / 2700;
             let offset = 226 - (percent * 226);
             circle.style.strokeDashoffset = offset;
 
-            // Color changing based on time left
-            if(percent > 0.5) circle.setAttribute('stroke', '#10b981'); // Hijau
-            else if(percent > 0.15) circle.setAttribute('stroke', '#f59e0b'); // Kuning
-            else circle.setAttribute('stroke', '#ef4444'); // Merah
+            if(percent > 0.5) circle.setAttribute('stroke', '#10b981'); 
+            else if(percent > 0.15) circle.setAttribute('stroke', '#f59e0b'); 
+            else circle.setAttribute('stroke', '#ef4444'); 
         }
 
         function processNext() {
-            // Simpan jawaban untuk soal saat ini
             const inputs = document.querySelectorAll('.ans-input');
             let userAnswers = [];
             inputs.forEach(input => {
@@ -677,10 +640,9 @@
             });
             gameState.answers[gameState.currentIndex] = userAnswers;
 
-            // Pindah soal
             gameState.currentIndex++;
             if(gameState.currentIndex >= questions.length) {
-                finishQuiz(false); // Selesai karena semua soal dikerjakan
+                finishQuiz(false); 
             } else {
                 loadQuestion();
             }
@@ -689,7 +651,6 @@
         function finishQuiz(timeOut = false) {
             clearInterval(gameState.timerInterval);
             
-            // Jika waktu habis saat sedang mengerjakan soal, simpan jawaban yang ada di layar
             if(timeOut && gameState.currentIndex < questions.length) {
                 const inputs = document.querySelectorAll('.ans-input');
                 let userAnswers = [];
@@ -703,7 +664,6 @@
                 showCustomAlert("Waktu Habis", "Waktu 45 menit telah selesai. Jawaban Anda akan otomatis diperiksa.");
             }
 
-            // Hitung Skor Akhir (Evaluasi seluruh jawaban tersimpan)
             let totalCorrect = 0;
             for(let i = 0; i < questions.length; i++) {
                 let ansArray = gameState.answers[i];
@@ -722,7 +682,6 @@
                         return;
                     }
 
-                    // Logika validasi khusus (Diagonal, Skalar, dll)
                     if(q.type === 'diagonal' && expected === 'any') {
                         if(isNaN(userVal)) allCorrect = false;
                     } else if(q.type === 'scalar' && expected === 'scalar') {
@@ -749,7 +708,6 @@
             showScreen('summary');
             document.getElementById('final-score').innerText = gameState.score;
             
-            // Menentukan pesan kustom dan trigger confetti
             let title = "Permainan Selesai!";
             let subtitle = "";
             if(gameState.score >= 80) { 
@@ -770,7 +728,20 @@
             document.getElementById('summary-title').innerText = title;
             document.getElementById('summary-subtitle').innerText = subtitle;
 
-            // Proses Rekor Tersimpan di LocalStorage
+            // --- MULAI KODE KIRIM KE GOOGLE SHEETS ---
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwxXjvV4FQn9fOQLfEU6gy5_Rrw02gXia2ckrm6Ur7uMyCMCxa4UIi5YNxkVAb1KfilMA/exec'; 
+            const formData = new FormData();
+            formData.append('nama', gameState.user.name);
+            formData.append('nim', gameState.user.nim);
+            formData.append('kelas', gameState.user.class);
+            formData.append('skor', gameState.score);
+            formData.append('persentase', gameState.score + '%'); 
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => console.log('Data Aljabar Linier berhasil disimpan ke Spreadsheet!'))
+                .catch(error => console.error('Gagal mengirim data!', error.message));
+            // --- SELESAI KODE KIRIM KE GOOGLE SHEETS ---
+
             handleHighScore();
         }
 
@@ -784,7 +755,7 @@
             if(prevRecord) {
                 if(gameState.score > prevRecord.score) {
                     msgEl.innerHTML = `<span class="text-green-600 font-bold">🎉 Rekor Baru!</span> Mengalahkan rekor sebelumnya: ${prevRecord.score}`;
-                    prevRecord.score = gameState.score; // update
+                    prevRecord.score = gameState.score; 
                 } else {
                     msgEl.innerHTML = `<span class="text-red-500 font-bold">Perhatian:</span> Nilai Anda lebih rendah dari sebelumnya (Skor Tertinggi: ${prevRecord.score})`;
                 }
@@ -801,12 +772,9 @@
         }
 
         function resetGameSameUser() {
-            // Keep same user identity, skip login
             showScreen('instructions');
         }
 
     </script>
 </body>
 </html>
-
-
