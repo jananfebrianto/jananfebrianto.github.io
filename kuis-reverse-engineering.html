@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <script>
+    window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20261021-05-123c82d","C":{"Abril Fatface":"YACgEZbkUVE,0","Albert Sans":"YAHO2HRfeh4,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo Black":"YACgEZulLoA,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Baloo 2":"YAHO2IcQUcM,0","Barlow Condensed":"YAFdJljEuFc,0","Barlow":"YAFdJsyuOPM,1","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Cairo":"YAFdtXpDzlQ,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Cinzel":"YACgEeV8bIQ,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Figtree":"YAHO2b-mV7A,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Fredoka":"YACgEZml080,0","Georgia":"YAGzXkO0pEM,0","Hanken Grotesk":"YAHO2VB9G0I,0","Helvetica":"YAFcf7zkXN0,0","IBM Plex Mono":"YAFdJkmvhGI,0","IBM Plex Sans":"YAFdJgT0SHI,0","Impact":"YAFcfnjI7Vk,0","Instrument Sans":"YAHO2bKyaSQ,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Italiana":"YAHO2Toik_w,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Karla":"YAHO2V2NSXM,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Libre Caslon Display":"YAHO2XhLmt0,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Manrope":"YAHO2b2feC4,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Noto Sans JP":"YAFdJiHXlcI,0","Noto Sans KR":"YAGsojZj-RQ,0","Nunito Sans":"YAFdtQJYB9w,1","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Open Sans":"YAFdJt8dAY0,1","Oswald":"YACgEQY10lw,0","Outfit":"YAHO2nVlg14,0","Pacifico":"YADLjORQ1u4,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAHO2gdhi18,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Public Sans":"YAFdJj8NdaU,1","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","STIX Two Text":"YAHO2joycuk,0","Sarabun":"YAFdJssSnME,0","Schibsted Grotesk":"YAHO2sWydRk,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Space Mono":"YADW1-vpsoc,0","Spectral":"YAHO2rVUHIM,0","Times New Roman":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');
+  </script>
+  <script src="/_sdk/05db820ba1544614.telemetry_sdk.js" integrity="sha512-a7JzkQDDcioSXpM61nxTfeRW7PcxWQy5+BrhyeTFmQFsXJ+Gncm0y50u7fTA7qOPegFnRgqCfa0mGUOK1yjDWQ=="></script>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <title>Kuis Forensik Reverse Engineering</title>  
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">  
+  <style>
+    :root {--navy: #12345b; --blue: #1764ac; --pale: #eef7ff; --line: #d9e8f5}
+    * {box-sizing: border-box}
+    body {font-family: Prompt, sans-serif; color: var(--navy); background: #eef7ff}
+    .app-shell {min-height: calc(100 * min(var(--vh, 1vh), 1vh)); display: flex; flex-direction: column; width: 100%; position: relative; isolation: isolate; background: linear-gradient(rgba(238,247,255,.91), rgba(238,247,255,.94)), url("https://images.pexels.com/photos/834892/pexels-photo-834892.jpeg?auto=compress&cs=tinysrgb&w=1920") center/cover fixed}
+    .app-shell:before {content: ""; position: absolute; inset: 0; z-index: -1; opacity: .16; background-image: linear-gradient(rgba(23,100,172,.35) 1px, transparent 1px), linear-gradient(90deg, rgba(23,100,172,.35) 1px, transparent 1px); background-size: 32px 32px; pointer-events: none}
+    .app-shell > * {position: relative; z-index: 1}
+    .surface {background: white; border: 1px solid var(--line); box-shadow: 0 18px 55px rgba(19,64,110,.09)}
+    .action {transition: transform .2s, background-color .2s, box-shadow .2s}
+    .action:hover:not(:disabled) {transform: translateY(-2px); box-shadow: 0 8px 20px rgba(18,67,119,.17)}
+    .action:disabled {cursor: default}
+    :focus-visible {outline: 3px solid #ec9a19!important; outline-offset: 3px}
+    .answer {border: 2px solid #d8e8f7; background: #fff; text-align: left; transition: border-color .18s, background-color .18s, transform .18s, color .18s}
+    .answer:hover:not(:disabled), .answer:focus-visible {border-color: #1764ac; background: #eff7ff; transform: translateY(-2px)}
+    .answer.selected {border-color: #1764ac; background: #e4f2ff; color: #12345b; box-shadow: 0 4px 12px rgba(23,100,172,.15)}
+    .answer:disabled {opacity: 1}
+    .timer-warning {background: #fff0ce!important; color: #854d0e!important}
+    .timer-urgent {background: #fee2e2!important; color: #991b1b!important}
+    .confetti-piece {position: fixed; z-index: 30; pointer-events: none; width: 8px; height: 13px; animation: fall .9s ease-out forwards}
+    @keyframes fall {to {transform: translate(var(--dx), 130px) rotate(540deg); opacity: 0}}
+    @media(prefers-reduced-motion: reduce) {*, *:before, *:after {animation-duration: .01ms!important; transition-duration: .01ms!important; scroll-behavior: auto!important}}
+  </style>  
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>  
+</head> 
+<body data-template-id="__page-root" class="w-full" style="background: rgb(238, 247, 255);">  
+  <div class="app-shell">   
+    <header class="w-full px-4 pt-7 sm:pt-10">    
+      <div class="max-w-4xl mx-auto flex items-center gap-3">     
+        <span class="w-10 h-10 rounded-xl bg-[#1764ac] text-white grid place-items-center font-bold" aria-hidden="true">RE</span> 
+        <span data-template-id="header-brand" class="canva-text font-semibold tracking-wide" style="color: rgb(18, 52, 91); font-weight: 600; font-style: normal; font-size: 16px;">KUIS FORENSIK REVERSE ENGINEERING</span>    
+      </div>   
+    </header>   
+    <main class="flex-1 w-full px-4 py-7 sm:py-10">    
+      <div class="max-w-4xl mx-auto">     
+        
+        <!-- LOGIN SCREEN -->
+        <section id="login-screen" aria-labelledby="page-title" class="surface rounded-[28px] p-6 sm:p-10">      
+          <div class="text-center">        
+            <img data-template-id="opening-logo" class="canva-image block w-full max-w-[500px] h-auto max-h-48 object-contain mx-auto mb-7" loading="lazy" src="https://iili.io/nwSd5mb.jpg" alt="Logo pembuka Kuis RE"> 
+            <span data-template-id="opening-eyebrow" class="canva-tag inline-block px-4 py-2 rounded-full bg-[#e4f2ff] text-[#13558f] font-semibold mb-4" style="background: rgb(228, 242, 255); color: rgb(19, 85, 143); font-weight: 600; font-style: normal; font-size: 16px;">GAME EDUKASI • 50 SOAL</span>        
+            <h1 id="page-title" data-template-id="page-title" class="canva-text font-bold leading-tight mb-3" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 32px;">Kuis Forensik Reverse Engineering</h1>        
+            <p data-template-id="opening-description" class="canva-text text-[#496580] max-w-xl mx-auto leading-relaxed" style="color: rgb(73, 101, 128); font-weight: 400; font-style: normal; font-size: 16px;">Uji pemahamanmu tentang filosofi, metodologi teardown, identifikasi material, dan jejak manufaktur dalam Reverse Engineering!</p>      
+          </div>      
+          <form id="identity-form" class="max-w-lg mx-auto mt-9 space-y-5" novalidate="">        
+            <div>        
+              <label data-template-id="name-label" for="participant-name" class="canva-text block font-semibold mb-2" style="color: rgb(18, 52, 91); font-weight: 600; font-style: normal; font-size: 16px;">Nama lengkap</label> 
+              <input id="participant-name" name="name" autocomplete="name" maxlength="80" required="" class="w-full rounded-xl border border-[#b9d3e9] bg-white px-4 py-3 text-[#12345b] focus:border-[#1764ac]" placeholder="Masukkan nama lengkap">        
+            </div>        
+            <div>        
+              <label data-template-id="nim-label" for="participant-nim" class="canva-text block font-semibold mb-2" style="color: rgb(18, 52, 91); font-weight: 600; font-style: normal; font-size: 16px;">NIM</label> 
+              <input id="participant-nim" name="nim" inputmode="numeric" autocomplete="off" maxlength="24" required="" class="w-full rounded-xl border border-[#b9d3e9] bg-white px-4 py-3 text-[#12345b] focus:border-[#1764ac]" placeholder="Masukkan NIM">        
+            </div>        
+            <div>        
+              <label data-template-id="class-label" for="participant-class" class="canva-text block font-semibold mb-2" style="color: rgb(18, 52, 91); font-weight: 600; font-style: normal; font-size: 16px;">Kelas</label> 
+              <select id="participant-class" name="class" required="" class="w-full rounded-xl border border-[#b9d3e9] bg-white px-4 py-3 text-[#12345b] focus:border-[#1764ac]"> 
+                <option value="">Pilih kelas</option>
+                <option value="Kelas A">Kelas A</option>
+                <option value="Kelas B">Kelas B</option> 
+              </select>        
+            </div>        
+            <p id="form-error" class="hidden rounded-xl bg-red-50 px-4 py-3 text-[#991b1b]" role="alert">Lengkapi nama, NIM berupa angka, dan pilih kelas terlebih dahulu.</p>
+            <button data-template-id="start-button" type="submit" class="canva-button action w-full rounded-xl bg-[#1764ac] px-5 py-4 font-semibold text-white" style="background: rgb(23, 100, 172); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Mulai Kuis →</button>      
+          </form>     
+        </section>     
+        
+        <!-- INSTRUCTIONS SCREEN -->
+        <section id="instructions-screen" aria-labelledby="instructions-title" class="surface rounded-[28px] p-6 sm:p-10 hidden">      
+          <span data-template-id="instructions-eyebrow" class="canva-tag inline-block rounded-full bg-[#e4f2ff] px-4 py-2 text-[#13558f] font-semibold mb-4" style="background: rgb(228, 242, 255); color: rgb(19, 85, 143); font-weight: 600; font-style: normal; font-size: 16px;">SEBELUM MULAI</span>      
+          <h2 id="instructions-title" data-template-id="instructions-title" class="canva-text font-bold mb-3" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 24px;">Petunjuk permainan</h2>      
+          <p id="instructions-participant" class="font-semibold text-[#1764ac] mb-6" aria-live="polite"></p>      
+          <div class="grid sm:grid-cols-2 gap-3 mb-8">        
+            <p data-template-id="instruction-one" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">01 · Jawab 50 soal pilihan ganda. Pilih satu jawaban terbaik untuk setiap soal.</p>        
+            <p data-template-id="instruction-two" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">02 · Waktu per soal: mudah 30 detik, sedang 45 detik, sulit 60 detik.</p>        
+            <p data-template-id="instruction-three" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">03 · Evaluasi jawaban (benar/salah) dan perhitungan skor baru akan dilakukan di akhir permainan.</p>        
+            <p data-template-id="instruction-four" class="canva-card rounded-2xl bg-[#f0f7fe] p-5" style="background: rgb(240, 247, 254); color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;">04 · Jika waktu habis, soal dicatat tidak terjawab dan kuis otomatis berlanjut.</p>      
+          </div>
+          <button data-template-id="play-button" id="play-button" type="button" class="canva-button action w-full sm:w-auto rounded-xl bg-[#1764ac] px-8 py-4 font-semibold text-white" style="background: rgb(23, 100, 172); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Saya Siap, Mulai Bermain →</button>     
+        </section>     
+        
+        <!-- QUIZ SCREEN -->
+        <section id="quiz-screen" aria-labelledby="question-heading" class="hidden">      
+          <div class="surface rounded-[28px] p-5 sm:p-8">        
+            <div class="flex flex-wrap justify-between gap-4 items-center border-b border-[#d9e8f5] pb-5">        
+              <div>          
+                <p data-template-id="quiz-participant-label" class="canva-text text-[#526d87]" style="color: rgb(82, 109, 135); font-weight: 400; font-style: normal; font-size: 16px;">PESERTA</p>          
+                <p id="quiz-participant" class="font-semibold break-words"></p>        
+              </div>        
+              <div class="flex gap-2 flex-wrap">          
+                <div class="rounded-xl bg-[#eaf4ff] px-4 py-2">
+                  <span data-template-id="score-label" class="canva-text text-[#496580]" style="color: rgb(73, 101, 128); font-weight: 400; font-style: normal; font-size: 16px;">Terjawab</span> 
+                  <strong id="answered-value" aria-live="polite">0</strong>          
+                </div>          
+                <div id="timer-box" class="rounded-xl bg-[#eaf4ff] px-4 py-2 font-semibold" role="timer" aria-label="Sisa waktu">
+                  <span aria-hidden="true">⏱ </span>
+                  <span id="time-value">30</span>
+                  <span data-template-id="seconds-label" class="canva-text" style="color: rgb(18, 52, 91); font-weight: 400; font-style: normal; font-size: 16px;"> dtk</span>          
+                </div>        
+              </div>        
+            </div>        
+            <div class="mt-6 flex flex-wrap justify-between items-center gap-2">        
+              <span id="question-progress" class="font-semibold text-[#1764ac]">Soal 1 dari 50</span> 
+              <span id="difficulty-badge" class="rounded-full bg-[#e4f2ff] px-4 py-2 font-semibold text-[#13558f]">Mudah · 10 poin</span>        
+            </div>        
+            <div id="progress-track" class="mt-4 h-3 overflow-hidden rounded-full bg-[#dcecf9]" role="progressbar" aria-label="Progres kuis" aria-valuemin="0" aria-valuemax="50" aria-valuenow="1">        
+              <div id="progress-fill" class="h-full rounded-full bg-[#1764ac] transition-all duration-300" style="width:2%"></div>        
+            </div>        
+            <h2 id="question-heading" class="mt-8 mb-6 font-bold leading-snug" style="font-size:clamp(1.2rem,3vw,1.75rem)"></h2>        
+            <div id="answer-list" class="grid sm:grid-cols-2 gap-3" role="group" aria-label="Pilihan jawaban">        
+              <button type="button" class="answer rounded-2xl p-4 min-h-[76px] font-medium"></button> 
+              <button type="button" class="answer rounded-2xl p-4 min-h-[76px] font-medium"></button> 
+              <button type="button" class="answer rounded-2xl p-4 min-h-[76px] font-medium"></button> 
+              <button type="button" class="answer rounded-2xl p-4 min-h-[76px] font-medium"></button>        
+            </div>        
+            <p id="next-note" class="hidden mt-6 text-[#1764ac] font-semibold text-center bg-[#e4f2ff] p-3 rounded-lg">Jawaban disimpan. Beralih ke soal berikutnya...</p>      
+          </div>     
+        </section>     
+        
+        <!-- RESULTS SCREEN -->
+        <section id="results-screen" aria-labelledby="results-title" class="surface rounded-[28px] p-6 sm:p-10 hidden">      
+          <span data-template-id="result-eyebrow" class="canva-tag inline-block rounded-full bg-[#e4f2ff] px-4 py-2 text-[#13558f] font-semibold mb-4" style="background: rgb(228, 242, 255); color: rgb(19, 85, 143); font-weight: 600; font-style: normal; font-size: 16px;">KUIS SELESAI</span>      
+          <h2 id="results-title" data-template-id="results-title" class="canva-text font-bold mb-2" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 24px;">Hasil permainan</h2>      
+          <p id="result-message" class="font-semibold text-[#1764ac] mb-6" aria-live="polite"></p>      
+          <div class="rounded-2xl bg-[#f0f7fe] p-5 mb-6">        
+            <p><span class="font-semibold">Nama:</span> <span id="result-name"></span></p>        
+            <p><span class="font-semibold">NIM:</span> <span id="result-nim"></span></p>        
+            <p><span class="font-semibold">Kelas:</span> <span id="result-class"></span></p>      
+          </div>      
+          <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 mb-8">        
+            <div class="rounded-2xl bg-[#e5f2ff] p-4">        
+              <p>Skor</p><strong id="result-score" class="text-2xl"></strong>        
+            </div>        
+            <div class="rounded-2xl bg-[#e6f8ec] p-4">        
+              <p>Benar</p><strong id="result-correct" class="text-2xl"></strong>        
+            </div>        
+            <div class="rounded-2xl bg-[#fff0ee] p-4">        
+              <p>Salah</p><strong id="result-wrong" class="text-2xl"></strong>        
+            </div>        
+            <div class="rounded-2xl bg-[#fff5df] p-4">        
+              <p>Tidak dijawab</p><strong id="result-unanswered" class="text-2xl"></strong>        
+            </div>        
+            <div class="rounded-2xl bg-[#e5f2ff] p-4">        
+              <p>Persentase</p><strong id="result-percent" class="text-2xl"></strong>        
+            </div>      
+          </div>      
+          <div class="flex flex-wrap gap-3">        
+            <button id="review-button" data-template-id="review-button" type="button" aria-expanded="false" aria-controls="review-panel" class="canva-button action rounded-xl border-2 border-[#1764ac] bg-white px-6 py-3 font-semibold text-[#13558f]" style="background: rgb(255, 255, 255); color: rgb(19, 85, 143); font-weight: 600; font-style: normal; font-size: 16px;">Tinjau Hasil</button> 
+            <button id="restart-button" data-template-id="restart-button" type="button" class="canva-button action rounded-xl bg-[#1764ac] px-6 py-3 font-semibold text-white" style="background: rgb(23, 100, 172); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Main Lagi</button>      
+          </div>      
+          <div id="review-panel" class="hidden mt-8 border-t border-[#d9e8f5] pt-6">        
+            <h3 data-template-id="review-title" class="canva-text font-bold mb-4" style="color: rgb(18, 52, 91); font-weight: 700; font-style: normal; font-size: 19px;">Hasil per soal</h3>        
+            <ol id="review-list" class="space-y-3"></ol>      
+          </div>     
+        </section>    
+      </div>   
+    </main>   
+    <footer class="w-full px-4 pb-7 text-center">    
+      <p data-template-id="footer-credit" class="canva-text text-[#496580] leading-relaxed" style="color: rgb(73, 101, 128); font-weight: 400; font-style: normal; font-size: 16px;">© 2026 Dikembangkan Oleh Ir. Ahmad Janan Febrianto, S.T., M.Eng</p>   
+    </footer>  
+  </div>  
+  <script>
+    const questions = [
+      {q:"Perbedaan utama antara pembongkaran naluriah dengan pembongkaran keteknikan (engineering) adalah...", o:["Naluriah mencari cara menjual produk, keteknikan mencari cara menirunya","Naluriah bertanya 'Apa ini?', keteknikan bertanya 'Mengapa dan bagaimana?'","Naluriah menggunakan alat berat, keteknikan menggunakan alat digital","Naluriah oleh insinyur, keteknikan oleh ilmuwan"], a:1, e:"Pembongkaran keteknikan adalah observasi berpandu untuk menjawab 'Mengapa dibuat seperti ini? Material apa yang digunakan? Bagaimana cara manufakturnya?'", d:"Mudah", t:30, p:10},
+      {q:"Dalam konsep 'Kotak Hitam' (Black Box), apa yang coba dipetakan oleh seorang Reverse Engineer?", o:["Harga pokok produksi dari produk tersebut","Nama desainer asli dari produk tersebut","Transformasi energi, material, dan informasi di dalam produk","Strategi pemasaran kompetitor"], a:2, e:"Reverse Engineer memetakan transformasi energi, material, dan informasi untuk membuat sistem terpetakan yang transparan.", d:"Mudah", t:30, p:10},
+      {q:"Proses pengembangan produk yang dimulai dari hasil akhir untuk menelusuri mundur metode pemecahan masalahnya disebut...", o:["Forward Engineering","Value Engineering","Reverse Engineering","Biomimikri"], a:2, e:"Reverse Engineering adalah backward problem-solving dari produk fisik ke deduksi prinsip.", d:"Mudah", t:30, p:10},
+      {q:"Menurut Robert W. Messler, apa langkah pertama dan paling krusial dalam prosedur Reverse Engineering?", o:["Menyiapkan alat ukur 3D Scanner","Menghancurkan produk untuk melihat bagian dalamnya","Mengidentifikasi dan menetapkan tujuan pembongkaran","Menggambar sketsa produk secara detail"], a:2, e:"Langkah 1 yang krusial adalah Identifikasi Tujuan, yaitu menentukan motivasi utama pembongkaran tersebut.", d:"Mudah", t:30, p:10},
+      {q:"Apa yang dimaksud dengan bahaya 'Meniru Desain Sang Bodoh' dalam Reverse Engineering?", o:["Menggunakan produk yang salah untuk dibongkar","Menyalin tanpa analisis, sehingga ikut menyalin kesalahan dari desainer aslinya","Menggunakan alat ukur yang tidak dikalibrasi","Membongkar produk tanpa izin paten"], a:1, e:"Menyalin tanpa analisis berarti menyalin kesalahan, kelemahan, dan kompromi buruk dari desainer aslinya.", d:"Mudah", t:30, p:10},
+      {q:"Jika Reverse Engineering digunakan sebagai 'Tongkat Penopang' (The Crutch), apa hasil akhirnya?", o:["Inovasi yang sangat cepat","Wawasan mendalam tentang warisan desain","Mimikri tanpa berpikir (mindless mimicry) dan stagnasi inovasi","Penurunan biaya produksi secara drastis"], a:2, e:"Sebagai penopang, RE bertujuan untuk jalan pintas yang menghasilkan mimikri tanpa berpikir dan stagnasi inovasi.", d:"Mudah", t:30, p:10},
+      {q:"Menganalisis produk kompetitor secara etis untuk memahami standar industri dan mengidentifikasi peluang peningkatan disebut...", o:["Biomimikri","Failure Analysis","Remanufacture","Benchmarking Kompetitif"], a:3, e:"Benchmarking Kompetitif adalah menganalisis produk kompetitor untuk memahami standar dan mengidentifikasi peluang peningkatan.", d:"Mudah", t:30, p:10},
+      {q:"Menginvestigasi anatomi alami dari makhluk hidup untuk diaplikasikan pada rekayasa biomedis termasuk ruang lingkup RE bidang...", o:["Perangkat Keras & Mekanisme","Sistem Perangkat Lunak","Sistem Biologis","Substansi Kimia"], a:2, e:"Sistem Biologis mencakup menganalisis anatomi alami untuk rekayasa biomedis.", d:"Mudah", t:30, p:10},
+      {q:"Tujuan utama dari Value / Production Engineering melalui Reverse Engineering adalah...", o:["Menurunkan biaya produksi (DFMA) dan mengoptimalkan desain suku cadang","Menggugat perusahaan kompetitor","Mencari tahu komposisi kimia material alam","Menciptakan ulang komponen usang"], a:0, e:"Value Engineering bertujuan menurunkan biaya produksi, mempercepat perakitan, dan mengoptimalkan desain.", d:"Mudah", t:30, p:10},
+      {q:"Dalam siklus rekayasa berkelanjutan, peran Reverse Engineering adalah...", o:["Menciptakan iterasi produk yang baru dari ruang kosong","Mempelajari dan mengungkap rahasia desain dari produk di pasar","Memasarkan produk ke konsumen akhir","Menghentikan inovasi produk lama"], a:1, e:"Reverse Engineering berfungsi untuk mempelajari dan mengungkap rahasia desain masa lalu sebagai referensi masa depan.", d:"Mudah", t:30, p:10},
+      {q:"Perbedaan utama antara proses Destruction (Penghancuran) dan Dissection (Pembedahan) adalah...", o:["Destruction menggunakan alat canggih, Dissection menggunakan alat manual","Destruction menghasilkan peta komprehensif, Dissection tumpukan part","Destruction menghilangkan informasi spasial/fungsional, Dissection observasi sistematis","Destruction hanya pada logam, Dissection pada plastik"], a:2, e:"Destruction fokus tanpa rencana yang menghilangkan informasi fungsional, sedangkan Dissection adalah pembedahan sistematis.", d:"Sedang", t:45, p:15},
+      {q:"Dalam Matriks Protokol Teardown, deteksi jejak manufaktur (parting lines, ejector pins) dilakukan pada tahap...", o:["Observasi & Pengukuran","Pembedahan Terarah","Dokumentasi","Identifikasi Komponen"], a:3, e:"Deteksi jejak manufaktur berada pada tahap ke-4 yaitu Identifikasi Komponen.", d:"Sedang", t:45, p:15},
+      {q:"Prosedur Subtract-and-Operate (SOP) digunakan dalam Reverse Engineering untuk...", o:["Menghitung jumlah baut dalam perakitan","Memahami fungsi absolut komponen dengan melepasnya dan melihat apa yang gagal","Membersihkan komponen dari pelumas","Mengukur dimensi luar rangka utama"], a:1, e:"SOP digunakan untuk mendeduksi fungsi dengan cara membongkar satu komponen dan melihat kegagalan apa yang terjadi.", d:"Sedang", t:45, p:15},
+      {q:"Syarat teknis sangat penting saat melakukan Fotografi Serial dalam dokumentasi forensik RE adalah...", o:["Kamera smartphone resolusi terendah","Foto hanya dari satu sudut pandang ortogonal","Selalu menyertakan skala referensi (penggaris/koin) dalam frame","Menggunakan cahaya yang sangat redup"], a:2, e:"Aturan teknis fotografi serial adalah selalu menyertakan skala referensi dalam frame.", d:"Sedang", t:45, p:15},
+      {q:"Alat dokumentasi apa yang paling tepat menangkap geometri kompleks beralur, atau bentuk freeform?", o:["Jangka sorong (Caliper)","Fotografi Serial","Sketsa tangan","Pemindaian 3D (3D Scanning)"], a:3, e:"Pemindaian 3D sangat cocok untuk geometri kompleks beralur, freeform, atau permukaan organik.", d:"Sedang", t:45, p:15},
+      {q:"Dalam pemetaan Force Flow, titik di mana gaya melewati dua komponen yang bergerak satu sama lain disebut...", o:["Sumber (Source)","Gerak Relatif (R)","Output","Transmisi"], a:1, e:"Gerak Relatif (R) adalah titik di mana gaya melewati dua komponen yang saling bergerak.", d:"Sedang", t:45, p:15},
+      {q:"Komponen yang berada pada fase 'Transmisi' dalam diagram Force Flow memiliki karakteristik...", o:["Mentransfer beban tanpa gerak relatif dan menjadi kandidat konsolidasi (digabung)","Mengubah energi menjadi panas","Bergerak berlawanan arah satu sama lain","Titik masuknya energi listrik"], a:0, e:"Komponen transmisi memindahkan beban tanpa gerak relatif, cocok untuk digabung menjadi satu part.", d:"Sedang", t:45, p:15},
+      {q:"Salah satu kriteria pemilihan objek produk yang BURUK untuk proyek RE adalah...", o:["Peralatan rumah tangga mekanis","Benda yang mengandung logam dan polimer","Baterai Li-ion tersegel atau layar tabung tegangan tinggi","Power tools atau pompa angin"], a:2, e:"Baterai tersegel tegangan tinggi berbahaya dan tidak memenuhi kriteria aksesibilitas/keamanan.", d:"Sedang", t:45, p:15},
+      {q:"Pada langkah 'THINK' dalam metode Look-Think-Link, seorang insinyur harus...", o:["Mendokumentasikan komponen sebelum dibongkar","Menggunakan prosedur Subtract-and-Operate (SOP) dan membuat pemetaan Force Flow","Mencari garis belah cetakan","Mengukur komponen dengan mikrometer"], a:1, e:"Langkah THINK mencakup deduksi fungsi (SOP) dan membuat pemetaan Force Flow.", d:"Sedang", t:45, p:15},
+      {q:"Menghubungkan bukti fisik (seperti garis konsentris) dengan metode manufakturnya (Spinning) adalah bagian langkah...", o:["LOOK","THINK","LINK","SCAN"], a:2, e:"Langkah LINK adalah menghubungkan temuan bukti fisik dengan metode manufaktur tertentu.", d:"Sedang", t:45, p:15},
+      {q:"Menguji material dengan membandingkan beratnya terhadap volume yang sama dari baja disebut pengujian sensorik...", o:["Akustik (Ring)","Bobot (Heft)","Kekerasan (Scratch Test)","Suhu (Coolness)"], a:1, e:"Metode Bobot (Heft) digunakan untuk mengetahui densitas material relatif terhadap baja.", d:"Sedang", t:45, p:15},
+      {q:"Benda diketuk dan menghasilkan nada dering yang jelas, material tersebut kemungkinan besar memiliki...", o:["Modulus elastisitas yang rendah","Struktur berupa polimer plastik","Modulus elastisitas tinggi (keras dan kaku)","Cacat produksi internal"], a:2, e:"Logam kaku (modulus elastisitas tinggi) menghasilkan nada dering jelas saat diketuk.", d:"Sedang", t:45, p:15},
+      {q:"Berdasarkan pengujian sensorik suhu, material apa yang akan terasa paling dingin saat disentuh?", o:["Polimer/Plastik","Kayu","Aluminium dan Tembaga","Keramik"], a:2, e:"Aluminium dan tembaga mengekstraksi panas dari tangan lebih cepat, sehingga terasa lebih dingin.", d:"Sedang", t:45, p:15},
+      {q:"Pada teko air, paduan aluminium murni dipilih sebagai material karena...", o:["Tahan terhadap goresan tajam","Konduktivitas termalnya yang tinggi untuk transfer panas","Sifatnya yang sangat magnetik","Warnanya yang transparan"], a:1, e:"Aluminium sangat baik menghantarkan panas dari pelat pemanas teko.", d:"Sedang", t:45, p:15},
+      {q:"Pengujian Scratch Test dapat membedakan baja karbon tinggi dengan aluminium murni karena...", o:["Baja mudah tergores, aluminium menolak goresan","Baja karbon tinggi menolak goresan obeng, aluminium murni mudah tergores","Keduanya akan hancur jika digores","Keduanya berubah warna saat digores"], a:1, e:"Baja karbon tinggi jauh lebih keras dan menolak goresan dibandingkan aluminium murni.", d:"Sedang", t:45, p:15},
+      {q:"Ciri-ciri sensorik material paduan aluminium (AA1100) adalah berikut, KECUALI...", o:["Massa jenis rendah (ringan)","Magnetik (menempel pada magnet)","Menghantarkan suhu dengan cepat","Berwarna putih keperakan"], a:1, e:"Aluminium murni maupun paduannya diidentifikasi memiliki sifat non-magnetik.", d:"Sedang", t:45, p:15},
+      {q:"Ujung nozzle Leaf Blower dirancang menggunakan material...", o:["Termoplastik biasa","Lembaran baja","Polimer thermosetting khusus yang sangat keras dan tahan aus","Karet silikon fleksibel"], a:2, e:"Karena sering bergesekan dengan aspal, ujung nozzle memakai thermoset keras yang tahan abrasi.", d:"Sedang", t:45, p:15},
+      {q:"Bukti fisik berupa Parting Lines (Garis Belah) pada plastik mengindikasikan metode manufaktur...", o:["Pemesinan Bubut (Turning)","Cetak Injeksi (Injection Molding)","Pemotongan Lembaran (Blanking)","Spin Forming"], a:1, e:"Garis belah (Parting Lines) membuktikan komponen dibuat dengan Injection Molding.", d:"Sedang", t:45, p:15},
+      {q:"Adanya tonjolan silindris kecil pada permukaan dalam komponen plastik biasanya merupakan...", o:["Tanda pin ejektor (ejector pin marks) sisa pelepasan cetakan","Kesalahan desain","Bekas pahat potong","Titik injeksi lem"], a:0, e:"Tanda pin ejektor menunjukkan bekas alat yang mendorong komponen keluar dari cetakan injeksi.", d:"Sedang", t:45, p:15},
+      {q:"Guratan melingkar (circumferential ridges) di tepi benda logam adalah jejak proses...", o:["Injection molding","Blanking & Stamping","Pengecoran Pasir","Pembentukan Putar Dingin (Spin Forming)"], a:3, e:"Spin forming menghasilkan jejak logam ditarik berputar sehingga meninggalkan garis konsentris.", d:"Sedang", t:45, p:15},
+      {q:"Sisa material berlebih atau sirip yang menonjol pada celah cetakan disebut sebagai...", o:["Burr","Flash (Kilatan)","Ejector pin","Ribs"], a:1, e:"Flash menunjukkan sisa material berlebih akibat kebocoran material cair pada celah cetakan.", d:"Sedang", t:45, p:15},
+      {q:"Burr atau tepian tajam yang kasar pada logam lembaran mengindikasikan proses...", o:["Cetak Injeksi","Pemotongan Logam Lembaran (Blanking/Stamping)","Die Casting","Metalurgi Serbuk"], a:1, e:"Proses pemotongan (shearing) sering meninggalkan burr tajam di tepi logam.", d:"Sedang", t:45, p:15},
+      {q:"Paku keling (rivets) tumpul di bagian bawah mesin pembuat kopi menunjukkan bahwa paku tersebut...", o:["Dicor bersamaan dengan pelat","Mengalami deformasi plastis (upset) untuk dikunci secara permanen","Direkatkan dengan lem super","Dipotong mesin CNC"], a:1, e:"Upsetting adalah deformasi plastis yang mengunci rivet permanen di tempatnya.", d:"Sedang", t:45, p:15},
+      {q:"Ujung gigi gergaji tampak jauh lebih gelap daripada badannya tanpa bekas las. Ini adalah bukti proses...", o:["Pengecatan ujung gergaji","Penyambungan gigi dengan metode las","Perlakuan Panas Lokal (Induction Quenching)","Pengkaratan akibat usia"], a:2, e:"Perubahan warna radikal lokal menunjukkan proses pemanasan dan pendinginan cepat (quenching).", d:"Sedang", t:45, p:15},
+      {q:"Tujuan utama gigi gergaji di-quench hingga menjadi struktur Martensite adalah...", o:["Agar gigi lentur dan tidak patah","Agar menjadi sangat keras dan tahan aus","Mengurangi berat keseluruhan","Agar tidak menghantarkan listrik"], a:1, e:"Struktur martensite memberikan tingkat kekerasan tinggi yang tahan aus untuk memotong.", d:"Sedang", t:45, p:15},
+      {q:"Kerumitan geometri lubang tengah dan detail huruf timbul tanpa bekas potong mesin menunjukkan proses...", o:["Stamping pelat tipis","Powder Metallurgy (Pemrosesan Serbuk Logam)","Pembubutan","Pengelasan"], a:1, e:"Kerumitan internal dan detail huruf yang dicetak akurat tanpa permesinan adalah ciri metalurgi serbuk.", d:"Sulit", t:60, p:20},
+      {q:"Garis aliran material (Flow lines) pada plastik cetakan atau tempa logam menunjukkan...", o:["Titik pelepasan cetakan","Arah aliran material dan potensi titik kelemahan struktural","Harga komponen mahal","Ketahanan terhadap api"], a:1, e:"Flow lines menunjukkan bagaimana tegangan terkumpul yang dapat menjadi titik kelemahan struktural.", d:"Sulit", t:60, p:20},
+      {q:"Jaringan rusuk penguat (stiffeners/ribs) pada casing Leaf Blower berfungsi untuk...", o:["Mempercantik tampilan interior","Menambah berat agar stabil","Memberikan ketahanan benturan (impact resistance) tinggi tanpa menambah berat material padat","Mengalirkan listrik statis"], a:2, e:"Rusuk penguat (stiffeners) memberikan rigiditas tinggi secara efisien dengan massa rendah.", d:"Sulit", t:60, p:20},
+      {q:"Jika permukaan sebuah komponen logam terlihat kasar seperti butiran pasir, metode manufakturnya adalah...", o:["Precision Die Casting","Sand Casting (Pengecoran Pasir)","Injection Molding","Spin Forming"], a:1, e:"Pengecoran menggunakan cetakan pasir (sand casting) mentransfer tekstur kasar ke permukaan produk.", d:"Sulit", t:60, p:20},
+      {q:"Tujuan utama dari proses pengukuran dimensi dalam Reverse Engineering adalah...", o:["Mendapatkan angka acak untuk digambar","Menerjemahkan niat awal desainer (designer's intent) ke dalam data digital yang dapat direproduksi","Mencari kesalahan desainer","Memperkirakan harga jual produk"], a:1, e:"Pengukuran bertujuan menemukan maksud desainer awal (designer's intent) dan toleransinya.", d:"Sulit", t:60, p:20},
+      {q:"Keunggulan utama alat ukur mekanik (jangka sorong/mikrometer) dibandingkan 3D Scanner adalah...", o:["Cepat merekam jutaan titik","Sangat akurat dan ideal pada fitur standar/sederhana (permukaan datar, lubang)","Mudah mengukur free-form","Bisa membaca objek transparan dengan mudah"], a:1, e:"Alat mekanik memberikan tingkat kepresisian absolut tinggi pada fitur geometri standar.", d:"Sulit", t:60, p:20},
+      {q:"Tantangan utama saat menggunakan Pemindai 3D (3D Scanner) adalah...", o:["Waktu akuisisi data lambat","Tidak bisa mengukur lengkungan free-form","Kesulitan membaca permukaan mengkilap (reflective), transparan, atau celah internal yang dalam","Membutuhkan sentuhan fisik kuat"], a:2, e:"Scanner optik sulit menangkap pantulan kaca, warna mengkilap, dan area yang terhalang dari pandangan (line-of-sight).", d:"Sulit", t:60, p:20},
+      {q:"Sebelum mengukur dimensi individual, apa yang wajib dilakukan saat membuat Exploded View?", o:["Membersihkan komponen dengan bahan kimia","Menyusun setiap part sesuai tata letak spasial dan hierarki urutan pemasangan aslinya","Mengecat komponen","Menghancurkan komponen tidak penting"], a:1, e:"Layout rakitan harus dibuat dulu untuk mencatat relasi antar komponen (hierarki dan interaksi).", d:"Sulit", t:60, p:20},
+      {q:"Plastik injeksi memiliki kemiringan (draft angles). Strategi pengukurannya adalah...", o:["Asumsikan lurus 90 derajat","Ukur ketebalan di beberapa titik untuk mendeteksi kemiringan, dan hindari ejector marks","Gunakan batas ejector pin sebagai datum","Abaikan dimensi kemiringannya"], a:1, e:"Ukur di banyak titik untuk membedakan antara permukaan datar fungsi dan bidang miring untuk lepas cetakan.", d:"Sulit", t:60, p:20},
+      {q:"Pengukuran kedalaman cekungan dudukan baut (counterbore) pada Mounting Flange harus...", o:["Diukur dari sisi luar secara sembarang","Diukur kedalamannya dari satu permukaan referensi (datum) yang sama secara konsisten","Dipotong mesin","Digunakan scanner"], a:1, e:"Penggunaan datum/referensi dasar yang konsisten menghindari rantai penumpukan kesalahan dimensi.", d:"Sulit", t:60, p:20},
+      {q:"Mengukur ketebalan benda hasil Spin Forming dengan jangka sorong datar sering kali salah. Alat yang disarankan adalah...", o:["Meteran pita","Mikrometer dengan landasan bulat (spherical anvil)","Penggaris besi","Mikroskop"], a:1, e:"Landasan bulat mampu menyentuh permukaan kelengkungan cekung bagian dalam secara presisi.", d:"Sulit", t:60, p:20},
+      {q:"Pada perakitan komponen yang dipaksa masuk (press-fit), Anda harus memperhatikan bahwa...", o:["Diameter dalam casing harus lebih besar dari motor","Diameter dalam harus persis sama nilainya dengan diameter motor luar","Diameter dalam (ID) penyangga casing terukur sedikit lebih kecil dari luar (OD) badan motor","Ukurannya bebas"], a:2, e:"Suaian sesak membutuhkan diameter lubang yang sengaja dibuat lebih kecil (negative clearance).", d:"Sulit", t:60, p:20},
+      {q:"Mengapa Parting Lines (Garis Belah) atau Flashing TIDAK BOLEH dijadikan titik referensi pengukuran (datum)?", o:["Karena dimensinya sering meleset (variabel) di area cetakan, dan flashing adalah cacat material","Karena garisnya memiliki sudut 90 derajat sempurna","Membuat alat ukur rusak","Hanya ada pada baja"], a:0, e:"Garis perpisahan cetakan rentan terhadap ketidaksejajaran, sehingga geometrinya tidak bisa diandalkan sebagai nol.", d:"Sulit", t:60, p:20},
+      {q:"Jika ditemukan cacat flashing berlebih pada produk yang dibongkar, cara memodelkannya di CAD adalah...", o:["Digambar detail mengikuti cacatnya","Flashing diabaikan dan dibuang dari model akhir karena cacat bukan bagian designer's intent","Di-scan agar cacat tersebut ada di CAD final","Dihitung dimensinya secara spesifik"], a:1, e:"CAD akhir harus merepresentasikan desain asli yang ideal, bukan hasil manufaktur yang cacat.", d:"Sulit", t:60, p:20},
+      {q:"Data yang harus diisi di Laporan Dokumentasi RE (sebelum menuju CAD) meliputi hal berikut, KECUALI...", o:["Identifikasi Material & Metode Manufaktur Target","Tabel Dimensi Kritis (Datum X, Y, Z)","Jejak Geometri terdeteksi (seperti pin ejektor)","Harga eceran komponen di toko onderdil"], a:3, e:"Harga onderdil tidak berkaitan dengan rekonstruksi informasi teknis dan geometris ke dalam CAD.", d:"Sulit", t:60, p:20}
+    ];
+    
+    const $ = id => document.getElementById(id);
+    const screens = ["login-screen", "instructions-screen", "quiz-screen", "results-screen"];
+    const buttons = [...document.querySelectorAll(".answer")];
+    const letters = ["A", "B", "C", "D"];
+    const maxScore = questions.reduce((sum, q) => sum + q.p, 0);
+    let participant = null, index = 0, score = 0, answers = [], remaining = 0, ticker = null, advance = null, locked = false;
+    
+    function showScreen(id) {
+      screens.forEach(screen => $(screen).classList.toggle("hidden", screen !== id));
+      window.scrollTo({top: 0, behavior: "instant"});
+    }
+    
+    function clearClocks() {
+      clearInterval(ticker);
+      clearTimeout(advance);
+      ticker = null;
+      advance = null
+    }
+    
+    function renderTimer() {
+      $("time-value").textContent = remaining;
+      $("timer-box").classList.toggle("timer-warning", remaining <= 10 && remaining > 5);
+      $("timer-box").classList.toggle("timer-urgent", remaining <= 5);
+      $("timer-box").setAttribute("aria-label", `Sisa waktu ${remaining} detik`);
+    }
+    
+    function showQuestion() {
+      clearClocks();
+      locked = false;
+      const q = questions[index];
+      remaining = q.t;
+      $("question-progress").textContent = `Soal ${index + 1} dari ${questions.length}`;
+      $("difficulty-badge").textContent = `${q.d} · ${q.p} poin`;
+      $("question-heading").textContent = q.q;
+      $("answered-value").textContent = index; 
+      $("progress-fill").style.width = `${(index + 1) / questions.length * 100}%`;
+      $("progress-track").setAttribute("aria-valuenow", String(index + 1));
+      $("next-note").classList.add("hidden");
+      
+      buttons.forEach((button, i) => {
+        button.textContent = `${letters[i]}. ${q.o[i]}`;
+        button.disabled = false;
+        button.className = "answer rounded-2xl p-4 min-h-[76px] font-medium";
+        button.setAttribute("aria-label", `Jawaban ${letters[i]}: ${q.o[i]}`);
+      });
+      
+      renderTimer();
+      
+      ticker = setInterval(() => {
+        remaining = Math.max(0, remaining - 1);
+        renderTimer();
+        if (remaining === 0) resolveAnswer(null);
+      }, 1000);
+    }
+    
+    function confetti() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const colors = ["#1764ac", "#16a34a", "#f4b942"];
+      for (let i = 0; i < 16; i++) {
+        const piece = document.createElement("span");
+        piece.className = "confetti-piece";
+        piece.style.left = `${35 + Math.random() * 30}%`;
+        piece.style.top = "36%";
+        piece.style.background = colors[i % colors.length];
+        piece.style.setProperty("--dx", `${(Math.random() - .5) * 300}px`);
+        document.body.append(piece);
+        setTimeout(() => piece.remove(), 1000);
+      }
+    }
+    
+    function resolveAnswer(choice) {
+      if (locked) return;
+      locked = true;
+      clearInterval(ticker);
+      ticker = null;
+      
+      answers.push(choice);
+      
+      buttons.forEach((button, i) => {
+        button.disabled = true;
+        if (i === choice) button.classList.add("selected");
+      });
+      
+      if (choice === null) {
+          $("next-note").textContent = "Waktu habis! Beralih ke soal berikutnya...";
+          $("next-note").className = "mt-6 text-[#991b1b] font-semibold text-center bg-[#fee2e2] p-3 rounded-lg";
+      } else {
+          $("next-note").textContent = "Jawaban disimpan. Beralih ke soal berikutnya...";
+          $("next-note").className = "mt-6 text-[#1764ac] font-semibold text-center bg-[#e4f2ff] p-3 rounded-lg";
+      }
+      $("next-note").classList.remove("hidden");
+      
+      advance = setTimeout(() => {
+        advance = null;
+        index++;
+        if (index === questions.length) showResults();
+        else showQuestion();
+      }, 1500); 
+    }
+    
+    function showResults() {
+      clearClocks();
+      
+      score = answers.reduce((sum, choice, i) => sum + (choice === questions[i].a ? questions[i].p : 0), 0);
+      const correct = answers.filter((choice, i) => choice === questions[i].a).length;
+      const unanswered = answers.filter(choice => choice === null).length;
+      const wrong = questions.length - correct - unanswered;
+      const percent = Math.round(score / maxScore * 100);
+      
+      if (percent >= 80) confetti();
+      
+      $("result-name").textContent = participant.name;
+      $("result-nim").textContent = participant.nim;
+      $("result-class").textContent = participant.className;
+      $("result-score").textContent = `${score}/${maxScore}`;
+      $("result-correct").textContent = correct;
+      $("result-wrong").textContent = wrong;
+      $("result-unanswered").textContent = unanswered;
+      $("result-percent").textContent = `${percent}%`;
+      $("result-message").textContent = percent >= 80 ? "Selamat! Penguasaan materi Reverse Engineering Anda sangat baik!" : percent >= 50 ? "Terus semangat! Tinjau kembali materi keteknikan dan tingkatkan skormu." : "Terima kasih telah berpartisipasi. Terus pelajari filosofi RE!";
+      
+      // CATATAN: Jika Anda membuat Google Sheet khusus untuk nilai RE ini,
+      // ubah tautan URL script Google App Script-nya di bawah ini.
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzx_vgg_ETdAPXH6NdLDyUQSX97PbjB5fhPyEvG14HETQiXkmOcJMfGK64H494vV8nfMA/exec'; 
+      const formData = new FormData();
+      formData.append('nama', participant.name);
+      formData.append('nim', participant.nim);
+      formData.append('kelas', participant.className);
+      formData.append('skor', score);
+      formData.append('persentase', percent + '%');
+
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => console.log('Data berhasil disimpan ke Spreadsheet!'))
+        .catch(error => console.error('Gagal mengirim data!', error.message));
+      
+      const list = $("review-list");
+      list.replaceChildren();
+      
+      questions.forEach((q, i) => {
+        const choice = answers[i];
+        const item = document.createElement("li");
+        item.className = "rounded-xl border border-[#d9e8f5] bg-[#f8fbff] p-4";
+        const heading = document.createElement("p");
+        heading.className = "font-semibold";
+        heading.textContent = `${i + 1}. ${q.q}`;
+        const detail = document.createElement("p");
+        detail.className = "mt-1 text-[#496580]";
+        detail.textContent = `${choice === null ? "Tidak terjawab" : choice === q.a ? "Benar" : "Salah"} · Jawabanmu: ${choice === null ? "—" : letters[choice] + ". " + q.o[choice]} · Kunci: ${letters[q.a]}. ${q.o[q.a]}`;
+        
+        // Menampilkan penjelasan ekstra untuk materi keteknikan (opsional, sangat baik untuk pembelajaran)
+        const expl = document.createElement("p");
+        expl.className = "mt-2 text-sm text-[#1764ac] bg-[#eaf4ff] p-2 rounded";
+        expl.innerHTML = `<strong>Penjelasan:</strong> ${q.e}`;
+        
+        item.append(heading, detail, expl);
+        list.append(item);
+      });
+      
+      $("review-panel").classList.add("hidden");
+      $("review-button").setAttribute("aria-expanded", "false");
+      showScreen("results-screen");
+    }
+    
+    $("identity-form").addEventListener("submit", event => {
+      event.preventDefault();
+      const name = $("participant-name").value.trim();
+      const nim = $("participant-nim").value.trim();
+      const className = $("participant-class").value;
+      
+      if (!name || !/^[0-9]+$/.test(nim) || !["Kelas A", "Kelas B"].includes(className)) {
+        $("form-error").classList.remove("hidden");
+        (!name ? $("participant-name") : !/^[0-9]+$/.test(nim) ? $("participant-nim") : $("participant-class")).focus();
+        return;
+      }
+      
+      $("form-error").classList.add("hidden");
+      participant = {name, nim, className};
+      $("instructions-participant").textContent = `${name} · ${className}`;
+      $("quiz-participant").textContent = `${name} · ${className}`;
+      showScreen("instructions-screen");
+    });
+    
+    $("play-button").addEventListener("click", () => {
+      index = 0; score = 0; answers = [];
+      showScreen("quiz-screen");
+      showQuestion();
+    });
+    
+    buttons.forEach((button, i) => button.addEventListener("click", () => resolveAnswer(i)));
+    
+    $("review-button").addEventListener("click", () => {
+      const opened = $("review-panel").classList.toggle("hidden") === false;
+      $("review-button").setAttribute("aria-expanded", String(opened));
+    });
+    
+    $("restart-button").addEventListener("click", () => {
+      clearClocks();
+      document.querySelectorAll(".confetti-piece").forEach(piece => piece.remove());
+      participant = null; index = 0; score = 0; answers = []; remaining = 0; locked = false;
+      $("identity-form").reset();
+      $("form-error").classList.add("hidden");
+      $("review-list").replaceChildren();
+      showScreen("login-screen");
+      $("participant-name").focus();
+    });
+  </script> 
+</body>
+</html>
